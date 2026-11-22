@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Daily Wisdom #002 — Confirmation Bias</title>
+<style>
+  @page { size: 1280px 720px; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    font-family: "Segoe UI", "Segoe UI Variable", system-ui, sans-serif;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .slide {
+    width: 1280px; height: 720px;
+    page-break-after: always;
+    overflow: hidden;
+    position: relative;
+    background: #f8fafc;
+    display: flex; flex-direction: column;
+  }
+  .slide:last-child { page-break-after: auto; }
+
+  /* ---------- header / footer ---------- */
+  header {
+    padding: 28px 56px 0 56px;
+  }
+  .tag {
+    display: inline-block;
+    font-size: 15px; font-weight: 700; letter-spacing: 2.5px;
+    color: #fff; background: var(--accent, #6366f1);
+    padding: 5px 14px; border-radius: 999px;
+    text-transform: uppercase;
+  }
+  h2 { font-size: 38px; color: #0f172a; margin-top: 12px; letter-spacing: -0.5px; }
+  .sub { font-size: 19px; color: #64748b; margin-top: 6px; }
+  .body { flex: 1; padding: 22px 56px 0 56px; display: flex; gap: 34px; min-height: 0; }
+  footer {
+    height: 44px; display: flex; align-items: center; justify-content: space-between;
+    padding: 0 56px; font-size: 13px; color: #94a3b8;
+    border-top: 1px solid #e2e8f0;
+  }
+  .pageno { font-weight: 700; color: var(--accent, #6366f1); }
+
+  /* ---------- text blocks ---------- */
+  .col { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 14px; }
+  p { font-size: 18px; line-height: 1.55; color: #334155; }
+  b, strong { color: #0f172a; }
+  .lead { font-size: 21px; color: #1e293b; font-weight: 600; line-height: 1.5; }
+
+  .card {
+    background: #fff; border: 1px solid #e2e8f0; border-radius: 14px;
+    padding: 18px 22px;
+    box-shadow: 0 1px 3px rgba(15,23,42,.06);
+  }
+  .card h3 { font-size: 19px; margin-bottom: 6px; color: #0f172a; }
+  .card p { font-size: 16.5px; }
+  .card .ic { font-size: 22px; }
+
+  .quote {
+    border-left: 6px solid var(--accent, #6366f1);
+    background: #eef2ff;
+    padding: 16px 20px; border-radius: 0 12px 12px 0;
+    font-size: 19px; font-style: italic; color: #1e293b; line-height: 1.5;
+  }
+  .quote .who { display: block; margin-top: 8px; font-style: normal; font-size: 15px; color: #64748b; font-weight: 600; }
+
+  ul.list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  ul.list li {
+    font-size: 17.5px; line-height: 1.45; color: #334155;
+    padding-left: 30px; position: relative;
+  }
+  ul.list li::before {
+    content: ""; position: absolute; left: 0; top: 7px;
+    width: 16px; height: 16px; border-radius: 5px;
+    background: var(--accent, #6366f1); opacity: .9;
+  }
+
+  .callout {
+    background: #fffbeb; border: 1.5px solid #fcd34d; border-radius: 12px;
+    padding: 14px 18px; font-size: 17px; color: #78350f; line-height: 1.5;
+  }
+
+  .chart-title { font-size: 15px; font-weight: 700; color: #475569; letter-spacing: .5px; text-transform: uppercase; }
+  .chart-note { font-size: 14px; color: #94a3b8; margin-top: 6px; line-height: 1.4; }
+</style>
+</head>
+<body>
+
+<!-- ================= SLIDE 1 : COVER ================= -->
+<section class="slide" style="background: linear-gradient(135deg, #0f172a 0%, #431407 55%, #7c2d12 100%);">
+  <div style="flex:1; display:flex; flex-direction:column; justify-content:center; padding:0 80px; position:relative;">
+    <svg style="position:absolute; right:70px; top:90px; opacity:.95" width="440" height="280" viewBox="0 0 440 280" fill="none">
+      <!-- filter/funnel -->
+      <path d="M60 40 L380 40 L260 140 L260 230 L180 260 L180 140 Z" stroke="#fdba74" stroke-width="4" fill="rgba(251,146,60,.08)"/>
+      <!-- dots above: mixed evidence -->
+      <circle cx="100" cy="18" r="8" fill="#34d399"/><circle cx="160" cy="14" r="8" fill="#f87171"/>
+      <circle cx="220" cy="20" r="8" fill="#34d399"/><circle cx="280" cy="14" r="8" fill="#f87171"/>
+      <circle cx="340" cy="18" r="8" fill="#34d399"/>
+      <!-- below: only green -->
+      <circle cx="220" cy="252" r="8" fill="#34d399"/>
+      <text x="220" y="280" text-anchor="middle" font-size="13" fill="#fdba74" font-weight="600">hanya bukti pendukung yang lolos</text>
+    </svg>
+    <div style="font-size:17px; letter-spacing:4px; color:#fdba74; font-weight:700;">DAILY WISDOM · EDISI #002 · PSIKOLOGI</div>
+    <h1 style="font-size:74px; color:#fff; line-height:1.08; margin-top:22px; letter-spacing:-1.5px; max-width:760px;">
+      Confirmation<br>Bias
+    </h1>
+    <p style="font-size:25px; color:#fed7aa; margin-top:26px; max-width:640px; line-height:1.5; font-weight:400;">
+      Otakmu bukan mencari <i>kebenaran</i> — ia mencari <i>pembenaran</i>.
+      Inilah bias yang paling mahal dalam investasi, bisnis, dan hubungan.
+    </p>
+    <div style="margin-top:44px; display:flex; gap:14px;">
+      <span style="background:rgba(251,146,60,.15); border:1px solid #fb923c; color:#fed7aa; padding:8px 18px; border-radius:999px; font-size:15px; font-weight:600;">Bias Kognitif</span>
+      <span style="background:rgba(45,212,191,.14); border:1px solid #2dd4bf; color:#99f6e4; padding:8px 18px; border-radius:999px; font-size:15px; font-weight:600;">Investasi</span>
+      <span style="background:rgba(129,140,248,.15); border:1px solid #818cf8; color:#c7d2fe; padding:8px 18px; border-radius:999px; font-size:15px; font-weight:600;">Pengambilan Keputusan</span>
+    </div>
+  </div>
+  <footer style="border-top:1px solid rgba(148,163,184,.25); color:#64748b;">
+    <span>Daily Wisdom — satu konsep penting setiap hari</span>
+    <span style="color:#fdba74; font-weight:700;">01 / 10</span>
+  </footer>
+</section>
+
+<!-- ================= SLIDE 2 : DEFINISI ================= -->
+<section class="slide" style="--accent:#f97316">
+  <header>
+    <span class="tag">Definisi</span>
+    <h2>Apa itu Confirmation Bias?</h2>
+    <div class="sub">Kecenderungan mencari, menafsirkan, dan mengingat informasi yang <b>mendukung</b> keyakinan kita — sambil mengabaikan yang membantahnya.</div>
+  </header>
+  <div class="body">
+    <div class="col" style="flex:1.15;">
+      <p class="lead">Confirmation bias bekerja seperti <b>pengacara, bukan ilmuwan</b>: ilmuwan mulai dari bukti lalu menuju kesimpulan; pengacara mulai dari kesimpulan ("klien saya tidak bersalah") lalu mencari bukti yang mendukungnya.</p>
+      <p>Contoh paling dekat: setelah kamu membeli saham X, timeline-mu tiba-tiba penuh analis yang bullish terhadap X. Berita negatif tentang X? "Ah, itu cuma noise." Berita positif kecil? "Nah, kan benar!" — padahal <b>volume berita tidak berubah; saringanmu yang berubah</b>.</p>
+      <p>Ini bukan kemalasan berpikir. Otak melakukannya karena mengubah keyakinan itu <b>mahal secara energi dan menyakitkan secara emosional</b> — mengakui salah berarti mengakui waktu, uang, dan harga diri yang sudah terlanjur dipertaruhkan.</p>
+      <div class="quote" style="--accent:#f97316; background:#fff7ed; border-color:#fb923c;">“Manusia lebih mudah tertipu daripada diyakinkan bahwa mereka telah tertipu.”
+        <span class="who">— Mark Twain</span>
+      </div>
+    </div>
+    <div class="col" style="flex:.85; justify-content:center;">
+      <div class="card">
+        <div class="chart-title" style="margin-bottom:10px;">Analogi: Saringan Bukti</div>
+        <svg width="100%" viewBox="0 0 380 250">
+          <!-- evidence dots mixed -->
+          <g>
+            <circle cx="60" cy="30" r="9" fill="#34d399"/><circle cx="110" cy="22" r="9" fill="#f87171"/>
+            <circle cx="160" cy="32" r="9" fill="#34d399"/><circle cx="210" cy="22" r="9" fill="#f87171"/>
+            <circle cx="260" cy="30" r="9" fill="#34d399"/><circle cx="310" cy="22" r="9" fill="#f87171"/>
+            <circle cx="85" cy="55" r="9" fill="#f87171"/><circle cx="140" cy="60" r="9" fill="#34d399"/>
+            <circle cx="195" cy="52" r="9" fill="#34d399"/><circle cx="250" cy="60" r="9" fill="#f87171"/>
+            <circle cx="300" cy="55" r="9" fill="#34d399"/>
+          </g>
+          <text x="190" y="14" text-anchor="middle" font-size="12.5" font-weight="700" fill="#64748b">SEMUA BUKTI YANG TERSEDIA</text>
+          <!-- funnel -->
+          <path d="M50 95 L330 95 L240 155 L240 200 L140 200 L140 155 Z" fill="#ffedd5" stroke="#f97316" stroke-width="3"/>
+          <text x="190" y="135" text-anchor="middle" font-size="12" font-weight="800" fill="#ea580c">SARINGAN: "yang cocok</text>
+          <text x="190" y="152" text-anchor="middle" font-size="12" font-weight="800" fill="#ea580c">dengan keyakinanku"</text>
+          <!-- output: only green -->
+          <circle cx="172" cy="222" r="9" fill="#34d399"/><circle cx="196" cy="228" r="9" fill="#34d399"/><circle cx="218" cy="220" r="9" fill="#34d399"/>
+          <text x="238" y="228" font-size="12.5" font-weight="700" fill="#16a34a">"bukti" yang lolos</text>
+        </svg>
+        <p style="font-size:15.5px; margin-top:8px;">Hasilnya: kamu merasa <b>sangat berdasar data</b>, padahal datamu sudah diseleksi sejak awal. Keyakinan pun menguat — dengan fondasi rapuh.</p>
+      </div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #002 · Confirmation Bias</span><span class="pageno">02 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 3 : MEKANISME ================= -->
+<section class="slide" style="--accent:#14b8a6">
+  <header>
+    <span class="tag">Mekanisme</span>
+    <h2>3 Cara Otak Melindungi Keyakinanmu</h2>
+    <div class="sub">Bias ini menyerang di tiga lapis: saat mencari, saat menafsirkan, dan saat mengingat.</div>
+  </header>
+  <div class="body">
+    <div class="col">
+      <div class="card" style="border-left:6px solid #f97316;">
+        <h3>1 · Pencarian selektif <span style="color:#f97316;">(search)</span></h3>
+        <p>Kamu bertanya dengan cara yang hanya bisa membuktikan dirimu benar. "Kenapa saham ini bagus?" bukan "Kenapa saham ini bisa gagal?". Algoritma sosmed memperparah ini: ia menyajikan lebih banyak dari apa yang sudah kamu sukai.</p>
+      </div>
+      <div class="card" style="border-left:6px solid #f59e0b;">
+        <h3>2 · Interpretasi bias <span style="color:#f59e0b;">(interpret)</span></h3>
+        <p>Bukti yang sama dibaca dua arah. Saham turun 10%: pendukung bilang "diskon, kesempatan tambah"; penentang bilang "konfirmasi turun". <b>Data netral, tafsir tidak netral.</b></p>
+      </div>
+      <div class="card" style="border-left:6px solid #8b5cf6;">
+        <h3>3 · Ingatan bias <span style="color:#8b5cf6;">(recall)</span></h3>
+        <p>Kamu lebih mudah mengingat prediksi yang benar ("kan kubilang!") daripada yang meleset. Itulah kenapa ingatan tentang rekor tradingmu selalu lebih bagus daripada angka sebenarnya.</p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="chart-title" style="margin-bottom:8px;">Dua Mode Berpikir</div>
+        <svg width="100%" viewBox="0 0 380 210">
+          <!-- lawyer mode -->
+          <rect x="15" y="20" width="165" height="150" rx="14" fill="#fff7ed" stroke="#fb923c" stroke-width="2.5"/>
+          <text x="97" y="48" text-anchor="middle" font-size="15" font-weight="800" fill="#ea580c">MODE PENGACARA</text>
+          <text x="97" y="72" text-anchor="middle" font-size="11.5" fill="#9a3412">1. tetapkan kesimpulan</text>
+          <text x="97" y="92" text-anchor="middle" font-size="11.5" fill="#9a3412">2. cari bukti pendukung</text>
+          <text x="97" y="112" text-anchor="middle" font-size="11.5" fill="#9a3412">3. serang bukti lawan</text>
+          <text x="97" y="145" text-anchor="middle" font-size="12.5" font-weight="700" fill="#ea580c">tujuan: MENANG</text>
+          <!-- scientist mode -->
+          <rect x="200" y="20" width="165" height="150" rx="14" fill="#f0fdfa" stroke="#14b8a6" stroke-width="2.5"/>
+          <text x="282" y="48" text-anchor="middle" font-size="15" font-weight="800" fill="#0d9488">MODE ILMUWAN</text>
+          <text x="282" y="72" text-anchor="middle" font-size="11.5" fill="#115e59">1. pasang hipotesis</text>
+          <text x="282" y="92" text-anchor="middle" font-size="11.5" fill="#115e59">2. cari yang MEMBANTAH</text>
+          <text x="282" y="112" text-anchor="middle" font-size="11.5" fill="#115e59">3. revisi kalau salah</text>
+          <text x="282" y="145" text-anchor="middle" font-size="12.5" font-weight="700" fill="#0d9488">tujuan: BENAR</text>
+        </svg>
+        <p style="font-size:15px; margin-top:6px;">Default otak adalah mode pengacara — ia lebih cepat dan lebih nyaman. Mode ilmuwan harus <b>dipilih dengan sengaja</b>, setiap kali.</p>
+      </div>
+      <div class="callout"><b>Bedanya dengan Dunning-Kruger (edisi #001):</b> Dunning-Kruger membuatmu <b>terlalu yakin</b> karena tidak tahu batas pengetahuanmu. Confirmation bias membuatmu <b>tetap yakin</b> karena menolak melihat bukti lawan. Keduanya sering bekerja sama — kombinasi paling berbahaya.</div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #002 · Confirmation Bias</span><span class="pageno">03 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 4 : EKSPERIMEN WASON ================= -->
+<section class="slide" style="--accent:#8b5cf6">
+  <header>
+    <span class="tag">Eksperimen Klasik</span>
+    <h2>Tes 2-4-6: Kebenaran yang Tak Pernah Diuji</h2>
+    <div class="sub">Peter Wason (1960) — eksperimen paling terkenal tentang bagaimana orang menguji keyakinannya.</div>
+  </header>
+  <div class="body">
+    <div class="col" style="flex:1.15;">
+      <p class="lead">Peserta diberi deret angka <b>2 – 4 – 6</b> dan diberi tahu bahwa deret itu mengikuti sebuah aturan rahasia. Tugas mereka: menebak aturannya dengan mengajukan deret lain, dan peneliti menjawab "cocok" atau "tidak cocok".</p>
+      <p>Hampir semua peserta menyimpulkan aturannya "kelipatan 2" atau "naik +2", lalu mengajukan deret yang <b>membenarkan</b> tebakan mereka: 8-10-12, 20-22-24, 100-102-104. Semua dijawab "cocok" — dan mereka makin yakin.</p>
+      <p><b>Aturan sebenarnya: "tiga angka yang naik" — apa pun.</b> Deret 1-7-900 pun cocok. Cara menemukannya justru dengan mengajukan deret yang <b>melanggar</b> tebakan: 10-9-8 (akan dijawab "tidak cocok") atau 2-4-7 (cocok!). Mayoritas peserta tidak pernah melakukannya — mereka sibuk mengumpulkan konfirmasi.</p>
+      <ul class="list" style="--accent:#8b5cf6;">
+        <li><b>Hanya ~21%</b> peserta yang berhasil menebak aturan di kesempatan pertama.</li>
+        <li>Sekitar <b>77% tebakan</b> yang diajukan bersifat mengonfirmasi, bukan membantah.</li>
+        <li>Setiap jawaban "cocok" terasa seperti bukti — padahal <b>tidak menambah informasi apa pun</b>.</li>
+      </ul>
+    </div>
+    <div class="col" style="flex:.85; justify-content:center;">
+      <div class="card">
+        <div class="chart-title" style="margin-bottom:10px;">Analogi Visual: Uji yang Benar vs Salah</div>
+        <svg width="100%" viewBox="0 0 380 235">
+          <text x="190" y="18" text-anchor="middle" font-size="12.5" font-weight="700" fill="#64748b">DERET AWAL: 2 – 4 – 6 &nbsp;·&nbsp; ATURAN RAHASIA: "angka naik"</text>
+          <!-- confirming tests -->
+          <rect x="20" y="34" width="340" height="86" rx="12" fill="#fef2f2" stroke="#f87171" stroke-width="2.5"/>
+          <text x="40" y="60" font-size="13.5" font-weight="800" fill="#dc2626">❌ UJI MENGKONFIRMASI (mayoritas)</text>
+          <text x="40" y="82" font-size="12.5" fill="#7f1d1d">8-10-12 → "cocok" · 20-22-24 → "cocok" · 50-52-54 → "cocok"</text>
+          <text x="40" y="103" font-size="12.5" fill="#7f1d1d">100% cocok, 0% info baru — aturan belum teruji!</text>
+          <!-- disconfirming -->
+          <rect x="20" y="130" width="340" height="86" rx="12" fill="#f0fdf4" stroke="#34d399" stroke-width="2.5"/>
+          <text x="40" y="152" font-size="13.5" font-weight="800" fill="#16a34a">✔ UJI MEMBANTAH (minoritas)</text>
+          <text x="40" y="174" font-size="12.5" fill="#14532d">10-9-8 → "TIDAK cocok" (bukan sembarang urutan!)</text>
+          <text x="40" y="196" font-size="12.5" fill="#14532d">2-4-7 → "cocok" (tidak harus +2!) → aturan asli ketemu</text>
+        </svg>
+        <p style="font-size:15px; margin-top:8px;">Pelajaran: satu uji yang <b>berpotensi membuktikanmu salah</b> bernilai lebih dari seribu uji yang membenarkanmu.</p>
+      </div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #002 · Confirmation Bias</span><span class="pageno">04 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 5 : POLARISASI ================= -->
+<section class="slide" style="--accent:#f43f5e">
+  <header>
+    <span class="tag">Bukti Ilmiah</span>
+    <h2>Bukti Campur Justru Membuat Kita Makin Ekstrem</h2>
+    <div class="sub">Lord, Ross &amp; Lepper (1979), Stanford — eksperimen yang menjelaskan kenapa debat di internet tidak pernah selesai.</div>
+  </header>
+  <div class="body">
+    <div class="col" style="flex:1.1; justify-content:center;">
+      <div class="card">
+        <div class="chart-title" style="margin-bottom:6px;">Sikap Sebelum vs Sesudah Membaca Bukti Campuran yang Sama</div>
+        <svg width="100%" viewBox="0 0 620 330">
+          <!-- axes -->
+          <line x1="80" y1="290" x2="580" y2="290" stroke="#94a3b8" stroke-width="2"/>
+          <line x1="80" y1="290" x2="80" y2="30" stroke="#94a3b8" stroke-width="2"/>
+          <text x="575" y="312" text-anchor="end" font-size="14" fill="#64748b" font-weight="600">sebelum → sesudah membaca</text>
+          <text x="66" y="26" font-size="14" fill="#64748b" font-weight="600">kekuatan sikap</text>
+          <line x1="80" y1="165" x2="580" y2="165" stroke="#e2e8f0" stroke-width="2" stroke-dasharray="6 6"/>
+          <text x="86" y="160" font-size="11.5" fill="#94a3b8">netral</text>
+          <!-- supporters line: up -->
+          <path d="M110 130 C240 118, 400 80, 545 58" fill="none" stroke="#f43f5e" stroke-width="5" stroke-linecap="round"/>
+          <circle cx="110" cy="130" r="7" fill="#f43f5e"/><circle cx="545" cy="58" r="7" fill="#f43f5e"/>
+          <text x="540" y="42" text-anchor="end" font-size="14" font-weight="800" fill="#f43f5e">PENDUKUNG makin yakin ↑</text>
+          <!-- opponents line: down -->
+          <path d="M110 200 C240 212, 400 250, 545 272" fill="none" stroke="#3b82f6" stroke-width="5" stroke-linecap="round"/>
+          <circle cx="110" cy="200" r="7" fill="#3b82f6"/><circle cx="545" cy="272" r="7" fill="#3b82f6"/>
+          <text x="540" y="300" text-anchor="end" font-size="14" font-weight="800" fill="#3b82f6">PENENTANG makin yakin ↓</text>
+          <!-- middle label -->
+          <text x="310" y="152" text-anchor="middle" font-size="13" font-weight="700" fill="#64748b">kedua kubu membaca DUA studi yang sama:</text>
+          <text x="310" y="185" text-anchor="middle" font-size="13" fill="#64748b">satu mendukung, satu membantah hukuman mati</text>
+        </svg>
+        <div class="chart-note">Ilustrasi pola hasil Lord, Ross &amp; Lepper (1979), "Biased assimilation and attitude polarization", JPSP. Fenomena ini disebut <i>attitude polarization</i>.</div>
+      </div>
+    </div>
+    <div class="col" style="flex:.9;">
+      <p class="lead">Dua kelompok dengan sikap berlawanan membaca <b>set bukti yang persis sama</b>. Hasilnya bukan bertemu di tengah — justru <b>saling menjauh</b>.</p>
+      <ul class="list" style="--accent:#f43f5e;">
+        <li>Setiap kubu menilai studi yang mendukungnya sebagai <b>"metodologinya bagus"</b>.</li>
+        <li>Studi yang membantah dinilai <b>"sampelnya kecil"</b>, <b>"ada cacat"</b> — oleh kedua kubu, untuk studi yang berbeda.</li>
+        <li>Data yang sama → keyakinan yang <b>lebih ekstrem</b>. Ini mekanisme di balik polarisasi politik dan "perang analis" di grup saham.</li>
+      </ul>
+      <div class="callout">⚠️ <b>Implikasi menakutkan:</b> "baca lebih banyak berita" tidak otomatis membuatmu lebih objektif. Tanpa kesadaran akan bias ini, informasi tambahan hanya memperdalam parit keyakinanmu.</div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #002 · Confirmation Bias</span><span class="pageno">05 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 6 : DUNIA NYATA ================= -->
+<section class="slide" style="--accent:#f59e0b">
+  <header>
+    <span class="tag">Di Dunia Nyata</span>
+    <h2>Di Mana Bias Ini Membakar Uangmu</h2>
+    <div class="sub">Tiga tempat confirmation bias paling sering — dan paling mahal — muncul.</div>
+  </header>
+  <div class="body">
+    <div class="col">
+      <div class="card" style="padding:14px 20px;">
+        <h3>📈 Investasi: jatuh cinta pada posisi</h3>
+        <p style="font-size:15.5px;">Setelah beli, kamu berhenti mencari alasan untuk salah. Berita buruk di-dismiss sebagai "manipulasi bandar", laporan keuangan jelek dianggap "sementara". Akibatnya: <b>memegang posisi rugi terlalu lama</b> — lawan langsung dari aturan cut loss.</p>
+      </div>
+      <div class="card" style="padding:14px 20px;">
+        <h3>💼 Bisnis &amp; karier: survei yang menghibur</h3>
+        <p style="font-size:15.5px;">Founder bertanya ke calon pengguna "kamu suka ide ini kan?" — semua menjawab sopan "iya", founder pulang dengan "validasi". Pertanyaan itu tidak menguji apa pun. <b>Uji yang benar: "kamu mau bayar sekarang?"</b></p>
+      </div>
+      <div class="card" style="padding:14px 20px;">
+        <h3>📱 Sosial media: echo chamber</h3>
+        <p style="font-size:15.5px;">Algoritma mengoptimalkan engagement, bukan kebenaran. Semakin kamu berinteraksi dengan satu sudut pandang, semakin jarang kamu melihat lawannya — sampai sudut pandangmu terasa seperti <b>konsensus publik</b>.</p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="chart-title" style="margin-bottom:6px;">Analogi: Harga Turun, Keyakinan Naik</div>
+        <svg width="100%" viewBox="0 0 380 210">
+          <line x1="40" y1="175" x2="360" y2="175" stroke="#94a3b8" stroke-width="2"/>
+          <line x1="40" y1="175" x2="40" y2="20" stroke="#94a3b8" stroke-width="2"/>
+          <text x="58" y="196" font-size="12" fill="#64748b" font-weight="600">waktu →</text>
+          <!-- price falling -->
+          <path d="M50 50 C100 70, 140 95, 190 115 C240 133, 300 150, 350 162" fill="none" stroke="#3b82f6" stroke-width="4" stroke-linecap="round"/>
+          <!-- conviction rising -->
+          <path d="M50 150 C110 145, 150 120, 200 92 C250 65, 300 45, 350 34" fill="none" stroke="#f59e0b" stroke-width="4" stroke-dasharray="9 7" stroke-linecap="round"/>
+          <text x="180" y="140" font-size="12.5" font-weight="800" fill="#3b82f6" stroke="#fff" stroke-width="4" paint-order="stroke">harga saham</text>
+          <text x="205" y="55" font-size="12.5" font-weight="800" fill="#d97706" stroke="#fff" stroke-width="4" paint-order="stroke">keyakinanmu ("pasti rebound")</text>
+          <rect x="50" y="22" width="14" height="14" fill="#3b82f6" rx="3"/><text x="70" y="34" font-size="12" fill="#475569">Harga</text>
+          <rect x="50" y="44" width="14" height="14" fill="#f59e0b" rx="3"/><text x="70" y="56" font-size="12" fill="#475569">Keyakinan</text>
+        </svg>
+        <p style="font-size:15px; margin-top:6px;">Semakin harga membantah tesis, semakin keras otak mencari pembenaran — bukan karena analisanya membaik, tapi karena <b>mengakui salah semakin mahal</b>.</p>
+      </div>
+      <div class="callout">💡 <b>Aturan praktis:</b> untuk setiap posisi, tulis SATU kondisi yang membuktikan kamu salah (invalidasi) <b>sebelum</b> entry. Tanpa itu, otakmu akan memindahkan tiang gawang setiap kali bola mendekat.</div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #002 · Confirmation Bias</span><span class="pageno">06 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 7 : KOMBO BERBAHAYA ================= -->
+<section class="slide" style="--accent:#3b82f6">
+  <header>
+    <span class="tag">Koneksi</span>
+    <h2>Confirmation Bias Tidak Bekerja Sendirian</h2>
+    <div class="sub">Ia adalah "bias pusat" yang menyalurkan dan memperkuat bias-bias lain.</div>
+  </header>
+  <div class="body">
+    <div class="col" style="flex:1.05; justify-content:center;">
+      <div class="card">
+        <div class="chart-title" style="margin-bottom:10px;">Diagram: Pabrik Keyakinan Palsu</div>
+        <svg width="100%" viewBox="0 0 560 350">
+          <defs>
+            <marker id="arr2" markerWidth="10" markerHeight="10" refX="7" refY="4" orient="auto">
+              <path d="M0 0 L8 4 L0 8 Z" fill="#64748b"/>
+            </marker>
+          </defs>
+          <!-- center -->
+          <rect x="195" y="140" width="200" height="70" rx="16" fill="#f97316"/>
+          <text x="295" y="168" text-anchor="middle" font-size="16" font-weight="800" fill="#fff">CONFIRMATION</text>
+          <text x="295" y="190" text-anchor="middle" font-size="16" font-weight="800" fill="#fff">BIAS</text>
+          <!-- inputs -->
+          <rect x="15" y="30" width="185" height="56" rx="12" fill="#ede9fe" stroke="#8b5cf6" stroke-width="2.5"/>
+          <text x="107" y="53" text-anchor="middle" font-size="13.5" font-weight="700" fill="#6d28d9">Dunning-Kruger</text>
+          <text x="107" y="72" text-anchor="middle" font-size="11" fill="#7c3aed">yakin berlebih sejak awal</text>
+          <rect x="15" y="250" width="185" height="56" rx="12" fill="#fef3c7" stroke="#f59e0b" stroke-width="2.5"/>
+          <text x="107" y="269" text-anchor="middle" font-size="13.5" font-weight="700" fill="#b45309">Sunk Cost Fallacy</text>
+          <text x="107" y="288" text-anchor="middle" font-size="11" fill="#b45309">"sudah terlanjur investasi"</text>
+          <rect x="360" y="30" width="185" height="56" rx="12" fill="#fce7f3" stroke="#ec4899" stroke-width="2.5"/>
+          <text x="452" y="53" text-anchor="middle" font-size="13.5" font-weight="700" fill="#be185d">Echo Chamber</text>
+          <text x="452" y="72" text-anchor="middle" font-size="11" fill="#be1859">lingkungan satu suara</text>
+          <rect x="360" y="250" width="185" height="56" rx="12" fill="#dbeafe" stroke="#3b82f6" stroke-width="2.5"/>
+          <text x="452" y="269" text-anchor="middle" font-size="13.5" font-weight="700" fill="#1d4ed8">Hindsight Bias</text>
+          <text x="452" y="288" text-anchor="middle" font-size="11" fill="#1d4ed8">"kan sudah kubilang"</text>
+          <!-- arrows -->
+          <path d="M160 88 C180 105, 210 120, 240 138" fill="none" stroke="#64748b" stroke-width="3" marker-end="url(#arr2)"/>
+          <path d="M160 248 C180 230, 210 215, 235 208" fill="none" stroke="#64748b" stroke-width="3" marker-end="url(#arr2)"/>
+          <path d="M400 88 C385 105, 365 122, 350 138" fill="none" stroke="#64748b" stroke-width="3" marker-end="url(#arr2)"/>
+          <path d="M400 248 C385 230, 365 215, 355 210" fill="none" stroke="#64748b" stroke-width="3" marker-end="url(#arr2)"/>
+          <!-- output -->
+          <rect x="195" y="290" width="200" height="48" rx="12" fill="#0f172a"/>
+          <text x="295" y="312" text-anchor="middle" font-size="13" font-weight="700" fill="#fca5a5">keputusan buruk yang</text>
+          <text x="295" y="330" text-anchor="middle" font-size="13" font-weight="700" fill="#fca5a5">terasa sangat yakin</text>
+          <path d="M295 212 L295 285" fill="none" stroke="#f97316" stroke-width="3.5" marker-end="url(#arr2)"/>
+        </svg>
+        <p style="font-size:15px; margin-top:6px;">Bias-bias lain memasok "amunisi", confirmation bias menyaringnya — dan outputnya adalah keputusan yang terasa objektif padahal sudah diatur sejak awal.</p>
+      </div>
+    </div>
+    <div class="col" style="flex:.95;">
+      <p class="lead">Kenapa ini penting? Karena memerangi satu bias saja tidak cukup — kamu harus memutus <b>rantai pasoknya</b>.</p>
+      <ul class="list" style="--accent:#3b82f6;">
+        <li><b>Dunning-Kruger → CB:</b> kamu terlalu yakin, lalu hanya mencari bukti pendukung. Obat gabungan: uji diri + cari bantahan.</li>
+        <li><b>Sunk cost → CB:</b> sudah rugi 30%, otak mencari alasan "fundamental masih bagus". Obat: invalidasi tertulis sebelum entry.</li>
+        <li><b>Echo chamber → CB:</b> lingkaranmu satu suara, jadi bukti lawan tidak pernah sampai. Obat: sengaja ikuti analis yang berseberangan.</li>
+        <li><b>Hindsight → CB:</b> kamu "ingat" sudah memprediksi hasilnya, jadi tidak belajar dari kesalahan. Obat: jurnal tertulis <b>sebelum</b> hasil diketahui.</li>
+      </ul>
+      <div class="callout">🔗 Benang merah Daily Wisdom: bias-bias ini berjejaring. Setiap edisi adalah satu simpul — pahami semuanya dan kamu akan melihat pola besar cara otak mengkhianatimu.</div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #002 · Confirmation Bias</span><span class="pageno">07 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 8 : SOLUSI ================= -->
+<section class="slide" style="--accent:#14b8a6">
+  <header>
+    <span class="tag">Solusi</span>
+    <h2>4 Teknik Membantah Dirimu Sendiri</h2>
+    <div class="sub">Kamu tidak bisa mematikan bias ini — tapi bisa membangun ritual yang memaksanya bekerja untukmu.</div>
+  </header>
+  <div class="body">
+    <div class="col" style="flex:1.1; justify-content:center;">
+      <div class="card">
+        <svg width="100%" viewBox="0 0 620 380">
+          <defs>
+            <marker id="arr3" markerWidth="10" markerHeight="10" refX="7" refY="4" orient="auto">
+              <path d="M0 0 L8 4 L0 8 Z" fill="#14b8a6"/>
+            </marker>
+          </defs>
+          <rect x="205" y="20" width="210" height="64" rx="14" fill="#0d9488"/>
+          <text x="310" y="46" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">1 · PUNYA KEYAKINAN</text>
+          <text x="310" y="68" text-anchor="middle" font-size="11" fill="#99f6e4">"saham X akan naik"</text>
+          <rect x="415" y="160" width="190" height="64" rx="14" fill="#0d9488"/>
+          <text x="510" y="186" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">2 · CARI BANTAHAN</text>
+          <text x="510" y="207" text-anchor="middle" font-size="11" fill="#99f6e4">steelman argumen lawan</text>
+          <rect x="205" y="296" width="210" height="64" rx="14" fill="#0d9488"/>
+          <text x="310" y="322" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">3 · UJI DI DUNIA NYATA</text>
+          <text x="310" y="343" text-anchor="middle" font-size="11" fill="#99f6e4">prediksi tertulis + invalidasi</text>
+          <rect x="15" y="160" width="190" height="64" rx="14" fill="#0d9488"/>
+          <text x="110" y="186" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">4 · REVISI TANPA DRAMA</text>
+          <text x="110" y="207" text-anchor="middle" font-size="11" fill="#99f6e4">berubah pikiran = upgrade</text>
+          <path d="M420 55 C460 70, 485 110, 500 155" fill="none" stroke="#14b8a6" stroke-width="4" marker-end="url(#arr3)"/>
+          <path d="M500 228 C480 270, 455 300, 420 315" fill="none" stroke="#14b8a6" stroke-width="4" marker-end="url(#arr3)"/>
+          <path d="M200 315 C165 300, 135 265, 120 228" fill="none" stroke="#14b8a6" stroke-width="4" marker-end="url(#arr3)"/>
+          <path d="M120 155 C135 112, 165 75, 200 58" fill="none" stroke="#14b8a6" stroke-width="4" marker-end="url(#arr3)"/>
+          <text x="310" y="185" text-anchor="middle" font-size="15" font-weight="800" fill="#0f766e">SIKLUS</text>
+          <text x="310" y="205" text-anchor="middle" font-size="15" font-weight="800" fill="#0f766e">FALSIFIKASI</text>
+        </svg>
+      </div>
+    </div>
+    <div class="col" style="gap:10px;">
+      <div class="card" style="padding:12px 18px;"><h3 style="font-size:17px;">1 · Steelman, bukan strawman</h3><p style="font-size:15px;">Rangkum argumen lawan <b>dalam versi terkuatnya</b> sampai pendukungnya bilang "ya, itu yang kumaksud". Kalau belum bisa, kamu belum paham isunya.</p></div>
+      <div class="card" style="padding:12px 18px;"><h3 style="font-size:17px;">2 · Tanya "apa yang mengubah pikiranku?"</h3><p style="font-size:15px;">Kalau jawabannya "tidak ada yang bisa", itu bukan keyakinan — itu agama. Keyakinan yang sehat selalu punya pintu keluar.</p></div>
+      <div class="card" style="padding:12px 18px;"><h3 style="font-size:17px;">3 · Angkat "pengacara setan"</h3><p style="font-size:15px;">Sebelum keputusan besar, minta seseorang (atau AI) bertugas khusus <b>menyerang</b> idemu. Charlie Munger: "Aku berhak punya pendapat hanya kalau bisa mempertahankannya melawan argumen tandingan terbaik."</p></div>
+      <div class="card" style="padding:12px 18px;"><h3 style="font-size:17px;">4 · Balik pertanyaannya</h3><p style="font-size:15px;">Jangan tanya "kenapa ini ide bagus?" — tanya <b>"dalam kondisi apa ini ide buruk?"</b> Sama seperti tes 2-4-6 Wason: cari yang "tidak cocok".</p></div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #002 · Confirmation Bias</span><span class="pageno">08 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 9 : PRAKTIK ================= -->
+<section class="slide" style="--accent:#8b5cf6">
+  <header>
+    <span class="tag">Praktik Hari Ini</span>
+    <h2>Detektor Diri: Apakah Kamu Sedang Terjebak?</h2>
+    <div class="sub">Pilih satu keyakinan yang sedang kamu pegang erat (saham, ide bisnis, pendapat) dan uji dengan ceklis ini.</div>
+  </header>
+  <div class="body">
+    <div class="col">
+      <div class="card" style="border-left:6px solid #ef4444;">
+        <h3 style="color:#ef4444;">🚩 Tanda bahaya — jawab jujur:</h3>
+        <ul class="list" style="--accent:#ef4444;">
+          <li>Semua sumber informasimu tentang topik ini <b>sepakat denganmu</b></li>
+          <li>Kamu merasa <b>kesal/emosional</b> saat ada yang membantah, bukan penasaran</li>
+          <li>Kamu tidak bisa menyebutkan <b>2 argumen terkuat</b> pihak lawan</li>
+          <li>Kamu pernah membagikan artikel tanpa membaca <b>bantahan</b> terhadapnya</li>
+          <li>Ketika fakta baru muncul, reaksi pertamamu: "bagaimana ini mendukungku?"</li>
+        </ul>
+      </div>
+      <div class="card" style="border-left:6px solid #16a34a;">
+        <h3 style="color:#16a34a;">✅ Tanda sehat:</h3>
+        <ul class="list" style="--accent:#16a34a;">
+          <li>Kamu bisa menyebutkan kondisi yang akan <b>mengubah pikiranmu</b></li>
+          <li>Kamu pernah <b>berubah pendirian</b> dalam setahun terakhir dan bisa menceritakannya</li>
+          <li>Ada minimal satu orang di lingkaranmu yang rutin <b>tidak setuju</b> denganmu</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <h3>📝 Latihan 5 menit malam ini</h3>
+        <p style="margin-bottom:8px;">Ambil keyakinan terkuatmu saat ini, lalu tulis:</p>
+        <ul class="list" style="--accent:#8b5cf6;">
+          <li><b>"Aku yakin ___ karena ___."</b></li>
+          <li><b>"Argumen terkuat yang MELAWAN keyakinanku: ___."</b> (tulis versi terbaiknya, bukan versi lemahnya)</li>
+          <li><b>"Aku akan berubah pikiran kalau ___."</b> (harus spesifik & bisa diamati)</li>
+        </ul>
+      </div>
+      <div class="quote" style="--accent:#8b5cf6;">“Ujian kecerdasan kelas satu adalah kemampuan menampung dua ide yang berlawanan di kepala sekaligus, dan tetap bisa berfungsi.”
+        <span class="who">— F. Scott Fitzgerald</span>
+      </div>
+      <div class="callout">💡 Kalau latihan ini terasa tidak nyaman — bagus. Ketidaknyamanan itu adalah rasa dari keyakinan yang sedang diuji sungguh-sungguh.</div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #002 · Confirmation Bias</span><span class="pageno">09 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 10 : TAKEAWAYS ================= -->
+<section class="slide" style="background: linear-gradient(135deg, #0f172a 0%, #431407 60%, #7c2d12 100%); --accent:#fdba74;">
+  <header>
+    <span class="tag" style="background:#ea580c;">Ringkasan</span>
+    <h2 style="color:#fff;">5 Hal yang Perlu Kamu Bawa Pulang</h2>
+  </header>
+  <div class="body" style="flex-direction:column; gap:14px; justify-content:center;">
+    <div style="display:flex; gap:14px;">
+      <div class="card" style="flex:1; background:rgba(255,255,255,.06); border-color:rgba(251,186,116,.35);">
+        <h3 style="color:#fdba74;">1 · Otak mencari pembenaran</h3>
+        <p style="color:#cbd5e1; font-size:16px;">Bukan kebenaran. Sadarilah: rasa "banyak bukti mendukungku" sering kali hasil saringan, bukan hasil riset.</p>
+      </div>
+      <div class="card" style="flex:1; background:rgba(255,255,255,.06); border-color:rgba(251,186,116,.35);">
+        <h3 style="color:#fdba74;">2 · Bukti campur mempolarisasi</h3>
+        <p style="color:#cbd5e1; font-size:16px;">Studi Stanford: data yang sama membuat dua kubu makin ekstrem. Informasi saja tidak menyembuhkan bias.</p>
+      </div>
+      <div class="card" style="flex:1; background:rgba(255,255,255,.06); border-color:rgba(251,186,116,.35);">
+        <h3 style="color:#fdba74;">3 · Uji yang membantah &gt; mengonfirmasi</h3>
+        <p style="color:#cbd5e1; font-size:16px;">Pelajaran tes 2-4-6 Wason: seribu "cocok" tidak sebanding satu "tidak cocok" yang mengejutkan.</p>
+      </div>
+    </div>
+    <div style="display:flex; gap:14px;">
+      <div class="card" style="flex:1; background:rgba(255,255,255,.06); border-color:rgba(251,186,116,.35);">
+        <h3 style="color:#fdba74;">4 · Tulis invalidasi sebelum yakin</h3>
+        <p style="color:#cbd5e1; font-size:16px;">Sebelum entry saham atau membela ide: tulis kondisi yang membuktikanmu salah. Tanpa itu, tiang gawang akan terus bergeser.</p>
+      </div>
+      <div class="card" style="flex:1; background:rgba(255,255,255,.06); border-color:rgba(251,186,116,.35);">
+        <h3 style="color:#fdba74;">5 · Berubah pikiran = upgrade</h3>
+        <p style="color:#cbd5e1; font-size:16px;">Mode ilmuwan mengalahkan mode pengacara dalam jangka panjang. Orang terbaik bukan yang selalu benar, tapi yang paling cepat mengoreksi diri.</p>
+      </div>
+      <div class="card" style="flex:1; background:linear-gradient(135deg,#ea580c,#f97316); border:none; justify-content:center;">
+        <h3 style="color:#fff;">Besok di Daily Wisdom #003</h3>
+        <p style="color:#ffedd5; font-size:16px;"><b>Sunk Cost Fallacy</b> — kenapa kita terus bertahan di film jelek, hubungan buruk, dan saham nyangkut, hanya karena "sudah terlanjur".</p>
+      </div>
+    </div>
+  </div>
+  <footer style="border-top:1px solid rgba(148,163,184,.25); color:#64748b;">
+    <span>Daily Wisdom — baca 10 menit, pakai seumur hidup</span>
+    <span style="color:#fdba74; font-weight:700;">10 / 10</span>
+  </footer>
+</section>
+
+</body>
+</html>
