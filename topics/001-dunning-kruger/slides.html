@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Daily Wisdom #001 — Dunning-Kruger Effect</title>
+<style>
+  @page { size: 1280px 720px; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    font-family: "Segoe UI", "Segoe UI Variable", system-ui, sans-serif;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .slide {
+    width: 1280px; height: 720px;
+    page-break-after: always;
+    overflow: hidden;
+    position: relative;
+    background: #f8fafc;
+    display: flex; flex-direction: column;
+  }
+  .slide:last-child { page-break-after: auto; }
+
+  /* ---------- header / footer ---------- */
+  header {
+    padding: 28px 56px 0 56px;
+  }
+  .tag {
+    display: inline-block;
+    font-size: 15px; font-weight: 700; letter-spacing: 2.5px;
+    color: #fff; background: var(--accent, #6366f1);
+    padding: 5px 14px; border-radius: 999px;
+    text-transform: uppercase;
+  }
+  h2 { font-size: 38px; color: #0f172a; margin-top: 12px; letter-spacing: -0.5px; }
+  .sub { font-size: 19px; color: #64748b; margin-top: 6px; }
+  .body { flex: 1; padding: 22px 56px 0 56px; display: flex; gap: 34px; min-height: 0; }
+  footer {
+    height: 44px; display: flex; align-items: center; justify-content: space-between;
+    padding: 0 56px; font-size: 13px; color: #94a3b8;
+    border-top: 1px solid #e2e8f0;
+  }
+  .pageno { font-weight: 700; color: var(--accent, #6366f1); }
+
+  /* ---------- text blocks ---------- */
+  .col { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 14px; }
+  p { font-size: 18px; line-height: 1.55; color: #334155; }
+  b, strong { color: #0f172a; }
+  .lead { font-size: 21px; color: #1e293b; font-weight: 600; line-height: 1.5; }
+
+  .card {
+    background: #fff; border: 1px solid #e2e8f0; border-radius: 14px;
+    padding: 18px 22px;
+    box-shadow: 0 1px 3px rgba(15,23,42,.06);
+  }
+  .card h3 { font-size: 19px; margin-bottom: 6px; color: #0f172a; }
+  .card p { font-size: 16.5px; }
+  .card .ic { font-size: 22px; }
+
+  .quote {
+    border-left: 6px solid var(--accent, #6366f1);
+    background: #eef2ff;
+    padding: 16px 20px; border-radius: 0 12px 12px 0;
+    font-size: 19px; font-style: italic; color: #1e293b; line-height: 1.5;
+  }
+  .quote .who { display: block; margin-top: 8px; font-style: normal; font-size: 15px; color: #64748b; font-weight: 600; }
+
+  ul.list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  ul.list li {
+    font-size: 17.5px; line-height: 1.45; color: #334155;
+    padding-left: 30px; position: relative;
+  }
+  ul.list li::before {
+    content: ""; position: absolute; left: 0; top: 7px;
+    width: 16px; height: 16px; border-radius: 5px;
+    background: var(--accent, #6366f1); opacity: .9;
+  }
+
+  .callout {
+    background: #fffbeb; border: 1.5px solid #fcd34d; border-radius: 12px;
+    padding: 14px 18px; font-size: 17px; color: #78350f; line-height: 1.5;
+  }
+
+  .chart-title { font-size: 15px; font-weight: 700; color: #475569; letter-spacing: .5px; text-transform: uppercase; }
+  .chart-note { font-size: 14px; color: #94a3b8; margin-top: 6px; line-height: 1.4; }
+</style>
+</head>
+<body>
+
+<!-- ================= SLIDE 1 : COVER ================= -->
+<section class="slide" style="background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 55%, #312e81 100%);">
+  <div style="flex:1; display:flex; flex-direction:column; justify-content:center; padding:0 80px; position:relative;">
+    <svg style="position:absolute; right:60px; top:70px; opacity:.9" width="480" height="300" viewBox="0 0 480 300" fill="none">
+      <path d="M20 260 C70 240, 90 60, 140 55 C190 50, 205 190, 250 215 C295 240, 320 150, 370 120 C410 95, 440 85, 465 80"
+            stroke="url(#g1)" stroke-width="5" stroke-linecap="round"/>
+      <circle cx="140" cy="55" r="9" fill="#fbbf24"/>
+      <circle cx="250" cy="215" r="9" fill="#f87171"/>
+      <circle cx="370" cy="120" r="9" fill="#2dd4bf"/>
+      <circle cx="465" cy="80" r="9" fill="#a5b4fc"/>
+      <defs><linearGradient id="g1" x1="0" y1="0" x2="480" y2="0" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#fbbf24"/><stop offset=".5" stop-color="#f87171"/><stop offset="1" stop-color="#818cf8"/>
+      </linearGradient></defs>
+    </svg>
+    <div style="font-size:17px; letter-spacing:4px; color:#818cf8; font-weight:700;">DAILY WISDOM · EDISI #001 · PSIKOLOGI</div>
+    <h1 style="font-size:74px; color:#fff; line-height:1.08; margin-top:22px; letter-spacing:-1.5px; max-width:760px;">
+      Dunning-Kruger<br>Effect
+    </h1>
+    <p style="font-size:25px; color:#c7d2fe; margin-top:26px; max-width:640px; line-height:1.5; font-weight:400;">
+      Kenapa orang yang <i>paling tidak tahu</i> justru merasa <i>paling tahu</i> —
+      dan bagaimana bias ini diam-diam mengatur keputusanmu setiap hari.
+    </p>
+    <div style="margin-top:44px; display:flex; gap:14px;">
+      <span style="background:rgba(129,140,248,.18); border:1px solid #6366f1; color:#c7d2fe; padding:8px 18px; border-radius:999px; font-size:15px; font-weight:600;">Psikologi Kognitif</span>
+      <span style="background:rgba(45,212,191,.14); border:1px solid #2dd4bf; color:#99f6e4; padding:8px 18px; border-radius:999px; font-size:15px; font-weight:600;">Pengambilan Keputusan</span>
+      <span style="background:rgba(251,191,36,.14); border:1px solid #fbbf24; color:#fde68a; padding:8px 18px; border-radius:999px; font-size:15px; font-weight:600;">Investasi &amp; Karier</span>
+    </div>
+  </div>
+  <footer style="border-top:1px solid rgba(148,163,184,.25); color:#64748b;">
+    <span>Daily Wisdom — satu konsep penting setiap hari</span>
+    <span style="color:#818cf8; font-weight:700;">01 / 10</span>
+  </footer>
+</section>
+
+<!-- ================= SLIDE 2 : APA ITU ================= -->
+<section class="slide" style="--accent:#6366f1">
+  <header>
+    <span class="tag">Definisi</span>
+    <h2>Apa itu Dunning-Kruger Effect?</h2>
+    <div class="sub">Bias kognitif yang ditemukan lewat… seorang perampok bank yang melumuri wajahnya dengan jus lemon.</div>
+  </header>
+  <div class="body">
+    <div class="col" style="flex:1.15;">
+      <p class="lead">Dunning-Kruger Effect adalah bias kognitif di mana <b>orang dengan kemampuan rendah pada suatu bidang justru melebih-lebihkan kemampuannya</b>, sementara ahli justru cenderung meremehkan dirinya.</p>
+      <p>Asal-usulnya unik. Tahun 1995, McArthur Wheeler merampok dua bank di Pittsburgh <b>tanpa topeng</b> — ia hanya melumuri wajahnya dengan jus lemon. Ia tahu jus lemon bisa dipakai sebagai "tinta tak terlihat", lalu menyimpulkan wajahnya tidak akan terekam kamera. Ia tertangkap dalam hitungan jam.</p>
+      <p>Kasus ini menginspirasi psikolog Cornell, <b>David Dunning dan Justin Kruger (1999)</b>, untuk meneliti satu pertanyaan: <i>apakah orang yang tidak kompeten sadar bahwa dirinya tidak kompeten?</i> Jawabannya: <b>tidak</b> — dan itu bukan soal kebodohan, melainkan soal struktur cara kerja otak.</p>
+      <div class="quote">“Masalah dengan dunia ini adalah orang bodoh penuh keyakinan, sementara orang bijak penuh keraguan.”
+        <span class="who">— Bertrand Russell (ditulis puluhan tahun sebelum efek ini diteliti)</span>
+      </div>
+    </div>
+    <div class="col" style="flex:.85; justify-content:center;">
+      <div class="card">
+        <div class="chart-title" style="margin-bottom:10px;">Analogi: Peta vs Teritori</div>
+        <svg width="100%" viewBox="0 0 380 260">
+          <!-- big territory -->
+          <circle cx="190" cy="135" r="115" fill="#e0e7ff" stroke="#818cf8" stroke-width="2.5" stroke-dasharray="7 6"/>
+          <text x="190" y="40" text-anchor="middle" font-size="14" font-weight="700" fill="#4f46e5">SEMUA YANG BISA DIKETAHUI</text>
+          <!-- known -->
+          <circle cx="165" cy="150" r="48" fill="#c7d2fe" stroke="#6366f1" stroke-width="2.5"/>
+          <text x="158" y="146" text-anchor="middle" font-size="13" font-weight="700" fill="#312e81">yang kamu</text>
+          <text x="158" y="163" text-anchor="middle" font-size="13" font-weight="700" fill="#312e81">KETAHUI</text>
+          <!-- known-unknown -->
+          <circle cx="225" cy="105" r="26" fill="#fde68a" stroke="#f59e0b" stroke-width="2.5"/>
+          <text x="226" y="101" text-anchor="middle" font-size="10.5" font-weight="700" fill="#92400e">sadar belum</text>
+          <text x="226" y="113" text-anchor="middle" font-size="10.5" font-weight="700" fill="#92400e">tahu</text>
+          <!-- unknown-unknown label -->
+          <text x="255" y="205" text-anchor="middle" font-size="12.5" font-weight="700" fill="#64748b">tidak tahu bahwa kamu</text>
+          <text x="255" y="221" text-anchor="middle" font-size="12.5" font-weight="700" fill="#64748b">tidak tahu (bagian terbesar!)</text>
+        </svg>
+        <p style="font-size:15.5px; margin-top:8px;">Pemula melihat lingkaran kecilnya sebagai <b>keseluruhan peta</b>. Ahli sadar lingkaran putus-putus itu luas sekali — karena itu mereka lebih rendah hati.</p>
+      </div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #001 · Dunning-Kruger Effect</span><span class="pageno">02 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 3 : KURVA ================= -->
+<section class="slide" style="--accent:#f59e0b">
+  <header>
+    <span class="tag">Kurva Terkenal</span>
+    <h2>Puncak "Mount Stupid" dan Lembah Keputusasaan</h2>
+    <div class="sub">Hubungan antara seberapa banyak kamu tahu dengan seberapa percaya diri kamu — bukan garis lurus.</div>
+  </header>
+  <div class="body">
+    <div class="col" style="flex:1.35; justify-content:center;">
+      <div class="card" style="padding:14px 22px;">
+        <svg width="100%" viewBox="0 0 720 400">
+          <!-- axes -->
+          <line x1="70" y1="345" x2="680" y2="345" stroke="#94a3b8" stroke-width="2"/>
+          <line x1="70" y1="345" x2="70" y2="35" stroke="#94a3b8" stroke-width="2"/>
+          <polygon points="680,345 668,339 668,351" fill="#94a3b8"/>
+          <polygon points="70,35 64,47 76,47" fill="#94a3b8"/>
+          <text x="678" y="55" text-anchor="end" font-size="15" fill="#64748b" font-weight="600">Pengetahuan / Pengalaman →</text>
+          <text x="36" y="30" font-size="15" fill="#64748b" font-weight="600">Kepercayaan Diri →</text>
+          <!-- stage separators -->
+          <line x1="205" y1="345" x2="205" y2="60" stroke="#e2e8f0" stroke-width="2" stroke-dasharray="5 6"/>
+          <line x1="350" y1="345" x2="350" y2="60" stroke="#e2e8f0" stroke-width="2" stroke-dasharray="5 6"/>
+          <line x1="520" y1="345" x2="520" y2="60" stroke="#e2e8f0" stroke-width="2" stroke-dasharray="5 6"/>
+          <!-- the curve -->
+          <path d="M85 300 C125 285, 150 90, 205 78 C260 68, 290 250, 350 272 C405 292, 440 190, 520 158 C585 132, 630 118, 665 112"
+                fill="none" stroke="#f59e0b" stroke-width="5" stroke-linecap="round"/>
+          <!-- stage dots -->
+          <circle cx="205" cy="78" r="8" fill="#ef4444"/>
+          <circle cx="350" cy="272" r="8" fill="#3b82f6"/>
+          <circle cx="520" cy="158" r="8" fill="#14b8a6"/>
+          <circle cx="665" cy="112" r="8" fill="#8b5cf6"/>
+          <!-- stage labels -->
+          <text x="205" y="52" text-anchor="middle" font-size="16" font-weight="800" fill="#ef4444">MOUNT STUPID</text>
+          <text x="205" y="372" text-anchor="middle" font-size="12.5" fill="#94a3b8">"Ini gampang!"</text>
+          <text x="350" y="300" text-anchor="middle" font-size="15" font-weight="800" fill="#3b82f6">LEMBAH</text>
+          <text x="350" y="319" text-anchor="middle" font-size="15" font-weight="800" fill="#3b82f6">KEPUTUSASAAN</text>
+          <text x="350" y="372" text-anchor="middle" font-size="12.5" fill="#94a3b8">"Ternyata dalam sekali…"</text>
+          <text x="520" y="126" text-anchor="middle" font-size="15" font-weight="800" fill="#14b8a6">TANJAKAN PENCERAHAN</text>
+          <text x="520" y="372" text-anchor="middle" font-size="12.5" fill="#94a3b8">belajar sungguhan</text>
+          <text x="640" y="92" text-anchor="middle" font-size="15" font-weight="800" fill="#8b5cf6">DATARAN AHLI</text>
+          <text x="640" y="372" text-anchor="middle" font-size="12.5" fill="#94a3b8">percaya diri terkalibrasi</text>
+        </svg>
+        <div class="chart-note">Kurva ini adalah visualisasi konseptual yang dipopulerkan komunitas pendidikan — bukan grafik data mentah, tetapi sangat akurat menggambarkan pola yang ditemukan penelitian.</div>
+      </div>
+    </div>
+    <div class="col" style="flex:.85; gap:10px;">
+      <div class="card" style="padding:12px 18px;"><h3 style="font-size:17px;"><span class="ic">🔥</span> Tahap 1 — Mount Stupid</h3><p style="font-size:15px;">Baru belajar sedikit, merasa sudah menguasai semuanya. <b>Tidak tahu apa yang tidak diketahui.</b> Fase paling berbahaya: keputusan besar sering diambil di sini.</p></div>
+      <div class="card" style="padding:12px 18px;"><h3 style="font-size:17px;"><span class="ic">🕳️</span> Tahap 2 — Lembah Keputusasaan</h3><p style="font-size:15px;">Mulai sadar betapa luasnya bidang itu. Kepercayaan diri anjlok. <b>Mayoritas orang menyerah di titik ini.</b></p></div>
+      <div class="card" style="padding:12px 18px;"><h3 style="font-size:17px;"><span class="ic">🧗</span> Tahap 3 — Tanjakan Pencerahan</h3><p style="font-size:15px;">Belajar terstruktur, skill naik, kepercayaan diri tumbuh <b>pelan tapi sehat</b> karena berbasis bukti.</p></div>
+      <div class="card" style="padding:12px 18px;"><h3 style="font-size:17px;"><span class="ic">🏔️</span> Tahap 4 — Dataran Ahli</h3><p style="font-size:15px;">Kompeten dan tahu batasannya. Justru di sini orang sering <i>meremehkan</i> diri: "ah, semua orang juga pasti bisa ini."</p></div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #001 · Dunning-Kruger Effect</span><span class="pageno">03 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 4 : KENAPA TERJADI ================= -->
+<section class="slide" style="--accent:#14b8a6">
+  <header>
+    <span class="tag">Mekanisme</span>
+    <h2>Kenapa Otak Melakukan Ini?</h2>
+    <div class="sub">Kemampuan yang dibutuhkan untuk <i>menilai</i> kemampuan… adalah kemampuan itu sendiri.</div>
+  </header>
+  <div class="body">
+    <div class="col">
+      <p class="lead">Penjelasan inti Dunning &amp; Kruger disebut <b>double burden (beban ganda)</b>: ketidakmampuan tidak hanya membuatmu berkinerja buruk — ia juga <b>merampas alat untuk menyadari</b> bahwa kinerjamu buruk.</p>
+      <ul class="list">
+        <li><b>Metakognisi butuh skill yang sama.</b> Untuk tahu jawabanmu salah soal logika, kamu butuh kemampuan logika. Untuk tahu tulisanmu buruk, kamu butuh selera menulis yang baik.</li>
+        <li><b>Otak benci ketidakpastian.</b> Mengisi kekosongan dengan keyakinan terasa lebih nyaman daripada mengakui "aku tidak tahu".</li>
+        <li><b>Kita menilai diri dari niat, orang lain dari hasil.</b> Standar ganda ini menjaga ilusi tetap hidup.</li>
+        <li><b>Feedback jarang dan lemah.</b> Orang sungkan mengoreksi kita; sosial media justru menghadiahi keyakinan, bukan keakuratan.</li>
+      </ul>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="chart-title" style="margin-bottom:8px;">Analogi: GPS Tanpa Sinyal</div>
+        <svg width="100%" viewBox="0 0 380 170">
+          <rect x="15" y="15" width="350" height="140" rx="14" fill="#0f172a"/>
+          <path d="M40 130 L110 90 L150 110 L210 55 L260 80 L340 35" stroke="#334155" stroke-width="4" fill="none" stroke-dasharray="8 7"/>
+          <path d="M40 130 L110 90" stroke="#2dd4bf" stroke-width="5" fill="none"/>
+          <circle cx="40" cy="130" r="7" fill="#2dd4bf"/>
+          <circle cx="340" cy="35" r="8" fill="none" stroke="#f87171" stroke-width="3"/>
+          <line x1="332" y1="27" x2="348" y2="43" stroke="#f87171" stroke-width="3"/>
+          <text x="190" y="152" text-anchor="middle" font-size="12" fill="#64748b">peta (rencana) tampak jelas, posisi sebenarnya tidak diketahui</text>
+        </svg>
+        <p style="font-size:15.5px; margin-top:6px;">Pemula seperti GPS yang kehilangan sinyal: <b>peta tetap terlihat meyakinkan</b>, padahal titik lokasinya salah total. Tanpa "sinyal" berupa pengetahuan yang cukup, otak tidak bisa menghitung posisi dirinya.</p>
+      </div>
+      <div class="callout"><b>Kunci pemahaman:</b> Dunning-Kruger bukan tentang orang bodoh. Semua orang — termasuk kamu — mengalaminya di bidang yang belum dikuasai. Ini fitur bawaan otak, bukan cacat karakter.</div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #001 · Dunning-Kruger Effect</span><span class="pageno">04 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 5 : STUDI ASLI ================= -->
+<section class="slide" style="--accent:#8b5cf6">
+  <header>
+    <span class="tag">Bukti Ilmiah</span>
+    <h2>Studi Asli Kruger &amp; Dunning (1999)</h2>
+    <div class="sub">Peserta diuji (humor, logika, tata bahasa), lalu diminta menebak peringkat dirinya. Hasilnya mengejutkan.</div>
+  </header>
+  <div class="body">
+    <div class="col" style="flex:1.3; justify-content:center;">
+      <div class="card">
+        <div class="chart-title" style="margin-bottom:6px;">Skor Aktual vs Persepsi Diri (persentil)</div>
+        <svg width="100%" viewBox="0 0 660 360">
+          <!-- gridlines -->
+          <line x1="70" y1="300" x2="630" y2="300" stroke="#94a3b8" stroke-width="2"/>
+          <g font-size="12" fill="#94a3b8">
+            <line x1="70" y1="240" x2="630" y2="240" stroke="#e2e8f0"/><text x="60" y="244" text-anchor="end">25</text>
+            <line x1="70" y1="180" x2="630" y2="180" stroke="#e2e8f0"/><text x="60" y="184" text-anchor="end">50</text>
+            <line x1="70" y1="120" x2="630" y2="120" stroke="#e2e8f0"/><text x="60" y="124" text-anchor="end">75</text>
+            <line x1="70" y1="60"  x2="630" y2="60"  stroke="#e2e8f0"/><text x="60" y="64"  text-anchor="end">100</text>
+          </g>
+          <!-- bars: scale 2.4 px per percentile. Baseline y=300 -->
+          <!-- Q1: actual 12, perceived 62 -->
+          <rect x="105" y="271" width="48" height="29" fill="#3b82f6" rx="4"/>
+          <rect x="160" y="151" width="48" height="149" fill="#f43f5e" rx="4"/>
+          <text x="129" y="264" text-anchor="middle" font-size="13" font-weight="700" fill="#3b82f6">12</text>
+          <text x="184" y="144" text-anchor="middle" font-size="13" font-weight="700" fill="#f43f5e">62</text>
+          <text x="155" y="322" text-anchor="middle" font-size="14" font-weight="700" fill="#475569">Kuartil 1</text>
+          <text x="155" y="340" text-anchor="middle" font-size="12" fill="#94a3b8">(terlemah)</text>
+          <!-- Q2: actual 32, perceived 55 -->
+          <rect x="245" y="223" width="48" height="77" fill="#3b82f6" rx="4"/>
+          <rect x="300" y="168" width="48" height="132" fill="#f43f5e" rx="4"/>
+          <text x="269" y="216" text-anchor="middle" font-size="13" font-weight="700" fill="#3b82f6">32</text>
+          <text x="324" y="161" text-anchor="middle" font-size="13" font-weight="700" fill="#f43f5e">55</text>
+          <text x="295" y="322" text-anchor="middle" font-size="14" font-weight="700" fill="#475569">Kuartil 2</text>
+          <!-- Q3: actual 55, perceived 58 -->
+          <rect x="385" y="168" width="48" height="132" fill="#3b82f6" rx="4"/>
+          <rect x="440" y="161" width="48" height="139" fill="#f43f5e" rx="4"/>
+          <text x="409" y="161" text-anchor="middle" font-size="13" font-weight="700" fill="#3b82f6">55</text>
+          <text x="464" y="154" text-anchor="middle" font-size="13" font-weight="700" fill="#f43f5e">58</text>
+          <text x="435" y="322" text-anchor="middle" font-size="14" font-weight="700" fill="#475569">Kuartil 3</text>
+          <!-- Q4: actual 86, perceived 68 -->
+          <rect x="525" y="94" width="48" height="206" fill="#3b82f6" rx="4"/>
+          <rect x="580" y="137" width="48" height="163" fill="#f43f5e" rx="4"/>
+          <text x="549" y="87" text-anchor="middle" font-size="13" font-weight="700" fill="#3b82f6">86</text>
+          <text x="604" y="130" text-anchor="middle" font-size="13" font-weight="700" fill="#f43f5e">68</text>
+          <text x="575" y="322" text-anchor="middle" font-size="14" font-weight="700" fill="#475569">Kuartil 4</text>
+          <text x="575" y="340" text-anchor="middle" font-size="12" fill="#94a3b8">(terbaik)</text>
+          <!-- legend -->
+          <rect x="380" y="20" width="16" height="16" fill="#3b82f6" rx="3"/><text x="402" y="33" font-size="13" fill="#475569">Skor aktual</text>
+          <rect x="500" y="20" width="16" height="16" fill="#f43f5e" rx="3"/><text x="522" y="33" font-size="13" fill="#475569">Persepsi diri</text>
+        </svg>
+        <div class="chart-note">Angka diadaptasi dari pola hasil Kruger &amp; Dunning (1999), Journal of Personality and Social Psychology. Nilai pasti bervariasi antar eksperimen; polanya konsisten.</div>
+      </div>
+    </div>
+    <div class="col" style="flex:.8;">
+      <div class="card"><h3>🔍 Temuan 1</h3><p>Peserta <b>terlemah</b> (skor persentil ke-12) menebak dirinya ada di <b>persentil ke-62</b> — melebih-lebihkan kemampuan sampai 5x lipat.</p></div>
+      <div class="card"><h3>🔍 Temuan 2</h3><p>Peserta <b>terbaik</b> justru <i>meremehkan</i> diri: skor 86, menebak 68. Mereka mengira "kalau ini mudah bagiku, pasti mudah bagi semua orang".</p></div>
+      <div class="card"><h3>🔍 Temuan 3</h3><p>Setelah peserta lemah <b>dilatih</b> kemampuannya, akurasi penilaian dirinya ikut membaik. Jalan keluar dari bias ini adalah… belajar lebih banyak.</p></div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #001 · Dunning-Kruger Effect</span><span class="pageno">05 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 6 : CONTOH NYATA ================= -->
+<section class="slide" style="--accent:#f43f5e">
+  <header>
+    <span class="tag">Di Dunia Nyata</span>
+    <h2>Di Mana Bias Ini Paling Mahal Harganya?</h2>
+    <div class="sub">Dunning-Kruger tidak sekadar lucu-lucuan — ia membakar uang, karier, dan reputasi.</div>
+  </header>
+  <div class="body">
+    <div class="col">
+      <div class="card" style="padding:14px 20px;">
+        <h3>📈 Investasi &amp; Trading</h3>
+        <p style="font-size:15.5px;">Pola klasik: pemula menang beberapa kali di pasar bullish → merasa jenius → menambah leverage → pasar berbalik → rugi besar. Studi Barber &amp; Odean: trader ritel yang <b>paling sering transaksi justru paling buruk hasilnya</b> — overconfidence memicu overtrading.</p>
+      </div>
+      <div class="card" style="padding:14px 20px;">
+        <h3>💼 Karier &amp; Bisnis</h3>
+        <p style="font-size:15.5px;">Karyawan baru 3 bulan merasa "sudah paham semua proses" dan menolak masukan senior. <b>Kepercayaan diri tanpa kompetensi = keputusan besar dengan informasi kecil.</b></p>
+      </div>
+      <div class="card" style="padding:14px 20px;">
+        <h3>🗳️ Opini Publik &amp; Sosmed</h3>
+        <p style="font-size:15.5px;">Topik kompleks paling banyak dikomentari dengan nada paling yakin oleh yang paling sedikit memahaminya — ahli justru bicara hati-hati karena sadar nuansanya.</p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="chart-title" style="margin-bottom:6px;">Analogi: Kurva Keyakinan Trader Pemula</div>
+        <svg width="100%" viewBox="0 0 380 210">
+          <line x1="40" y1="175" x2="360" y2="175" stroke="#94a3b8" stroke-width="2"/>
+          <line x1="40" y1="175" x2="40" y2="20" stroke="#94a3b8" stroke-width="2"/>
+          <text x="58" y="196" font-size="12" fill="#64748b" font-weight="600">waktu →</text>
+          <!-- portfolio line -->
+          <path d="M50 160 C90 150, 120 120, 160 105 C200 92, 230 100, 255 118 C285 140, 320 160, 350 168" fill="none" stroke="#3b82f6" stroke-width="4" stroke-linecap="round"/>
+          <!-- confidence line -->
+          <path d="M50 160 C80 90, 110 45, 155 40 C200 36, 230 60, 258 85 C290 118, 320 150, 350 165" fill="none" stroke="#f43f5e" stroke-width="4" stroke-dasharray="9 7" stroke-linecap="round"/>
+          <circle cx="155" cy="40" r="6" fill="#f43f5e"/>
+          <text x="170" y="44" font-size="12.5" font-weight="800" fill="#f43f5e">"AKU JENIUS!"</text>
+          <circle cx="350" cy="168" r="6" fill="#3b82f6"/>
+          <text x="300" y="150" font-size="12.5" font-weight="800" fill="#3b82f6" stroke="#fff" stroke-width="4" paint-order="stroke">realita</text>
+          <rect x="50" y="22" width="14" height="14" fill="#3b82f6" rx="3"/><text x="70" y="34" font-size="12" fill="#475569">Portofolio</text>
+          <rect x="50" y="44" width="14" height="14" fill="#f43f5e" rx="3"/><text x="70" y="56" font-size="12" fill="#475569">Keyakinan diri</text>
+        </svg>
+        <p style="font-size:15px; margin-top:6px;">Keyakinan memuncak <b>tepat sebelum</b> portofolio jatuh. Pasar adalah mesin mahal untuk mengajari kerendahan hati.</p>
+      </div>
+      <div class="callout">💡 <b>Aturan praktis:</b> jika sebuah bidang terasa "gampang banget" setelah dipelajari sebentar, hampir pasti kamu sedang berdiri di Mount Stupid — bukan menemukan jalan pintas.</div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #001 · Dunning-Kruger Effect</span><span class="pageno">06 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 7 : VS IMPOSTOR ================= -->
+<section class="slide" style="--accent:#3b82f6">
+  <header>
+    <span class="tag">Kontras</span>
+    <h2>Dunning-Kruger vs Impostor Syndrome</h2>
+    <div class="sub">Dua sisi dari koin yang sama: kesalahan kalibrasi antara kemampuan nyata dan persepsi diri.</div>
+  </header>
+  <div class="body">
+    <div class="col">
+      <div class="card" style="border-top:5px solid #f43f5e; padding:14px 20px;">
+        <h3 style="color:#e11d48; font-size:18px;">Dunning-Kruger</h3>
+        <svg width="100%" height="138" viewBox="0 0 380 118">
+          <line x1="30" y1="105" x2="350" y2="105" stroke="#cbd5e1" stroke-width="2"/>
+          <line x1="40" y1="88" x2="340" y2="30" stroke="#14b8a6" stroke-width="4"/>
+          <path d="M40 75 C110 18, 180 16, 240 42 C290 62, 320 68, 340 70" fill="none" stroke="#f43f5e" stroke-width="4"/>
+          <text x="330" y="24" font-size="11.5" font-weight="700" fill="#14b8a6">skill</text>
+          <text x="280" y="88" font-size="11.5" font-weight="700" fill="#f43f5e">keyakinan</text>
+          <ellipse cx="110" cy="42" rx="58" ry="30" fill="none" stroke="#f43f5e" stroke-width="2" stroke-dasharray="5 5"/>
+          <text x="110" y="14" text-anchor="middle" font-size="11" font-weight="700" fill="#e11d48">GAP = bahaya</text>
+        </svg>
+        <p style="font-size:15px;"><b>Kemampuan rendah, keyakinan tinggi.</b> Merasa ahli padahal pemula. Berisiko mengambil keputusan besar membabi buta dan menolak belajar.</p>
+      </div>
+      <div class="card" style="border-top:5px solid #3b82f6; padding:14px 20px;">
+        <h3 style="color:#2563eb; font-size:18px;">Impostor Syndrome</h3>
+        <svg width="100%" height="138" viewBox="0 0 380 118">
+          <line x1="30" y1="105" x2="350" y2="105" stroke="#cbd5e1" stroke-width="2"/>
+          <line x1="40" y1="88" x2="340" y2="30" stroke="#14b8a6" stroke-width="4"/>
+          <path d="M40 98 C120 95, 200 85, 260 78 C300 74, 325 72, 340 71" fill="none" stroke="#3b82f6" stroke-width="4"/>
+          <text x="330" y="24" font-size="11.5" font-weight="700" fill="#14b8a6">skill</text>
+          <text x="270" y="98" font-size="11.5" font-weight="700" fill="#3b82f6">keyakinan</text>
+          <ellipse cx="285" cy="52" rx="58" ry="30" fill="none" stroke="#3b82f6" stroke-width="2" stroke-dasharray="5 5"/>
+          <text x="285" y="14" text-anchor="middle" font-size="11" font-weight="700" fill="#2563eb">GAP = mandek</text>
+        </svg>
+        <p style="font-size:15px;"><b>Kemampuan tinggi, keyakinan rendah.</b> Merasa "cuma beruntung" padahal kompeten. Berisiko tidak berani melamar, menawar, atau memimpin.</p>
+      </div>
+    </div>
+    <div class="col" style="flex:.85;">
+      <p class="lead">Keduanya adalah <b>masalah kalibrasi</b>: pengukur internal kita tidak akurat. Solusinya juga sama — ukur dengan data eksternal, bukan perasaan.</p>
+      <ul class="list">
+        <li><b>Sinyal Dunning-Kruger:</b> kamu merasa topik ini "selesai" dan gampang; kamu jarang bertanya; kritik terasa menyinggung.</li>
+        <li><b>Sinyal Impostor:</b> kamu merasa semua pencapaian kebetulan; kamu takut "ketahuan"; kamu menolak peluang yang sebenarnya kamu mampu.</li>
+        <li><b>Fakta menarik:</b> orang yang sama bisa mengalami <b>keduanya sekaligus</b> di bidang berbeda — overconfident di crypto, impostor di kantor.</li>
+      </ul>
+      <div class="callout">🎯 <b>Tujuan ideal:</b> keyakinan yang <b>terkalibrasi</b> — garis keyakinan menempel pada garis skill. Percaya diri setinggi kemampuan, tidak lebih, tidak kurang.</div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #001 · Dunning-Kruger Effect</span><span class="pageno">07 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 8 : CARA MENGATASI ================= -->
+<section class="slide" style="--accent:#14b8a6">
+  <header>
+    <span class="tag">Solusi</span>
+    <h2>4 Langkah Melawan Bias Ini</h2>
+    <div class="sub">Kamu tidak bisa "tidak punya bias" — tapi kamu bisa membangun sistem yang mengoreksinya.</div>
+  </header>
+  <div class="body">
+    <div class="col" style="flex:1.1; justify-content:center;">
+      <div class="card">
+        <svg width="100%" viewBox="0 0 620 380">
+          <!-- loop arrows -->
+          <defs>
+            <marker id="arr" markerWidth="10" markerHeight="10" refX="7" refY="4" orient="auto">
+              <path d="M0 0 L8 4 L0 8 Z" fill="#14b8a6"/>
+            </marker>
+          </defs>
+          <!-- boxes -->
+          <g>
+            <rect x="215" y="20" width="190" height="64" rx="14" fill="#0d9488"/>
+            <text x="310" y="47" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">1 · BELAJAR</text>
+            <text x="310" y="68" text-anchor="middle" font-size="11" fill="#99f6e4">fundamental, dari sumber primer</text>
+            <rect x="415" y="160" width="185" height="64" rx="14" fill="#0d9488"/>
+            <text x="507" y="187" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">2 · UJI DIRI</text>
+            <text x="507" y="208" text-anchor="middle" font-size="11" fill="#99f6e4">tes, praktik, prediksi tertulis</text>
+            <rect x="205" y="296" width="210" height="64" rx="14" fill="#0d9488"/>
+            <text x="310" y="323" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">3 · MINTA FEEDBACK</text>
+            <text x="310" y="344" text-anchor="middle" font-size="11" fill="#99f6e4">dari yang lebih ahli</text>
+            <rect x="20" y="160" width="180" height="64" rx="14" fill="#0d9488"/>
+            <text x="110" y="187" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">4 · KALIBRASI</text>
+            <text x="110" y="208" text-anchor="middle" font-size="11" fill="#99f6e4">sesuaikan keyakinan dgn bukti</text>
+          </g>
+          <!-- arrows clockwise -->
+          <path d="M395 55 C440 70, 470 110, 490 155" fill="none" stroke="#14b8a6" stroke-width="4" marker-end="url(#arr)"/>
+          <path d="M490 228 C470 270, 440 300, 395 315" fill="none" stroke="#14b8a6" stroke-width="4" marker-end="url(#arr)"/>
+          <path d="M225 315 C175 300, 140 265, 122 228" fill="none" stroke="#14b8a6" stroke-width="4" marker-end="url(#arr)"/>
+          <path d="M122 155 C140 112, 175 75, 225 58" fill="none" stroke="#14b8a6" stroke-width="4" marker-end="url(#arr)"/>
+          <text x="310" y="185" text-anchor="middle" font-size="15" font-weight="800" fill="#0f766e">SIKLUS</text>
+          <text x="310" y="205" text-anchor="middle" font-size="15" font-weight="800" fill="#0f766e">KALIBRASI DIRI</text>
+        </svg>
+      </div>
+    </div>
+    <div class="col" style="gap:10px;">
+      <div class="card" style="padding:12px 18px;"><h3 style="font-size:17px;">1 · Belajar fundamental</h3><p style="font-size:15px;">Semakin banyak kamu tahu, semakin akurat penilaian dirimu. Ingat Temuan 3: <b>belajar adalah obatnya</b>.</p></div>
+      <div class="card" style="padding:12px 18px;"><h3 style="font-size:17px;">2 · Uji dengan prediksi tertulis</h3><p style="font-size:15px;">Sebelum keputusan, tulis: "aku prediksi X karena Y". Cek hasilnya nanti. Perasaan bisa berbohong; <b>catatan tidak</b>.</p></div>
+      <div class="card" style="padding:12px 18px;"><h3 style="font-size:17px;">3 · Cari feedback yang jujur</h3><p style="font-size:15px;">Minta orang yang lebih ahli mengkritik hasil kerjamu — dan jangan defensif. Feedback pedas hari ini lebih murah daripada kegagalan tahun depan.</p></div>
+      <div class="card" style="padding:12px 18px;"><h3 style="font-size:17px;">4 · Tanya "apa yang bisa membuatku salah?"</h3><p style="font-size:15px;">Teknik <i>premortem</i>: bayangkan keputusanmu gagal total, lalu cari penyebabnya. Ini memaksa otak melihat lubang yang tadinya tak terlihat.</p></div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #001 · Dunning-Kruger Effect</span><span class="pageno">08 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 9 : DETEKTOR DIRI ================= -->
+<section class="slide" style="--accent:#8b5cf6">
+  <header>
+    <span class="tag">Praktik Hari Ini</span>
+    <h2>Detektor Diri: Kamu di Titik Mana?</h2>
+    <div class="sub">Ambil satu skill yang sedang kamu bangun (investasi, coding, public speaking, apa pun) dan jawab jujur.</div>
+  </header>
+  <div class="body">
+    <div class="col">
+      <div class="card" style="border-left:6px solid #ef4444;">
+        <h3 style="color:#ef4444;">🚩 Kamu mungkin di Mount Stupid jika…</h3>
+        <ul class="list" style="--accent:#ef4444;">
+          <li>Merasa topik ini "gampang" padahal baru belajar &lt; 3 bulan</li>
+          <li>Sulit menyebutkan 3 hal yang <b>belum</b> kamu pahami di bidang itu</li>
+          <li>Sering berpikir "orang kok bisa salah ya, padahal jelas…"</li>
+          <li>Belum pernah membuat kesalahan besar di bidang ini (belum diuji realita)</li>
+        </ul>
+      </div>
+      <div class="card" style="border-left:6px solid #3b82f6;">
+        <h3 style="color:#3b82f6;">🌱 Kamu sedang naik dari lembah jika…</h3>
+        <ul class="list" style="--accent:#3b82f6;">
+          <li>Mulai bisa menyebutkan hal-hal yang belum kamu kuasai, satu per satu</li>
+          <li>Prediksi/keputusanmu mulai sering benar — dan kamu tahu <b>kenapa</b></li>
+          <li>Merasa bodoh itu tanda bagus: radar "unknown-unknowns" mulai aktif</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <h3>📝 Latihan 5 menit malam ini</h3>
+        <p style="margin-bottom:8px;">Tulis jawaban tiga pertanyaan ini di notes HP-mu:</p>
+        <ul class="list" style="--accent:#8b5cf6;">
+          <li><b>"Di bidang X, apa yang kuyakini tapi belum pernah kuuji?"</b></li>
+          <li><b>"Siapa orang yang paling berhak mengkritikku — dan kapan terakhir aku minta?"</b></li>
+          <li><b>"Kalau keputusan terbesarku tahun ini gagal, kemungkinan karena apa?"</b></li>
+        </ul>
+      </div>
+      <div class="quote" style="--accent:#8b5cf6;">“Pengetahuan sesungguhnya adalah mengetahui batas dari ketidaktahuanmu.”
+        <span class="who">— Konfusius</span>
+      </div>
+      <div class="callout">💡 Bias ini tidak pernah hilang sepenuhnya — bahkan Dunning sendiri mengaku tetap mengalaminya. Yang bisa hilang adalah <b>kebutaan terhadapnya</b>.</div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #001 · Dunning-Kruger Effect</span><span class="pageno">09 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 10 : TAKEAWAYS ================= -->
+<section class="slide" style="background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 60%, #312e81 100%); --accent:#818cf8;">
+  <header>
+    <span class="tag" style="background:#4f46e5;">Ringkasan</span>
+    <h2 style="color:#fff;">5 Hal yang Perlu Kamu Bawa Pulang</h2>
+  </header>
+  <div class="body" style="flex-direction:column; gap:14px; justify-content:center;">
+    <div style="display:flex; gap:14px;">
+      <div class="card" style="flex:1; background:rgba(255,255,255,.06); border-color:rgba(129,140,248,.35);">
+        <h3 style="color:#a5b4fc;">1 · Semua orang kena</h3>
+        <p style="color:#cbd5e1; font-size:16px;">Ini bukan penyakit "orang lain". Kamu mengalaminya di setiap bidang yang belum kamu kuasai — saat ini juga.</p>
+      </div>
+      <div class="card" style="flex:1; background:rgba(255,255,255,.06); border-color:rgba(129,140,248,.35);">
+        <h3 style="color:#a5b4fc;">2 · Yakin ≠ bisa</h3>
+        <p style="color:#cbd5e1; font-size:16px;">Keyakinan tinggi pada pemula adalah sinyal bahaya, bukan bukti kompetensi. Waspadai orang yang paling yakin — termasuk dirimu.</p>
+      </div>
+      <div class="card" style="flex:1; background:rgba(255,255,255,.06); border-color:rgba(129,140,248,.35);">
+        <h3 style="color:#a5b4fc;">3 · Merasa bodoh = progres</h3>
+        <p style="color:#cbd5e1; font-size:16px;">Lembah keputusasaan adalah tanda radarmu mulai bekerja. Jangan berhenti di situ — tanjakan pencerahan ada di depan.</p>
+      </div>
+    </div>
+    <div style="display:flex; gap:14px;">
+      <div class="card" style="flex:1; background:rgba(255,255,255,.06); border-color:rgba(129,140,248,.35);">
+        <h3 style="color:#a5b4fc;">4 · Ukur dengan bukti</h3>
+        <p style="color:#cbd5e1; font-size:16px;">Prediksi tertulis, feedback ahli, dan data hasil mengalahkan perasaan "kayaknya aku bisa" setiap saat.</p>
+      </div>
+      <div class="card" style="flex:1; background:rgba(255,255,255,.06); border-color:rgba(129,140,248,.35);">
+        <h3 style="color:#a5b4fc;">5 · Belajar adalah obatnya</h3>
+        <p style="color:#cbd5e1; font-size:16px;">Satu-satunya jalan keluar dari bias ini adalah kompetensi itu sendiri — semakin tahu, semakin akurat kacamata dirimu.</p>
+      </div>
+      <div class="card" style="flex:1; background:linear-gradient(135deg,#4f46e5,#7c3aed); border:none; justify-content:center;">
+        <h3 style="color:#fff;">Besok di Daily Wisdom #002</h3>
+        <p style="color:#e0e7ff; font-size:16px;"><b>Confirmation Bias</b> — kenapa otakmu hanya mencari bukti yang ingin kamu dengar, dan bagaimana ini diam-diam merusak keputusan investasimu.</p>
+      </div>
+    </div>
+  </div>
+  <footer style="border-top:1px solid rgba(148,163,184,.25); color:#64748b;">
+    <span>Daily Wisdom — baca 10 menit, pakai seumur hidup</span>
+    <span style="color:#818cf8; font-weight:700;">10 / 10</span>
+  </footer>
+</section>
+
+</body>
+</html>
