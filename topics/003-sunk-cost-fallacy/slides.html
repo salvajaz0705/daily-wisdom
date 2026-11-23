@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Daily Wisdom #003 — Sunk Cost Fallacy</title>
+<style>
+  @page { size: 1280px 720px; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    font-family: "Segoe UI", "Segoe UI Variable", system-ui, sans-serif;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .slide {
+    width: 1280px; height: 720px;
+    page-break-after: always;
+    overflow: hidden;
+    position: relative;
+    background: #f8fafc;
+    display: flex; flex-direction: column;
+  }
+  .slide:last-child { page-break-after: auto; }
+
+  /* ---------- header / footer ---------- */
+  header {
+    padding: 28px 56px 0 56px;
+  }
+  .tag {
+    display: inline-block;
+    font-size: 15px; font-weight: 700; letter-spacing: 2.5px;
+    color: #fff; background: var(--accent, #6366f1);
+    padding: 5px 14px; border-radius: 999px;
+    text-transform: uppercase;
+  }
+  h2 { font-size: 38px; color: #0f172a; margin-top: 12px; letter-spacing: -0.5px; }
+  .sub { font-size: 19px; color: #64748b; margin-top: 6px; }
+  .body { flex: 1; padding: 22px 56px 0 56px; display: flex; gap: 34px; min-height: 0; }
+  footer {
+    height: 44px; display: flex; align-items: center; justify-content: space-between;
+    padding: 0 56px; font-size: 13px; color: #94a3b8;
+    border-top: 1px solid #e2e8f0;
+  }
+  .pageno { font-weight: 700; color: var(--accent, #6366f1); }
+
+  /* ---------- text blocks ---------- */
+  .col { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 14px; }
+  p { font-size: 18px; line-height: 1.55; color: #334155; }
+  b, strong { color: #0f172a; }
+  .lead { font-size: 21px; color: #1e293b; font-weight: 600; line-height: 1.5; }
+
+  .card {
+    background: #fff; border: 1px solid #e2e8f0; border-radius: 14px;
+    padding: 18px 22px;
+    box-shadow: 0 1px 3px rgba(15,23,42,.06);
+  }
+  .card h3 { font-size: 19px; margin-bottom: 6px; color: #0f172a; }
+  .card p { font-size: 16.5px; }
+  .card .ic { font-size: 22px; }
+
+  .quote {
+    border-left: 6px solid var(--accent, #6366f1);
+    background: #eef2ff;
+    padding: 16px 20px; border-radius: 0 12px 12px 0;
+    font-size: 19px; font-style: italic; color: #1e293b; line-height: 1.5;
+  }
+  .quote .who { display: block; margin-top: 8px; font-style: normal; font-size: 15px; color: #64748b; font-weight: 600; }
+
+  ul.list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  ul.list li {
+    font-size: 17.5px; line-height: 1.45; color: #334155;
+    padding-left: 30px; position: relative;
+  }
+  ul.list li::before {
+    content: ""; position: absolute; left: 0; top: 7px;
+    width: 16px; height: 16px; border-radius: 5px;
+    background: var(--accent, #6366f1); opacity: .9;
+  }
+
+  .callout {
+    background: #fffbeb; border: 1.5px solid #fcd34d; border-radius: 12px;
+    padding: 14px 18px; font-size: 17px; color: #78350f; line-height: 1.5;
+  }
+
+  .chart-title { font-size: 15px; font-weight: 700; color: #475569; letter-spacing: .5px; text-transform: uppercase; }
+  .chart-note { font-size: 14px; color: #94a3b8; margin-top: 6px; line-height: 1.4; }
+</style>
+</head>
+<body>
+
+<!-- ================= SLIDE 1 : COVER ================= -->
+<section class="slide" style="background: linear-gradient(135deg, #022c22 0%, #064e3b 55%, #047857 100%);">
+  <div style="flex:1; display:flex; flex-direction:column; justify-content:center; padding:0 80px; position:relative;">
+    <svg style="position:absolute; right:70px; top:80px; opacity:.95" width="460" height="300" viewBox="0 0 460 300" fill="none">
+      <!-- falling coin pit -->
+      <path d="M60 60 L400 60 L330 260 L130 260 Z" stroke="#6ee7b7" stroke-width="4" fill="rgba(52,211,153,.07)"/>
+      <!-- coins falling in -->
+      <circle cx="230" cy="25" r="14" fill="#fbbf24"/>
+      <circle cx="265" cy="55" r="14" fill="#fbbf24" opacity=".8"/>
+      <circle cx="245" cy="95" r="14" fill="#fbbf24" opacity=".6"/>
+      <circle cx="232" cy="135" r="14" fill="#fbbf24" opacity=".45"/>
+      <circle cx="230" cy="175" r="14" fill="#fbbf24" opacity=".3"/>
+      <text x="230" y="290" text-anchor="middle" font-size="13.5" fill="#6ee7b7" font-weight="600">uang yang sudah masuk… tidak keluar lagi</text>
+    </svg>
+    <div style="font-size:17px; letter-spacing:4px; color:#6ee7b7; font-weight:700;">DAILY WISDOM · EDISI #003 · PSIKOLOGI</div>
+    <h1 style="font-size:74px; color:#fff; line-height:1.08; margin-top:22px; letter-spacing:-1.5px; max-width:760px;">
+      Sunk Cost<br>Fallacy
+    </h1>
+    <p style="font-size:25px; color:#a7f3d0; margin-top:26px; max-width:640px; line-height:1.5; font-weight:400;">
+      Kenapa kita terus bertahan di film jelek, hubungan buruk, dan saham nyangkut —
+      hanya karena <i>"sayang, sudah terlanjur"</i>.
+    </p>
+    <div style="margin-top:44px; display:flex; gap:14px;">
+      <span style="background:rgba(52,211,153,.14); border:1px solid #34d399; color:#a7f3d0; padding:8px 18px; border-radius:999px; font-size:15px; font-weight:600;">Bias Kognitif</span>
+      <span style="background:rgba(251,191,36,.14); border:1px solid #fbbf24; color:#fde68a; padding:8px 18px; border-radius:999px; font-size:15px; font-weight:600;">Investasi</span>
+      <span style="background:rgba(129,140,248,.15); border:1px solid #818cf8; color:#c7d2fe; padding:8px 18px; border-radius:999px; font-size:15px; font-weight:600;">Keputusan Bisnis</span>
+    </div>
+  </div>
+  <footer style="border-top:1px solid rgba(148,163,184,.25); color:#64748b;">
+    <span>Daily Wisdom — satu konsep penting setiap hari</span>
+    <span style="color:#6ee7b7; font-weight:700;">01 / 10</span>
+  </footer>
+</section>
+
+<!-- ================= SLIDE 2 : DEFINISI ================= -->
+<section class="slide" style="--accent:#10b981">
+  <header>
+    <span class="tag">Definisi</span>
+    <h2>Apa itu Sunk Cost Fallacy?</h2>
+    <div class="sub">Kesalahan berpikir di mana kita melanjutkan sesuatu karena <b>biaya yang sudah terlanjur keluar</b> — bukan karena prospeknya ke depan.</div>
+  </header>
+  <div class="body">
+    <div class="col" style="flex:1.15;">
+      <p class="lead"><b>Sunk cost</b> (biaya hangus) adalah biaya yang sudah dikeluarkan dan <b>tidak bisa kembali</b>, apa pun keputusanmu. Fallacy-nya: membiarkan biaya masa lalu itu ikut menentukan keputusan masa depan.</p>
+      <p>Contoh klasik: kamu beli tiket film Rp100.000. Menit ke-30, filmnya terbukti jelek dan kamu bosan. Uang tiket <b>sudah hilang</b> — mau kamu bertahan atau pulang, Rp100.000 itu tidak kembali. Satu-satunya keputusan nyata: <b>90 menit ke depan</b> mau kamu habiskan menderita atau dipakai untuk hal lain? Mayoritas orang memilih menderita — "sayang tiketnya".</p>
+      <p>Padahal logika yang benar sederhana: <b>keputusan rasional hanya membandingkan biaya dan manfaat MASA DEPAN.</b> Masa lalu tidak punya suara — ia sudah selesai dan tidak bisa dirundingkan ulang.</p>
+      <div class="quote" style="--accent:#10b981; background:#ecfdf5; border-color:#34d399;">“Jangan buang uang yang baik untuk mengejar uang yang buruk.”
+        <span class="who">— Pepatah investasi tertua</span>
+      </div>
+    </div>
+    <div class="col" style="flex:.85; justify-content:center;">
+      <div class="card">
+        <div class="chart-title" style="margin-bottom:10px;">Analogi: Garis Waktu Keputusan</div>
+        <svg width="100%" viewBox="0 0 380 250">
+          <!-- timeline -->
+          <line x1="30" y1="125" x2="355" y2="125" stroke="#94a3b8" stroke-width="3"/>
+          <polygon points="355,125 343,119 343,131" fill="#94a3b8"/>
+          <!-- past zone -->
+          <rect x="35" y="60" width="150" height="128" rx="12" fill="#f1f5f9" stroke="#cbd5e1" stroke-width="2"/>
+          <text x="110" y="85" text-anchor="middle" font-size="13" font-weight="800" fill="#64748b">MASA LALU</text>
+          <text x="110" y="108" text-anchor="middle" font-size="11.5" fill="#94a3b8">uang, waktu, tenaga</text>
+          <text x="110" y="126" text-anchor="middle" font-size="11.5" fill="#94a3b8">yang sudah keluar</text>
+          <text x="110" y="155" text-anchor="middle" font-size="12.5" font-weight="700" fill="#94a3b8">🔒 TERKUNCI</text>
+          <text x="110" y="173" text-anchor="middle" font-size="11" fill="#94a3b8">tidak bisa diubah</text>
+          <!-- now marker -->
+          <circle cx="200" cy="125" r="9" fill="#10b981"/>
+          <text x="200" y="45" text-anchor="middle" font-size="12" font-weight="800" fill="#059669">KAMU DI SINI</text>
+          <!-- future zone -->
+          <rect x="218" y="60" width="135" height="128" rx="12" fill="#ecfdf5" stroke="#34d399" stroke-width="2.5"/>
+          <text x="285" y="85" text-anchor="middle" font-size="13" font-weight="800" fill="#059669">MASA DEPAN</text>
+          <text x="285" y="108" text-anchor="middle" font-size="11.5" fill="#047857">satu-satunya hal</text>
+          <text x="285" y="126" text-anchor="middle" font-size="11.5" fill="#047857">yang bisa dipilih</text>
+          <text x="285" y="155" text-anchor="middle" font-size="12.5" font-weight="700" fill="#059669">✔ SATU-SATUNYA</text>
+          <text x="285" y="173" text-anchor="middle" font-size="11" fill="#047857">yang relevan</text>
+          <text x="192" y="230" text-anchor="middle" font-size="13" font-weight="700" fill="#334155">Keputusan benar = hanya menimbang kotak hijau</text>
+        </svg>
+        <p style="font-size:15px; margin-top:8px;">Sunk cost fallacy terjadi saat kotak abu-abu ikut <b>bersuara</b> dalam keputusan — padahal ia sudah terkunci rapat.</p>
+      </div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #003 · Sunk Cost Fallacy</span><span class="pageno">02 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 3 : MEKANISME ================= -->
+<section class="slide" style="--accent:#f59e0b">
+  <header>
+    <span class="tag">Mekanisme</span>
+    <h2>Kenapa Otak Sulit Melepas?</h2>
+    <div class="sub">Tiga mesin psikologis yang membuat "berhenti" terasa seperti kekalahan.</div>
+  </header>
+  <div class="body">
+    <div class="col">
+      <div class="card" style="border-left:6px solid #ef4444;">
+        <h3>1 · Loss Aversion — rugi terasa 2× lebih sakit</h3>
+        <p>Mengakui kerugian itu menyakitkan. Selama posisi belum ditutup, rugi baru "di atas kertas"; saat kamu jual, rugi jadi <b>nyata dan resmi</b>. Otak memilih menunda rasa sakit — padahal ekonominya identik.</p>
+      </div>
+      <div class="card" style="border-left:6px solid #f59e0b;">
+        <h3>2 · Komitmen &amp; konsistensi</h3>
+        <p>Manusia benci terlihat plin-plan — di mata orang lain dan di mata diri sendiri. Setelah membela pilihan di depan teman, berhenti terasa seperti <b>mengakui kebodohan sendiri di depan umum</b>.</p>
+      </div>
+      <div class="card" style="border-left:6px solid #8b5cf6;">
+        <h3>3 · Framing "sayang"</h3>
+        <p>Sejak kecil kita diajari "jangan buang-buang". Nasihat bagus untuk makanan di piring — <b>bencana</b> saat diterapkan pada keputusan besar, karena "tidak membuang" biaya lama justru membuang sumber daya baru.</p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="chart-title" style="margin-bottom:8px;">Analogi: Menambal Perahu Bocor</div>
+        <svg width="100%" viewBox="0 0 380 190">
+          <path d="M20 130 Q200 165 360 130 L340 160 Q200 185 40 160 Z" fill="#94a3b8" stroke="#64748b" stroke-width="2"/>
+          <!-- water inside -->
+          <path d="M60 132 Q200 158 320 132 L310 150 Q200 170 70 150 Z" fill="#7dd3fc" opacity=".8"/>
+          <!-- hole + plug attempts -->
+          <circle cx="255" cy="146" r="7" fill="#0ea5e9"/>
+          <path d="M248 120 L262 120 L258 140 L252 140 Z" fill="#f59e0b"/>
+          <!-- person bailing -->
+          <circle cx="120" cy="95" r="12" fill="#334155"/>
+          <path d="M120 107 L120 132 M120 115 L100 128 M120 115 L142 126" stroke="#334155" stroke-width="5" stroke-linecap="round"/>
+          <rect x="135" y="118" width="18" height="14" rx="3" fill="#fbbf24"/>
+          <text x="190" y="60" text-anchor="middle" font-size="13" font-weight="700" fill="#475569">"Sudah 3 jam menambal…</text>
+          <text x="190" y="80" text-anchor="middle" font-size="13" font-weight="700" fill="#475569">sayang kalau berhenti sekarang"</text>
+          <text x="190" y="182" text-anchor="middle" font-size="12" font-weight="700" fill="#dc2626">padahal perahu cadangan sudah menunggu di dermaga</text>
+        </svg>
+        <p style="font-size:15px; margin-top:6px;">Waktu 3 jam itu hilang <b>baik kamu lanjut menambal maupun pindah perahu</b>. Pertanyaan satu-satunya: mulai detik ini, mana yang lebih cepat membawamu ke seberang?</p>
+      </div>
+      <div class="callout"><b>Frasa jebakan yang harus kamu kenali:</b> "sayang kalau berhenti sekarang", "masa sudah sejauh ini", "tinggal sedikit lagi kok". Hampir selalu, itu suara sunk cost — bukan suara analisis.</div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #003 · Sunk Cost Fallacy</span><span class="pageno">03 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 4 : BUKTI ILMIAH ================= -->
+<section class="slide" style="--accent:#8b5cf6">
+  <header>
+    <span class="tag">Bukti Ilmiah</span>
+    <h2>Eksperimen Tiket Teater &amp; Pesawat Concorde</h2>
+    <div class="sub">Bias ini terbukti di laboratorium — dan juga di proyek miliaran dolar.</div>
+  </header>
+  <div class="body">
+    <div class="col" style="flex:1.1; justify-content:center;">
+      <div class="card">
+        <div class="chart-title" style="margin-bottom:6px;">Arkes &amp; Blumer (1985): Harga Tiket vs Kehadiran Nonton</div>
+        <svg width="100%" viewBox="0 0 600 300">
+          <line x1="70" y1="250" x2="560" y2="250" stroke="#94a3b8" stroke-width="2"/>
+          <line x1="70" y1="250" x2="70" y2="30" stroke="#94a3b8" stroke-width="2"/>
+          <g font-size="12" fill="#94a3b8">
+            <line x1="70" y1="195" x2="560" y2="195" stroke="#e2e8f0"/><text x="60" y="199" text-anchor="end">25</text>
+            <line x1="70" y1="140" x2="560" y2="140" stroke="#e2e8f0"/><text x="60" y="144" text-anchor="end">50</text>
+            <line x1="70" y1="85" x2="560" y2="85" stroke="#e2e8f0"/><text x="60" y="89" text-anchor="end">75</text>
+            <text x="60" y="34" text-anchor="end">100</text>
+          </g>
+          <!-- bars: full price 78, discount 60, big discount 45 (illustrative attendance %) -->
+          <rect x="120" y="79" width="90" height="171" fill="#8b5cf6" rx="5"/>
+          <text x="165" y="70" text-anchor="middle" font-size="15" font-weight="800" fill="#7c3aed">78%</text>
+          <rect x="270" y="118" width="90" height="132" fill="#a78bfa" rx="5"/>
+          <text x="315" y="109" text-anchor="middle" font-size="15" font-weight="800" fill="#7c3aed">60%</text>
+          <rect x="420" y="151" width="90" height="99" fill="#c4b5fd" rx="5"/>
+          <text x="465" y="142" text-anchor="middle" font-size="15" font-weight="800" fill="#7c3aed">45%</text>
+          <text x="165" y="272" text-anchor="middle" font-size="13.5" font-weight="700" fill="#475569">Harga penuh</text>
+          <text x="315" y="272" text-anchor="middle" font-size="13.5" font-weight="700" fill="#475569">Diskon kecil</text>
+          <text x="465" y="272" text-anchor="middle" font-size="13.5" font-weight="700" fill="#475569">Diskon besar</text>
+        </svg>
+        <div class="chart-note">Pola hasil eksperimen Arkes &amp; Blumer (1985), "The psychology of sunk cost", Organizational Behavior and Human Decision Processes. Kelompok yang membayar lebih mahal datang ke lebih banyak pertunjukan — padahal kualitas pertunjukannya sama untuk semua.</div>
+      </div>
+    </div>
+    <div class="col" style="flex:.9;">
+      <p class="lead">Peserta membeli tiket teater musiman: sebagian harga penuh, sebagian dapat diskon acak. Hasilnya: <b>yang membayar paling mahal paling rajin hadir</b> — meskipun tidak ada bedanya di dompet mereka saat memilih datang atau tidak.</p>
+      <div class="card" style="padding:12px 18px;">
+        <h3 style="font-size:17px;">✈️ Versi raksasa: "Concorde Fallacy"</h3>
+        <p style="font-size:15px;">Pemerintah Inggris–Prancis terus mendanai pesawat Concorde meski sudah jelas secara ekonomi proyek itu merugi — karena "sudah terlanjur menginvestasikan miliaran". Nama sunk cost fallacy dalam dunia bisnis bahkan diambil dari kasus ini.</p>
+      </div>
+      <div class="callout">⚠️ Pelajaran: sunk cost menyerang semua skala — dari tiket nonton Rp100 ribu sampai proyek negara miliaran dolar. Semakin besar yang sudah dikeluarkan, <b>semakin sulit berhenti</b> — padahal logikanya seharusnya tidak berubah sama sekali.</div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #003 · Sunk Cost Fallacy</span><span class="pageno">04 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 5 : NYANGKUT COMBO ================= -->
+<section class="slide" style="--accent:#3b82f6">
+  <header>
+    <span class="tag">Koneksi</span>
+    <h2>"Nyangkut Combo": Tiga Bias Satu Genggaman</h2>
+    <div class="sub">Sunk cost jarang sendirian — ia adalah babak final dari rantai yang dimulai dua bias sebelumnya.</div>
+  </header>
+  <div class="body">
+    <div class="col" style="flex:1.05; justify-content:center;">
+      <div class="card">
+        <div class="chart-title" style="margin-bottom:10px;">Diagram: Anatomi Saham Nyangkut</div>
+        <svg width="100%" viewBox="0 0 560 340">
+          <defs>
+            <marker id="arr4" markerWidth="10" markerHeight="10" refX="7" refY="4" orient="auto">
+              <path d="M0 0 L8 4 L0 8 Z" fill="#64748b"/>
+            </marker>
+          </defs>
+          <!-- step 1 -->
+          <rect x="30" y="20" width="500" height="62" rx="14" fill="#ede9fe" stroke="#8b5cf6" stroke-width="2.5"/>
+          <text x="55" y="46" font-size="15" font-weight="800" fill="#6d28d9">1 · DUNNING-KRUGER <tspan font-weight="400" font-size="13" fill="#7c3aed">(edisi #001)</tspan></text>
+          <text x="55" y="68" font-size="12.5" fill="#6d28d9">"Riset 2 hari, merasa sudah paham → entry dengan posisi besar"</text>
+          <path d="M280 84 L280 108" stroke="#64748b" stroke-width="3" marker-end="url(#arr4)"/>
+          <!-- step 2 -->
+          <rect x="30" y="112" width="500" height="62" rx="14" fill="#ffedd5" stroke="#f97316" stroke-width="2.5"/>
+          <text x="55" y="138" font-size="15" font-weight="800" fill="#ea580c">2 · CONFIRMATION BIAS <tspan font-weight="400" font-size="13" fill="#f97316">(edisi #002)</tspan></text>
+          <text x="55" y="160" font-size="12.5" fill="#c2410c">"Harga turun → hanya baca berita bullish, berita jelek = 'manipulasi bandar'"</text>
+          <path d="M280 176 L280 200" stroke="#64748b" stroke-width="3" marker-end="url(#arr4)"/>
+          <!-- step 3 -->
+          <rect x="30" y="204" width="500" height="62" rx="14" fill="#d1fae5" stroke="#10b981" stroke-width="2.5"/>
+          <text x="55" y="230" font-size="15" font-weight="800" fill="#059669">3 · SUNK COST FALLACY <tspan font-weight="400" font-size="13" fill="#10b981">(edisi ini)</tspan></text>
+          <text x="55" y="252" font-size="12.5" fill="#047857">"Sudah rugi 40%, sayang kalau di-cut sekarang → tahan, atau malah average down"</text>
+          <path d="M280 268 L280 292" stroke="#64748b" stroke-width="3" marker-end="url(#arr4)"/>
+          <!-- result -->
+          <rect x="130" y="296" width="300" height="38" rx="12" fill="#0f172a"/>
+          <text x="280" y="320" text-anchor="middle" font-size="14" font-weight="700" fill="#fca5a5">nyangkut bertahun-tahun + modal beku</text>
+        </svg>
+      </div>
+    </div>
+    <div class="col" style="flex:.95;">
+      <p class="lead">Perhatikan polanya: bias pertama membuatmu <b>masuk terlalu dalam</b>, bias kedua membuatmu <b>buta terhadap bukti</b>, bias ketiga membuatmu <b>terkunci di dalam</b>.</p>
+      <ul class="list" style="--accent:#3b82f6;">
+        <li><b>Titik putus #1 (termurah):</b> ukuran posisi kecil saat keyakinan belum teruji. Salah pun murah.</li>
+        <li><b>Titik putus #2:</b> invalidasi tertulis sebelum entry — saat tercapai, keluar tanpa diskusi ulang.</li>
+        <li><b>Titik putus #3:</b> tes "beli hari ini?" — kalau tidak mau beli di harga sekarang dengan uang baru, kenapa masih memegangnya?</li>
+      </ul>
+      <div class="callout">🔗 Semakin awal kamu memutus rantainya, semakin murah harganya. Memutus di bias #1 biayanya nol rupiah; memutus di bias #3 biayanya puluhan juta — seperti yang pernah kamu rasakan sendiri.</div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #003 · Sunk Cost Fallacy</span><span class="pageno">05 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 6 : DUNIA NYATA ================= -->
+<section class="slide" style="--accent:#f43f5e">
+  <header>
+    <span class="tag">Di Dunia Nyata</span>
+    <h2>Escalation of Commitment: Makin Rugi, Makin Nekat</h2>
+    <div class="sub">Bentuk sunk cost paling berbahaya: bukan sekadar bertahan — tapi <b>menambah</b> untuk membenarkan yang lama.</div>
+  </header>
+  <div class="body">
+    <div class="col">
+      <div class="card" style="padding:14px 20px;">
+        <h3>📈 Average down tanpa rencana</h3>
+        <p style="font-size:15.5px;">Saham turun → beli lagi "biar avg turun" → turun lagi → beli lagi. Tujuannya bukan lagi mencari untung, tapi <b>membuktikan keputusan pertama tidak salah</b>. Modal terus masuk ke posisi yang tesisnya sudah rusak.</p>
+      </div>
+      <div class="card" style="padding:14px 20px;">
+        <h3>💼 Proyek zombie di perusahaan</h3>
+        <p style="font-size:15.5px;">Proyek sudah 2 tahun, belum ada hasil, tapi "sayang tim 20 orangnya". Setiap review berakhir dengan tambahan anggaran — bukan karena prospeknya membaik, tapi karena <b>tidak ada yang mau jadi orang yang mematikannya</b>.</p>
+      </div>
+      <div class="card" style="padding:14px 20px;">
+        <h3>❤️ Hubungan &amp; karier</h3>
+        <p style="font-size:15.5px;">"Sudah 5 tahun bersama, masa berhenti sekarang?" atau "Sudah 8 tahun di industri ini, sayang kalau pindah". Waktu 5 tahun itu <b>tetap hilang</b> — pertanyaannya hanya: apakah 5 tahun berikutnya mau hilang juga?</p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="chart-title" style="margin-bottom:6px;">Analogi: Kurva Eskalasi Komitmen</div>
+        <svg width="100%" height="235" viewBox="0 0 380 210">
+          <line x1="40" y1="175" x2="360" y2="175" stroke="#94a3b8" stroke-width="2"/>
+          <line x1="40" y1="175" x2="40" y2="20" stroke="#94a3b8" stroke-width="2"/>
+          <text x="58" y="196" font-size="12" fill="#64748b" font-weight="600">waktu →</text>
+          <!-- commitment rising steeply -->
+          <path d="M50 150 C120 130, 160 100, 200 75 C250 45, 300 32, 350 26" fill="none" stroke="#f43f5e" stroke-width="4" stroke-linecap="round"/>
+          <!-- success probability falling -->
+          <path d="M50 60 C120 70, 160 90, 210 115 C260 138, 310 155, 350 163" fill="none" stroke="#3b82f6" stroke-width="4" stroke-dasharray="9 7" stroke-linecap="round"/>
+          <circle cx="205" cy="96" r="6" fill="#f59e0b"/>
+          <text x="205" y="125" text-anchor="middle" font-size="11.5" font-weight="800" fill="#d97706" stroke="#fff" stroke-width="4" paint-order="stroke">titik rasional untuk berhenti</text>
+          <text x="350" y="48" text-anchor="end" font-size="12.5" font-weight="800" fill="#f43f5e" stroke="#fff" stroke-width="4" paint-order="stroke">total dipertaruhkan</text>
+          <text x="350" y="150" text-anchor="end" font-size="12.5" font-weight="800" fill="#3b82f6" stroke="#fff" stroke-width="4" paint-order="stroke">peluang berhasil</text>
+        </svg>
+        <p style="font-size:15px; margin-top:6px;">Semakin jelas prospek memburuk, semakin besar yang dipertaruhkan untuk "menyelamatkan" keputusan lama. Di sinilah kerugian kecil berubah menjadi kehancuran total.</p>
+      </div>
+      <div class="callout">💡 <b>Tanda kamu sedang eskalasi:</b> alasan menambah posisi berubah dari "prospeknya bagus" menjadi "supaya yang kemarin tidak sia-sia". Kalimat kedua adalah alarm.</div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #003 · Sunk Cost Fallacy</span><span class="pageno">06 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 7 : VS GRIT ================= -->
+<section class="slide" style="--accent:#14b8a6">
+  <header>
+    <span class="tag">Kontras</span>
+    <h2>Bertahan vs Menyerah: Kapan yang Benar?</h2>
+    <div class="sub">Sunk cost fallacy bukan berarti "selalu berhenti saat susah". Ketekunan (grit) itu berharga — bedanya ada di <b>arah pandangnya</b>.</div>
+  </header>
+  <div class="body">
+    <div class="col" style="flex:1.15; justify-content:center;">
+      <div class="card">
+        <div class="chart-title" style="margin-bottom:10px;">Matriks Keputusan: Satu Pertanyaan Penentu</div>
+        <svg width="100%" viewBox="0 0 580 330">
+          <!-- headers -->
+          <rect x="130" y="15" width="200" height="44" rx="10" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+          <text x="230" y="34" text-anchor="middle" font-size="12.5" font-weight="800" fill="#b45309">Alasan bertahan:</text>
+          <text x="230" y="51" text-anchor="middle" font-size="12.5" font-weight="800" fill="#b45309">"yang sudah diinvestasikan"</text>
+          <rect x="350" y="15" width="200" height="44" rx="10" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+          <text x="450" y="34" text-anchor="middle" font-size="12.5" font-weight="800" fill="#059669">Alasan bertahan:</text>
+          <text x="450" y="51" text-anchor="middle" font-size="12.5" font-weight="800" fill="#059669">"prospek ke depan bagus"</text>
+          <!-- row headers -->
+          <rect x="15" y="75" width="100" height="110" rx="10" fill="#dbeafe" stroke="#3b82f6" stroke-width="2"/>
+          <text x="65" y="122" text-anchor="middle" font-size="12.5" font-weight="800" fill="#1d4ed8">Prospek</text>
+          <text x="65" y="140" text-anchor="middle" font-size="12.5" font-weight="800" fill="#1d4ed8">BAGUS</text>
+          <rect x="15" y="200" width="100" height="110" rx="10" fill="#fee2e2" stroke="#ef4444" stroke-width="2"/>
+          <text x="65" y="247" text-anchor="middle" font-size="12.5" font-weight="800" fill="#dc2626">Prospek</text>
+          <text x="65" y="265" text-anchor="middle" font-size="12.5" font-weight="800" fill="#dc2626">BURUK</text>
+          <!-- cells -->
+          <rect x="130" y="75" width="200" height="110" rx="10" fill="#fffbeb" stroke="#fcd34d" stroke-width="2"/>
+          <text x="230" y="108" text-anchor="middle" font-size="13" font-weight="800" fill="#92400e">⚠️ BERTAHAN</text>
+          <text x="230" y="130" text-anchor="middle" font-size="11.5" fill="#92400e">untung saja prospeknya bagus</text>
+          <text x="230" y="148" text-anchor="middle" font-size="11.5" fill="#92400e">— bukan karena "sayang"</text>
+          <text x="230" y="170" text-anchor="middle" font-size="11" font-style="italic" fill="#b45309">"masih belajar, tapi memang menjanjikan"</text>
+          <rect x="350" y="75" width="200" height="110" rx="10" fill="#059669"/>
+          <text x="450" y="108" text-anchor="middle" font-size="13" font-weight="800" fill="#fff">✔ GRIT SEJATI</text>
+          <text x="450" y="130" text-anchor="middle" font-size="11.5" fill="#d1fae5">bertahan karena masa depan</text>
+          <text x="450" y="148" text-anchor="middle" font-size="11.5" fill="#d1fae5">— inilah ketekunan yang benar</text>
+          <text x="450" y="170" text-anchor="middle" font-size="11" font-style="italic" fill="#a7f3d0">"susah, tapi arahnya jelas naik"</text>
+          <rect x="130" y="200" width="200" height="110" rx="10" fill="#dc2626"/>
+          <text x="230" y="233" text-anchor="middle" font-size="13" font-weight="800" fill="#fff">❌ SUNK COST FALLACY</text>
+          <text x="230" y="255" text-anchor="middle" font-size="11.5" fill="#fee2e2">bertahan hanya karena sudah</text>
+          <text x="230" y="273" text-anchor="middle" font-size="11.5" fill="#fee2e2">terlanjur — jebakan penuh</text>
+          <text x="230" y="295" text-anchor="middle" font-size="11" font-style="italic" fill="#fecaca">"sayang, sudah rugi 40%"</text>
+          <rect x="350" y="200" width="200" height="110" rx="10" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/>
+          <text x="450" y="233" text-anchor="middle" font-size="13" font-weight="800" fill="#475569">✔ CUT LOSS BIJAK</text>
+          <text x="450" y="255" text-anchor="middle" font-size="11.5" fill="#64748b">prospek buruk + tanpa beban</text>
+          <text x="450" y="273" text-anchor="middle" font-size="11.5" fill="#64748b">masa lalu = berhenti, pindah</text>
+          <text x="450" y="295" text-anchor="middle" font-size="11" font-style="italic" fill="#94a3b8">"bukan kalah — ini disiplin"</text>
+        </svg>
+      </div>
+    </div>
+    <div class="col" style="flex:.85;">
+      <p class="lead">Satu-satunya pertanyaan yang memilah semuanya: <b>"Kalau aku mulai dari nol hari ini, dengan informasi yang sama — apakah aku akan memilih ini lagi?"</b></p>
+      <ul class="list" style="--accent:#14b8a6;">
+        <li><b>Jawaban "ya":</b> bertahanlah sekuat baja. Itu grit, dan grit adalah keunggulan kompetitif yang langka.</li>
+        <li><b>Jawaban "tidak":</b> berhenti hari ini juga. Setiap hari tambahan adalah keputusan baru untuk terus — dengan alasan yang salah.</li>
+        <li><b>Jawaban "tidak tahu":</b> tanda kamu belum punya kriteria keluar. Berhenti sejenak dari aksi, dan tulis dulu kriterianya.</li>
+      </ul>
+      <div class="callout">🏆 Winston Churchill merangkumnya dengan tajam: <i>"Kalau kau sedang berjalan menembus neraka, teruslah berjalan."</i> — asal nerakanya memang ada jalan keluar di ujung. Kalau tidak ada, berbalik adalah keberanian.</div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #003 · Sunk Cost Fallacy</span><span class="pageno">07 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 8 : SOLUSI ================= -->
+<section class="slide" style="--accent:#10b981">
+  <header>
+    <span class="tag">Solusi</span>
+    <h2>4 Senjata Melawan Biaya Hangus</h2>
+    <div class="sub">Bias ini menyerang saat keputusan dibuat — jadi pertahanannya harus dipasang <b>sebelum</b> keputusan itu datang.</div>
+  </header>
+  <div class="body">
+    <div class="col" style="flex:1.1; justify-content:center;">
+      <div class="card">
+        <svg width="100%" viewBox="0 0 620 380">
+          <defs>
+            <marker id="arr5" markerWidth="10" markerHeight="10" refX="7" refY="4" orient="auto">
+              <path d="M0 0 L8 4 L0 8 Z" fill="#10b981"/>
+            </marker>
+          </defs>
+          <rect x="205" y="20" width="210" height="64" rx="14" fill="#059669"/>
+          <text x="310" y="46" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">1 · ATURAN SEBELUM MASUK</text>
+          <text x="310" y="68" text-anchor="middle" font-size="11" fill="#a7f3d0">stop, target, batas waktu</text>
+          <rect x="415" y="160" width="190" height="64" rx="14" fill="#059669"/>
+          <text x="510" y="186" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">2 · TES "BELI HARI INI?"</text>
+          <text x="510" y="207" text-anchor="middle" font-size="11" fill="#a7f3d0">posisi nol, keputusan bersih</text>
+          <rect x="205" y="296" width="210" height="64" rx="14" fill="#059669"/>
+          <text x="310" y="322" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">3 · KILL CRITERIA TERTULIS</text>
+          <text x="310" y="343" text-anchor="middle" font-size="11" fill="#a7f3d0">kondisi mati yang objektif</text>
+          <rect x="15" y="160" width="190" height="64" rx="14" fill="#059669"/>
+          <text x="110" y="186" text-anchor="middle" font-size="16" font-weight="700" fill="#fff">4 · REVIEW BERKALA</text>
+          <text x="110" y="207" text-anchor="middle" font-size="11" fill="#a7f3d0">evaluasi tanpa drama</text>
+          <path d="M420 55 C460 70, 485 110, 500 155" fill="none" stroke="#10b981" stroke-width="4" marker-end="url(#arr5)"/>
+          <path d="M500 228 C480 270, 455 300, 420 315" fill="none" stroke="#10b981" stroke-width="4" marker-end="url(#arr5)"/>
+          <path d="M200 315 C165 300, 135 265, 120 228" fill="none" stroke="#10b981" stroke-width="4" marker-end="url(#arr5)"/>
+          <path d="M120 155 C135 112, 165 75, 200 58" fill="none" stroke="#10b981" stroke-width="4" marker-end="url(#arr5)"/>
+          <text x="310" y="185" text-anchor="middle" font-size="15" font-weight="800" fill="#047857">KEPUTUSAN</text>
+          <text x="310" y="205" text-anchor="middle" font-size="15" font-weight="800" fill="#047857">TANPA BEBAN</text>
+        </svg>
+      </div>
+    </div>
+    <div class="col" style="gap:10px;">
+      <div class="card" style="padding:12px 18px;"><h3 style="font-size:17px;">1 · Pasang aturan SEBELUM punya beban</h3><p style="font-size:15px;">Sebelum entry: tulis stop loss, target, dan batas waktu. Otak yang belum kehilangan apa pun adalah juri paling objektif — <b>manfaatkan dia sebelum bias punya amunisi</b>.</p></div>
+      <div class="card" style="padding:12px 18px;"><h3 style="font-size:17px;">2 · Tes "beli hari ini?"</h3><p style="font-size:15px;">Bayangkan posisimu nol dan uangnya ada di tangan. Mau beli aset ini di harga sekarang? Kalau tidak — kamu sedang memegang sesuatu yang tidak kamu percaya, demi masa lalu.</p></div>
+      <div class="card" style="padding:12px 18px;"><h3 style="font-size:17px;">3 · Kill criteria untuk proyek</h3><p style="font-size:15px;">Untuk bisnis/proyek: tulis kondisi mati yang terukur di awal ("kalau 6 bulan tidak ada 10 pelanggan bayar, tutup"). Keputusan mati-hidup tidak lagi diperebutkan di ruang rapat.</p></div>
+      <div class="card" style="padding:12px 18px;"><h3 style="font-size:17px;">4 · Review berkala tanpa drama</h3><p style="font-size:15px;">Jadwalkan evaluasi (mingguan/bulanan) dengan pertanyaan tetap: "mulai hari ini, apa yang masih layak diteruskan?" Rutinitas membunuh emosi keputusan.</p></div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #003 · Sunk Cost Fallacy</span><span class="pageno">08 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 9 : PRAKTIK ================= -->
+<section class="slide" style="--accent:#8b5cf6">
+  <header>
+    <span class="tag">Praktik Hari Ini</span>
+    <h2>Detektor Diri: Apa yang Sedang Kamu Tahan?</h2>
+    <div class="sub">Hampir setiap orang punya minimal satu "sunk cost aktif" saat ini. Temukan milikmu.</div>
+  </header>
+  <div class="body">
+    <div class="col">
+      <div class="card" style="border-left:6px solid #ef4444;">
+        <h3 style="color:#ef4444;">🚩 Tanda kamu sedang terjebak:</h3>
+        <ul class="list" style="--accent:#ef4444;">
+          <li>Alasan bertahanmu dimulai dengan <b>"sudah…"</b> atau <b>"sayang…"</b> — bukan dengan fakta masa depan</li>
+          <li>Kamu <b>menghindari mengecek</b> nilai posisi/proyek itu ("nanti saja lihatnya")</li>
+          <li>Kamu menambah investasi baru untuk <b>membenarkan</b> yang lama (average down tanpa rencana)</li>
+          <li>Kalau temanmu ada di posisi yang sama, kamu akan menasihatinya <b>berhenti</b> — tapi dirimu "beda"</li>
+          <li>Membayangkan berhenti terasa seperti <b>kalah</b>, bukan seperti keputusan</li>
+        </ul>
+      </div>
+      <div class="card" style="border-left:6px solid #16a34a;">
+        <h3 style="color:#16a34a;">✅ Tanda bertahanmu sehat:</h3>
+        <ul class="list" style="--accent:#16a34a;">
+          <li>Kamu bisa menjelaskan <b>kenapa ke depannya bagus</b> tanpa menyebut apa yang sudah dikeluarkan</li>
+          <li>Ada <b>kriteria keluar tertulis</b> dan kamu benar-benar mengeksekusinya saat tercapai</li>
+          <li>Kamu rela <b>merekomendasikan keputusan yang sama</b> ke orang lain yang mulai dari nol</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <h3>📝 Latihan 5 menit malam ini</h3>
+        <p style="margin-bottom:8px;">Ambil satu hal yang sedang kamu pertahankan (posisi saham, proyek, keanggotaan, apa pun), lalu jawab tertulis:</p>
+        <ul class="list" style="--accent:#8b5cf6;">
+          <li><b>"Kalau aku belum memilikinya, apakah hari ini aku akan membelinya?"</b></li>
+          <li><b>"Berapa biaya MASA DEPAN untuk terus bertahan? (uang, waktu, energi per minggu)"</b></li>
+          <li><b>"Apa yang akan kudapat kalau sumber daya itu kupakai untuk hal lain?"</b> (opportunity cost — edisi #040 nanti!)</li>
+        </ul>
+      </div>
+      <div class="quote" style="--accent:#8b5cf6;">“Hal tersulit bagi seorang investor bukanlah memutuskan kapan membeli, melainkan mengakui bahwa alasannya membeli sudah tidak ada.”
+        <span class="who">— Adaptasi dari prinsip Philip Fisher</span>
+      </div>
+      <div class="callout">💡 Fakta menenangkan: setelah kamu benar-benar melepas satu sunk cost, rasanya bukan kalah — melainkan <b>lega</b>. Coba sekali, dan kamu akan mengerti kenapa orang menyebutnya "berhenti yang membebaskan".</div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #003 · Sunk Cost Fallacy</span><span class="pageno">09 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 10 : TAKEAWAYS ================= -->
+<section class="slide" style="background: linear-gradient(135deg, #022c22 0%, #064e3b 60%, #047857 100%); --accent:#6ee7b7;">
+  <header>
+    <span class="tag" style="background:#059669;">Ringkasan</span>
+    <h2 style="color:#fff;">5 Hal yang Perlu Kamu Bawa Pulang</h2>
+  </header>
+  <div class="body" style="flex-direction:column; gap:14px; justify-content:center;">
+    <div style="display:flex; gap:14px;">
+      <div class="card" style="flex:1; background:rgba(255,255,255,.06); border-color:rgba(110,231,183,.35);">
+        <h3 style="color:#6ee7b7;">1 · Masa lalu sudah terkunci</h3>
+        <p style="color:#cbd5e1; font-size:16px;">Uang, waktu, dan tenaga yang sudah keluar tidak bisa kembali — keputusanmu hari ini. Keputusan benar hanya menimbang masa depan.</p>
+      </div>
+      <div class="card" style="flex:1; background:rgba(255,255,255,.06); border-color:rgba(110,231,183,.35);">
+        <h3 style="color:#6ee7b7;">2 · "Sayang" adalah alarm</h3>
+        <p style="color:#cbd5e1; font-size:16px;">Kalimat "sayang kalau berhenti" dan "masa sudah sejauh ini" hampir selalu suara bias, bukan suara analisis.</p>
+      </div>
+      <div class="card" style="flex:1; background:rgba(255,255,255,.06); border-color:rgba(110,231,183,.35);">
+        <h3 style="color:#6ee7b7;">3 · Eskalasi lebih bahaya dari bertahan</h3>
+        <p style="color:#cbd5e1; font-size:16px;">Menambah investasi untuk membenarkan yang lama mengubah rugi kecil menjadi kehancuran. Riset lab dan Concorde membuktikannya.</p>
+      </div>
+    </div>
+    <div style="display:flex; gap:14px;">
+      <div class="card" style="flex:1; background:rgba(255,255,255,.06); border-color:rgba(110,231,183,.35);">
+        <h3 style="color:#6ee7b7;">4 · Bertahan bisa benar — uji arahnya</h3>
+        <p style="color:#cbd5e1; font-size:16px;">Grit bertahan demi masa depan; sunk cost bertahan demi masa lalu. Tesnya: "maukah aku memilih ini lagi kalau mulai dari nol?"</p>
+      </div>
+      <div class="card" style="flex:1; background:rgba(255,255,255,.06); border-color:rgba(110,231,183,.35);">
+        <h3 style="color:#6ee7b7;">5 · Pasang aturan sebelum berbeban</h3>
+        <p style="color:#cbd5e1; font-size:16px;">Stop loss, kill criteria, dan review berkala dipasang saat otak masih objektif — sebelum bias punya amunisi.</p>
+      </div>
+      <div class="card" style="flex:1; background:linear-gradient(135deg,#059669,#10b981); border:none; justify-content:center;">
+        <h3 style="color:#fff;">Besok di Daily Wisdom #004</h3>
+        <p style="color:#d1fae5; font-size:16px;"><b>Anchoring Effect</b> — kenapa angka pertama yang kamu dengar mengendalikan seluruh negosiasi, dari harga rumah sampai gaji.</p>
+      </div>
+    </div>
+  </div>
+  <footer style="border-top:1px solid rgba(148,163,184,.25); color:#64748b;">
+    <span>Daily Wisdom — baca 10 menit, pakai seumur hidup</span>
+    <span style="color:#6ee7b7; font-weight:700;">10 / 10</span>
+  </footer>
+</section>
+
+</body>
+</html>
