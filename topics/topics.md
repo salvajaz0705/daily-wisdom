@@ -6,7 +6,7 @@ Kurasi topik harian — dipilih karena **paling sering muncul di kehidupan nyata
 - [x] 001 — Dunning-Kruger Effect *(done)*
 - [x] 002 — Confirmation Bias: kenapa kita hanya mencari bukti yang kita sukai *(done)*
 - [x] 003 — Sunk Cost Fallacy: kenapa susah berhenti dari keputusan buruk *(done)*
-- [ ] 004 — Anchoring Effect: trik harga pertama dalam negosiasi
+- [x] 004 — Anchoring Effect: trik harga pertama dalam negosiasi *(done)*
 - [ ] 005 — Survivorship Bias: kisah sukses yang menipu
 - [ ] 006 — Loss Aversion: kenapa rugi terasa 2x lebih sakit
 - [ ] 007 — Halo Effect & first impression

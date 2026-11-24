@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Daily Wisdom #005 — Survivorship Bias</title>
+<style>
+  @page { size: 1280px 720px; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    font-family: "Segoe UI", "Segoe UI Variable", system-ui, sans-serif;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .slide {
+    width: 1280px; height: 720px;
+    page-break-after: always;
+    overflow: hidden;
+    position: relative;
+    background: #f8fafc;
+    display: flex; flex-direction: column;
+  }
+  .slide:last-child { page-break-after: auto; }
+
+  /* ---------- header / footer ---------- */
+  header {
+    padding: 28px 56px 0 56px;
+  }
+  .tag {
+    display: inline-block;
+    font-size: 15px; font-weight: 700; letter-spacing: 2.5px;
+    color: #fff; background: var(--accent, #6366f1);
+    padding: 5px 14px; border-radius: 999px;
+    text-transform: uppercase;
+  }
+  h2 { font-size: 38px; color: #0f172a; margin-top: 12px; letter-spacing: -0.5px; }
+  .sub { font-size: 19px; color: #64748b; margin-top: 6px; }
+  .body { flex: 1; padding: 22px 56px 0 56px; display: flex; gap: 34px; min-height: 0; }
+  footer {
+    height: 44px; display: flex; align-items: center; justify-content: space-between;
+    padding: 0 56px; font-size: 13px; color: #94a3b8;
+    border-top: 1px solid #e2e8f0;
+  }
+  .pageno { font-weight: 700; color: var(--accent, #6366f1); }
+
+  /* ---------- text blocks ---------- */
+  .col { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 14px; }
+  p { font-size: 18px; line-height: 1.55; color: #334155; }
+  b, strong { color: #0f172a; }
+  .lead { font-size: 21px; color: #1e293b; font-weight: 600; line-height: 1.5; }
+
+  .card {
+    background: #fff; border: 1px solid #e2e8f0; border-radius: 14px;
+    padding: 18px 22px;
+    box-shadow: 0 1px 3px rgba(15,23,42,.06);
+  }
+  .card h3 { font-size: 19px; margin-bottom: 6px; color: #0f172a; }
+  .card p { font-size: 16.5px; }
+  .card .ic { font-size: 22px; }
+
+  .quote {
+    border-left: 6px solid var(--accent, #6366f1);
+    background: #eef2ff;
+    padding: 16px 20px; border-radius: 0 12px 12px 0;
+    font-size: 19px; font-style: italic; color: #1e293b; line-height: 1.5;
+  }
+  .quote .who { display: block; margin-top: 8px; font-style: normal; font-size: 15px; color: #64748b; font-weight: 600; }
+
+  ul.list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  ul.list li {
+    font-size: 17.5px; line-height: 1.45; color: #334155;
+    padding-left: 30px; position: relative;
+  }
+  ul.list li::before {
+    content: ""; position: absolute; left: 0; top: 7px;
+    width: 16px; height: 16px; border-radius: 5px;
+    background: var(--accent, #6366f1); opacity: .9;
+  }
+
+  .callout {
+    background: #fffbeb; border: 1.5px solid #fcd34d; border-radius: 12px;
+    padding: 14px 18px; font-size: 17px; color: #78350f; line-height: 1.5;
+  }
+
+  .chart-title { font-size: 15px; font-weight: 700; color: #475569; letter-spacing: .5px; text-transform: uppercase; }
+  .chart-note { font-size: 14px; color: #94a3b8; margin-top: 6px; line-height: 1.4; }
+</style>
+</head>
+<body>
+
+<!-- ================= SLIDE 1 : COVER ================= -->
+<section class="slide" style="background: linear-gradient(135deg, #022c22 0%, #064e3b 55%, #047857 100%);">
+  <div style="flex:1; display:flex; flex-direction:column; justify-content:center; padding:0 80px; position:relative;">
+    <svg style="position:absolute; right:70px; top:95px; opacity:.95" width="440" height="270" viewBox="0 0 440 270" fill="none">
+      <!-- plane silhouette -->
+      <ellipse cx="220" cy="135" rx="26" ry="110" fill="#065f46" stroke="#34d399" stroke-width="4"/>
+      <ellipse cx="220" cy="135" rx="130" ry="20" fill="#065f46" stroke="#34d399" stroke-width="4"/>
+      <ellipse cx="220" cy="52" rx="62" ry="12" fill="#065f46" stroke="#34d399" stroke-width="4"/>
+      <!-- engines -->
+      <circle cx="150" cy="135" r="15" fill="#022c22" stroke="#6ee7b7" stroke-width="4"/>
+      <circle cx="290" cy="135" r="15" fill="#022c22" stroke="#6ee7b7" stroke-width="4"/>
+      <!-- bullet holes -->
+      <g fill="#f87171">
+        <circle cx="100" cy="128" r="6"/><circle cx="120" cy="143" r="5"/><circle cx="95" cy="140" r="5"/>
+        <circle cx="205" cy="120" r="6"/><circle cx="228" cy="150" r="5"/><circle cx="212" cy="165" r="5"/>
+        <circle cx="235" cy="108" r="5"/><circle cx="196" cy="175" r="5"/>
+        <circle cx="200" cy="60" r="5"/><circle cx="245" cy="70" r="6"/><circle cx="222" cy="82" r="5"/>
+        <circle cx="320" cy="132" r="5"/><circle cx="338" cy="144" r="6"/>
+      </g>
+      <text x="220" y="258" text-anchor="middle" font-size="13.5" fill="#6ee7b7" font-weight="600">lubang peluru hanya tercatat pada pesawat yang pulang</text>
+    </svg>
+    <div style="font-size:17px; letter-spacing:4px; color:#6ee7b7; font-weight:700;">DAILY WISDOM · EDISI #005 · PSIKOLOGI &amp; STATISTIK</div>
+    <h1 style="font-size:74px; color:#fff; line-height:1.08; margin-top:22px; letter-spacing:-1.5px; max-width:760px;">
+      Survivorship<br>Bias
+    </h1>
+    <p style="font-size:25px; color:#a7f3d0; margin-top:26px; max-width:620px; line-height:1.5; font-weight:400;">
+      Kenapa kisah sukses menipumu — dan pelajaran terpenting justru
+      bersembunyi di kisah-kisah yang <i>gagal</i> dan tak pernah kamu dengar.
+    </p>
+    <div style="margin-top:44px; display:flex; gap:14px;">
+      <span style="background:rgba(52,211,153,.14); border:1px solid #34d399; color:#a7f3d0; padding:8px 18px; border-radius:999px; font-size:15px; font-weight:600;">Bias Kognitif</span>
+      <span style="background:rgba(251,191,36,.14); border:1px solid #fbbf24; color:#fde68a; padding:8px 18px; border-radius:999px; font-size:15px; font-weight:600;">Statistik</span>
+      <span style="background:rgba(244,114,182,.14); border:1px solid #f472b6; color:#fbcfe8; padding:8px 18px; border-radius:999px; font-size:15px; font-weight:600;">Investasi &amp; Bisnis</span>
+    </div>
+  </div>
+  <footer style="border-top:1px solid rgba(148,163,184,.25); color:#64748b;">
+    <span>Daily Wisdom — satu konsep penting setiap hari</span>
+    <span style="color:#6ee7b7; font-weight:700;">01 / 10</span>
+  </footer>
+</section>
+
+<!-- ================= SLIDE 2 : DEFINISI ================= -->
+<section class="slide" style="--accent:#10b981">
+  <header>
+    <span class="tag">Definisi</span>
+    <h2>Apa itu Survivorship Bias?</h2>
+    <div class="sub">Kesalahan berpikir karena hanya melihat yang <b>berhasil bertahan</b> — dan melupakan semua yang gugur.</div>
+  </header>
+  <div class="body">
+    <div class="col" style="flex:1.15;">
+      <p class="lead">Ketika kamu menarik kesimpulan hanya dari orang, perusahaan, atau strategi yang <b>selamat sampai hari ini</b>, datamu sudah rusak sejak awal. Yang gagal tidak tampil di berita, tidak menulis buku, tidak diundang ke podcast — padahal merekalah mayoritas.</p>
+      <p>Contoh: "70% pengusaha sukses tidak punya gelar sarjana!" Kalimat itu hanya menghitung pengusaha yang <b>sukses</b>. Ia tidak menghitung jutaan non-sarjana yang usahanya gagal. Statistik yang benar: bandingkan <b>semua</b> yang memulai, bukan hanya yang sampai di garis akhir.</p>
+      <p>Akibatnya halus tapi fatal: kamu meniru "resep sukses" yang sebenarnya bukan penyebab sukses — melainkan ciri yang kebetulan dimiliki para penyintas, termasuk mereka yang selamat <b>murni karena keberuntungan</b>.</p>
+      <div class="quote" style="--accent:#10b981; background:#ecfdf5; border-color:#34d399;">“Kita tidak belajar dari kuburan — padahal di sanalah sebagian besar datanya berada.”
+        <span class="who">— Prinsip dasar survivorship bias</span>
+      </div>
+    </div>
+    <div class="col" style="flex:.85; justify-content:center;">
+      <div class="card">
+        <div class="chart-title" style="margin-bottom:10px;">Analogi: Gunung Es Data</div>
+        <svg width="100%" viewBox="0 0 380 260">
+          <!-- water -->
+          <rect x="10" y="110" width="360" height="140" rx="10" fill="#dbeafe" opacity=".65"/>
+          <path d="M20 122 Q45 112 70 122 T120 122 T170 122 T220 122 T270 122 T320 122 T365 122" stroke="#93c5fd" stroke-width="3" fill="none"/>
+          <!-- iceberg top -->
+          <path d="M150 110 L185 35 L215 55 L245 110 Z" fill="#a7f3d0" stroke="#10b981" stroke-width="3"/>
+          <!-- iceberg bottom -->
+          <path d="M95 110 L150 110 L245 110 L300 110 L285 175 L245 235 L150 235 L110 175 Z" fill="#d1fae5" stroke="#10b981" stroke-width="3" opacity=".85"/>
+          <text x="197" y="75" text-anchor="middle" font-size="12" font-weight="800" fill="#065f46">yang TERLIHAT:</text>
+          <text x="197" y="90" text-anchor="middle" font-size="12" font-weight="800" fill="#065f46">kisah sukses</text>
+          <text x="197" y="165" text-anchor="middle" font-size="13" font-weight="800" fill="#065f46">yang TIDAK TERLIHAT:</text>
+          <text x="197" y="184" text-anchor="middle" font-size="13" font-weight="800" fill="#065f46">ribuan kegagalan</text>
+          <text x="190" y="146" text-anchor="middle" font-size="11" fill="#64748b">— permukaan data —</text>
+        </svg>
+        <p style="font-size:15px; margin-top:8px;">Media, buku, dan media sosial hanya menunjukkan puncak gunung es. Keputusan yang baik butuh seluruh gunungnya — termasuk bagian yang tenggelam.</p>
+      </div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #005 · Survivorship Bias</span><span class="pageno">02 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 3 : ABRAHAM WALD ================= -->
+<section class="slide" style="--accent:#f59e0b">
+  <header>
+    <span class="tag">Kisah Klasik</span>
+    <h2>Abraham Wald &amp; Pesawat Perang Dunia II</h2>
+    <div class="sub">Satu pertanyaan cerdas yang menyelamatkan ribuan nyawa — dan melahirkan konsep ini.</div>
+  </header>
+  <div class="body">
+    <div class="col" style="flex:1.1;">
+      <p class="lead">Perang Dunia II. Sekutu meneliti pesawat pengebom yang <b>pulang dari misi</b> dan memetakan lubang pelurunya: paling banyak di sayap dan badan pesawat. Kesimpulan awal para perwira: <b>perkuat sayap dan badan.</b></p>
+      <p>Statistikawan <b>Abraham Wald</b> mengatakan sebaliknya: <b>perkuat mesin dan kokpit</b> — justru bagian yang <i>bersih</i> dari lubang peluru. Alasannya brilian:</p>
+      <ul class="list" style="--accent:#f59e0b;">
+        <li>Data hanya berasal dari pesawat yang <b>pulang</b>. Pesawat yang tertembak di mesin <b>tidak pernah kembali</b> untuk dihitung.</li>
+        <li>Lubang di sayap artinya: pesawat masih bisa terbang walau sayapnya bolong. Justru itu bagian yang <b>paling tahan</b>.</li>
+        <li>Bagian tanpa lubang = titik fatal. Di situlah armor harus dipasang.</li>
+      </ul>
+      <p>Wald benar. Pelajaran abadinya: <b>data yang hilang sering kali lebih penting daripada data yang terlihat.</b></p>
+    </div>
+    <div class="col" style="flex:.9; justify-content:center;">
+      <div class="card">
+        <div class="chart-title" style="margin-bottom:8px;">Peta Lubang Peluru Pesawat yang Pulang</div>
+        <svg width="100%" viewBox="0 0 460 320">
+          <!-- plane -->
+          <ellipse cx="230" cy="160" rx="30" ry="125" fill="#f1f5f9" stroke="#64748b" stroke-width="3"/>
+          <ellipse cx="230" cy="160" rx="150" ry="24" fill="#f1f5f9" stroke="#64748b" stroke-width="3"/>
+          <ellipse cx="230" cy="55" rx="70" ry="14" fill="#f1f5f9" stroke="#64748b" stroke-width="3"/>
+          <!-- engines -->
+          <circle cx="155" cy="160" r="19" fill="#dcfce7" stroke="#16a34a" stroke-width="3.5"/>
+          <circle cx="305" cy="160" r="19" fill="#dcfce7" stroke="#16a34a" stroke-width="3.5"/>
+          <!-- cockpit -->
+          <ellipse cx="230" cy="112" rx="16" ry="22" fill="#dcfce7" stroke="#16a34a" stroke-width="3.5"/>
+          <!-- bullet holes -->
+          <g fill="#ef4444">
+            <circle cx="105" cy="152" r="6"/><circle cx="128" cy="168" r="5"/><circle cx="98" cy="166" r="5"/><circle cx="120" cy="148" r="4"/>
+            <circle cx="215" cy="145" r="6"/><circle cx="240" cy="180" r="5"/><circle cx="222" cy="200" r="5"/><circle cx="245" cy="140" r="4"/>
+            <circle cx="205" cy="225" r="5"/><circle cx="238" cy="238" r="5"/>
+            <circle cx="205" cy="66" r="5"/><circle cx="252" cy="74" r="6"/><circle cx="228" cy="86" r="4"/>
+            <circle cx="352" cy="156" r="5"/><circle cx="370" cy="168" r="6"/><circle cx="345" cy="172" r="4"/>
+          </g>
+          <!-- labels -->
+          <text x="155" y="140" text-anchor="middle" font-size="11.5" font-weight="800" fill="#15803d">TIDAK ADA</text>
+          <text x="155" y="196" text-anchor="middle" font-size="11" font-weight="700" fill="#15803d">mesin → perkuat!</text>
+          <text x="305" y="140" text-anchor="middle" font-size="11.5" font-weight="800" fill="#15803d">TIDAK ADA</text>
+          <text x="305" y="196" text-anchor="middle" font-size="11" font-weight="700" fill="#15803d">mesin → perkuat!</text>
+          <text x="230" y="116" text-anchor="middle" font-size="10.5" font-weight="800" fill="#15803d">kokpit</text>
+          <text x="230" y="300" text-anchor="middle" font-size="12.5" font-weight="700" fill="#475569">merah = lubang peluru pada pesawat yang SELAMAT pulang</text>
+        </svg>
+        <div class="chart-note">Intuisi berkata: perkuat bagian yang penuh lubang. Data lengkap berkata: perkuat bagian yang membuat pesawat <b>tidak pulang</b>.</div>
+      </div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #005 · Survivorship Bias</span><span class="pageno">03 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 4 : MITOS DROPOUT ================= -->
+<section class="slide" style="--accent:#f43f5e">
+  <header>
+    <span class="tag">Dunia Nyata</span>
+    <h2>Mitos "Dropout Jadi Miliarder"</h2>
+    <div class="sub">Bill Gates, Steve Jobs, Mark Zuckerberg — bukti paling populer dan paling menyesatkan.</div>
+  </header>
+  <div class="body">
+    <div class="col" style="flex:1.1;">
+      <p class="lead">Argumen yang sering kamu dengar: <i>"Gates, Jobs, dan Zuckerberg semua dropout kuliah. Jadi kuliah tidak penting untuk sukses."</i></p>
+      <p>Masalahnya: argumen itu hanya menghitung <b>3 orang yang selamat</b> dari jutaan dropout. Untuk setiap Zuckerberg, ada ratusan ribu dropout yang startupnya tutup, CV-nya tersingkir di tahap screening, dan tidak pernah masuk berita. <b>Mereka tidak diundang ke seminar — jadi kamu tidak pernah mendengar sisi lain datanya.</b></p>
+      <p>Detail yang juga hilang dari narasi: Gates dropout dari <b>Harvard</b> setelah diterima — artinya ia sudah lolos filter paling ketat. Zuckerberg membangun Facebook <b>di dalam</b> ekosistem Harvard. Dropout adalah bagian dari cerita mereka, bukan penyebab suksesnya.</p>
+      <div class="callout">⚠️ <b>Pola umumnya:</b> setiap kali seseorang menjual "resep sukses" dengan menyebut nama-nama terkenal, tanya dulu: <b>berapa banyak orang melakukan hal yang persis sama — dan gagal?</b></div>
+    </div>
+    <div class="col" style="flex:.9; justify-content:center;">
+      <div class="card">
+        <div class="chart-title" style="margin-bottom:8px;">Yang Kamu Dengar vs Kenyataan</div>
+        <svg width="100%" viewBox="0 0 460 300">
+          <!-- left: 3 famous -->
+          <g>
+            <circle cx="90" cy="70" r="16" fill="#34d399"/><circle cx="130" cy="70" r="16" fill="#34d399"/><circle cx="170" cy="70" r="16" fill="#34d399"/>
+            <text x="130" y="115" text-anchor="middle" font-size="13" font-weight="800" fill="#065f46">3 dropout miliarder</text>
+            <text x="130" y="133" text-anchor="middle" font-size="12" fill="#64748b">yang kamu dengar</text>
+          </g>
+          <!-- arrow -->
+          <path d="M205 78 L255 78" stroke="#94a3b8" stroke-width="3" marker-end="url(#arr5)"/>
+          <defs>
+            <marker id="arr5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0 0 L10 5 L0 10 Z" fill="#94a3b8"/>
+            </marker>
+          </defs>
+          <text x="230" y="66" text-anchor="middle" font-size="11.5" font-weight="700" fill="#64748b">dibanding</text>
+          <!-- right: masses -->
+          <g fill="#cbd5e1">
+            <circle cx="290" cy="40" r="8"/><circle cx="312" cy="40" r="8"/><circle cx="334" cy="40" r="8"/><circle cx="356" cy="40" r="8"/><circle cx="378" cy="40" r="8"/><circle cx="400" cy="40" r="8"/><circle cx="422" cy="40" r="8"/>
+            <circle cx="290" cy="64" r="8"/><circle cx="312" cy="64" r="8"/><circle cx="334" cy="64" r="8"/><circle cx="356" cy="64" r="8"/><circle cx="378" cy="64" r="8"/><circle cx="400" cy="64" r="8"/><circle cx="422" cy="64" r="8"/>
+            <circle cx="290" cy="88" r="8"/><circle cx="312" cy="88" r="8"/><circle cx="334" cy="88" r="8"/><circle cx="356" cy="88" r="8"/><circle cx="378" cy="88" r="8"/><circle cx="400" cy="88" r="8"/><circle cx="422" cy="88" r="8"/>
+            <circle cx="301" cy="112" r="8"/><circle cx="323" cy="112" r="8"/><circle cx="345" cy="112" r="8"/><circle cx="367" cy="112" r="8"/><circle cx="389" cy="112" r="8"/><circle cx="411" cy="112" r="8"/>
+          </g>
+          <text x="356" y="145" text-anchor="middle" font-size="13" font-weight="800" fill="#475569">ratusan ribu dropout lain</text>
+          <text x="356" y="163" text-anchor="middle" font-size="12" fill="#64748b">yang tidak pernah kamu dengar</text>
+          <!-- divider -->
+          <line x1="30" y1="185" x2="430" y2="185" stroke="#e2e8f0" stroke-width="2"/>
+          <!-- base rate box -->
+          <rect x="30" y="200" width="400" height="82" rx="12" fill="#fef2f2" stroke="#fca5a5" stroke-width="2"/>
+          <text x="48" y="228" font-size="13.5" font-weight="800" fill="#b91c1c">BASE RATE YANG HILANG:</text>
+          <text x="48" y="250" font-size="12.5" fill="#7f1d1d">±90% startup gagal dalam 5 tahun — di kalangan founder</text>
+          <text x="48" y="269" font-size="12.5" fill="#7f1d1d">berpendidikan tinggi MAUPUN dropout.</text>
+        </svg>
+        <div class="chart-note">Menilai strategi dari pemenang saja = menilai lotere dari pemenangnya saja.</div>
+      </div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #005 · Survivorship Bias</span><span class="pageno">04 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 5 : INVESTASI ================= -->
+<section class="slide" style="--accent:#8b5cf6">
+  <header>
+    <span class="tag">Di Dunia Nyata</span>
+    <h2>Survivorship Bias di Dunia Investasi</h2>
+    <div class="sub">Kenapa "rata-rata reksa dana untung" dan backtest strategi sering berbohong.</div>
+  </header>
+  <div class="body">
+    <div class="col">
+      <div class="card" style="padding:12px 18px;">
+        <h3 style="font-size:16.5px;">📉 Reksa dana yang "menghilang"</h3>
+        <p style="font-size:14.5px;">Rata-rata kinerja reksa dana hanya dihitung dari dana yang <b>masih hidup</b>. Dana yang jeblok ditutup atau dilebur — dan lenyap dari statistik. Riset S&amp;P (SPIVA): dalam 15 tahun, <b>sekitar setengah</b> reksa dana AS tutup. Rata-rata yang tersisa otomatis terlihat lebih bagus dari kenyataan.</p>
+      </div>
+      <div class="card" style="padding:12px 18px;">
+        <h3 style="font-size:16.5px;">🧪 Backtest strategi trading</h3>
+        <p style="font-size:14.5px;">Strategi yang diuji pada saham-saham <b>yang ada hari ini</b> melewatkan saham yang sudah bangkrut/delist. Backtest jadi terlihat cemerlang — karena kamu diam-diam sudah tahu siapa yang selamat.</p>
+      </div>
+      <div class="card" style="padding:12px 18px;">
+        <h3 style="font-size:16.5px;">🏢 "Perusahaan hebat melakukan X"</h3>
+        <p style="font-size:14.5px;">Buku bisnis meneliti perusahaan sukses, menemukan pola, lalu menyebutnya penyebab sukses. Ratusan perusahaan <b>gagal dengan pola yang sama</b> tidak pernah diteliti.</p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="chart-title" style="margin-bottom:6px;">Dana yang Masih Hidup vs yang Tenggelam</div>
+        <svg width="92%" viewBox="0 0 480 285" style="display:block; margin:0 auto;">
+          <line x1="70" y1="225" x2="440" y2="225" stroke="#94a3b8" stroke-width="2"/>
+          <line x1="70" y1="225" x2="70" y2="30" stroke="#94a3b8" stroke-width="2"/>
+          <g font-size="12" fill="#94a3b8">
+            <line x1="70" y1="177" x2="440" y2="177" stroke="#e2e8f0"/><text x="60" y="181" text-anchor="end">25%</text>
+            <line x1="70" y1="129" x2="440" y2="129" stroke="#e2e8f0"/><text x="60" y="133" text-anchor="end">50%</text>
+            <line x1="70" y1="81" x2="440" y2="81" stroke="#e2e8f0"/><text x="60" y="85" text-anchor="end">75%</text>
+          </g>
+          <!-- year bars: surviving (green) shrinking, closed (red) growing -->
+          <g>
+            <rect x="120" y="45" width="46" height="180" fill="#a78bfa" rx="4"/>
+            <rect x="166" y="45" width="46" height="14" fill="#f87171" rx="3"/>
+            <rect x="250" y="81" width="46" height="144" fill="#a78bfa" rx="4"/>
+            <rect x="296" y="81" width="46" height="58" fill="#f87171" rx="3"/>
+            <rect x="380" y="129" width="46" height="96" fill="#a78bfa" rx="4" transform="translate(-26,0)"/>
+            <rect x="400" y="129" width="46" height="96" fill="#f87171" rx="3" transform="translate(-26,0)"/>
+          </g>
+          <g font-size="12.5" font-weight="700" fill="#475569" text-anchor="middle">
+            <text x="166" y="245">5 tahun</text>
+            <text x="296" y="245">10 tahun</text>
+            <text x="380" y="245">15 tahun</text>
+          </g>
+          <!-- legend -->
+          <rect x="110" y="262" width="14" height="14" fill="#a78bfa" rx="3"/>
+          <text x="130" y="274" font-size="12" fill="#475569">masih hidup (yang dihitung statistik)</text>
+          <rect x="330" y="262" width="14" height="14" fill="#f87171" rx="3"/>
+          <text x="350" y="274" font-size="12" fill="#475569">tutup (lenyap)</text>
+        </svg>
+        <div class="chart-note">Ilustrasi pola dari laporan SPIVA (S&amp;P): makin panjang horizon, makin banyak dana yang tutup — dan makin menyesatkan "rata-rata" yang tersisa.</div>
+      </div>
+      <div class="callout">💡 <b>Aturan baca statistik investasi:</b> tanya — <b>"apakah angka ini menghitung yang gagal dan tutup juga?"</b> Kalau tidak, anggap terlalu optimis.</div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #005 · Survivorship Bias</span><span class="pageno">05 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 6 : MEKANISME ================= -->
+<section class="slide" style="--accent:#f59e0b">
+  <header>
+    <span class="tag">Mekanisme</span>
+    <h2>Kenapa Otak Mudah Tertipu</h2>
+    <div class="sub">Tiga kebiasaan otak yang membuat data hilang tetap tak terlihat.</div>
+  </header>
+  <div class="body">
+    <div class="col">
+      <div class="card" style="border-left:6px solid #f59e0b; padding:12px 18px;">
+        <h3 style="font-size:16px;">1 · Data yang hilang tidak berteriak</h3>
+        <p style="font-size:14.5px;">Kisah sukses datang sendiri ke hadapanmu: buku, berita, podcast, iklan seminar. Kisah gagal <b>tidak punya humas</b>. Otak menilai dari apa yang tersedia — dan yang tersedia sudah disaring alam.</p>
+      </div>
+      <div class="card" style="border-left:6px solid #10b981; padding:12px 18px;">
+        <h3 style="font-size:16px;">2 · Otak suka cerita, bukan tabel</h3>
+        <p style="font-size:14.5px;">Satu kisah inspiratif "dari nol jadi miliarder" terasa lebih nyata daripada tabel base rate berisi 10.000 kegagalan. <b>Narasi mengalahkan statistik</b> di sistem intuisi otak — setiap saat.</p>
+      </div>
+      <div class="card" style="border-left:6px solid #8b5cf6; padding:12px 18px;">
+        <h3 style="font-size:16px;">3 · Korelasi dibaca sebagai sebab</h3>
+        <p style="font-size:14.5px;">"Semua CEO sukses bangun jam 4 pagi" → bangun jam 4 dianggap <b>penyebab</b>. Padahal jutaan orang bangun jam 4 dan tidak jadi CEO. Ciri penyintas ≠ resep jadi penyintas.</p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="chart-title" style="margin-bottom:8px;">Analogi: Saringan yang Tak Terlihat</div>
+        <svg width="72%" viewBox="0 0 400 300" style="display:block; margin:0 auto;">
+          <!-- top: all stories -->
+          <text x="200" y="28" text-anchor="middle" font-size="12.5" font-weight="700" fill="#475569">SEMUA YANG MEMULAI (data lengkap)</text>
+          <g fill="#94a3b8">
+            <circle cx="60" cy="55" r="7"/><circle cx="95" cy="55" r="7"/><circle cx="130" cy="55" r="7"/><circle cx="165" cy="55" r="7"/><circle cx="200" cy="55" r="7"/><circle cx="235" cy="55" r="7"/><circle cx="270" cy="55" r="7"/><circle cx="305" cy="55" r="7"/><circle cx="340" cy="55" r="7"/>
+            <circle cx="78" cy="80" r="7"/><circle cx="113" cy="80" r="7"/><circle cx="148" cy="80" r="7"/><circle cx="183" cy="80" r="7"/><circle cx="218" cy="80" r="7"/><circle cx="253" cy="80" r="7"/><circle cx="288" cy="80" r="7"/><circle cx="323" cy="80" r="7"/>
+          </g>
+          <!-- funnel -->
+          <path d="M40 105 L360 105 L245 190 L245 210 L155 210 L155 190 Z" fill="#fef3c7" stroke="#f59e0b" stroke-width="3"/>
+          <text x="200" y="152" text-anchor="middle" font-size="12.5" font-weight="800" fill="#92400e">SARINGAN: media, penerbit,</text>
+          <text x="200" y="170" text-anchor="middle" font-size="12.5" font-weight="800" fill="#92400e">algoritma sosial media</text>
+          <!-- bottom: survivors -->
+          <text x="200" y="240" text-anchor="middle" font-size="12.5" font-weight="700" fill="#475569">YANG SAMPAI KE MATA-MU</text>
+          <circle cx="185" cy="268" r="9" fill="#34d399"/>
+          <circle cx="215" cy="268" r="9" fill="#34d399"/>
+        </svg>
+        <p style="font-size:15px; margin-top:6px;">Kamu tidak pernah melihat data mentah — hanya data yang <b>sudah lolos saringan</b>. Kesimpulan dari data tersaring = kesimpulan yang cacat.</p>
+      </div>
+      <div class="callout"><b>Fakta tidak nyaman:</b> banyak "guru" bisnis dan trading menjual pola dari para penyintas — karena <b>hanya itu yang bisa mereka lihat</b>.</div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #005 · Survivorship Bias</span><span class="pageno">06 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 7 : KONEKSI ================= -->
+<section class="slide" style="--accent:#8b5cf6">
+  <header>
+    <span class="tag">Koneksi</span>
+    <h2>Bagaimana #002, #004, dan #005 Bekerja Sama</h2>
+    <div class="sub">Tiga bias yang sudah kamu pelajari adalah satu tim — begini pembagian tugasnya.</div>
+  </header>
+  <div class="body">
+    <div class="col">
+      <div class="card" style="border-left:6px solid #34d399; padding:12px 18px;">
+        <h3 style="font-size:16.5px;">Survivorship Bias <span style="color:#059669;">memilih BUKTI</span></h3>
+        <p style="font-size:14.5px;">Menyaring data sebelum sampai ke matamu: hanya kisah sukses, hanya saham yang bertahan, hanya pesawat yang pulang.</p>
+      </div>
+      <div class="card" style="border-left:6px solid #f43f5e; padding:12px 18px;">
+        <h3 style="font-size:16.5px;">Confirmation Bias (#002) <span style="color:#e11d48;">memilih INTERPRETASI</span></h3>
+        <p style="font-size:14.5px;">Dari bukti yang tersisa, otak hanya menerima yang cocok dengan keyakinanmu — dan membuang sisanya.</p>
+      </div>
+      <div class="card" style="border-left:6px solid #0ea5e9; padding:12px 18px;">
+        <h3 style="font-size:16.5px;">Anchoring (#004) <span style="color:#0369a1;">memasang TARGET</span></h3>
+        <p style="font-size:14.5px;">Angka dari kisah sukses ("dia untung 1000%!") menjadi jangkar ekspektasimu — membuat target realistis terasa mengecewakan.</p>
+      </div>
+      <div class="callout">⚠️ <b>Contoh komplit:</b> influencer trading pamer profit (survivorship: kamu tidak lihat follower yang loss) → kamu percaya karena ingin percaya (confirmation) → target profit bulananmu melonjak tidak realistis (anchoring).</div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="chart-title" style="margin-bottom:8px;">Pabrik Kesimpulan yang Cacat</div>
+        <svg width="94%" viewBox="0 0 420 290" style="display:block; margin:0 auto;">
+          <defs>
+            <marker id="arr7" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0 0 L10 5 L0 10 Z" fill="#94a3b8"/>
+            </marker>
+          </defs>
+          <!-- stage 1 -->
+          <rect x="20" y="30" width="150" height="64" rx="12" fill="#ecfdf5" stroke="#34d399" stroke-width="2.5"/>
+          <text x="95" y="55" text-anchor="middle" font-size="13" font-weight="800" fill="#065f46">SURVIVORSHIP</text>
+          <text x="95" y="74" text-anchor="middle" font-size="11.5" fill="#047857">saring bukti</text>
+          <line x1="170" y1="62" x2="218" y2="62" stroke="#94a3b8" stroke-width="2.5" marker-end="url(#arr7)"/>
+          <!-- stage 2 -->
+          <rect x="225" y="30" width="155" height="64" rx="12" fill="#fff1f2" stroke="#fb7185" stroke-width="2.5"/>
+          <text x="302" y="55" text-anchor="middle" font-size="13" font-weight="800" fill="#9f1239">CONFIRMATION</text>
+          <text x="302" y="74" text-anchor="middle" font-size="11.5" fill="#be123c">saring tafsir</text>
+          <!-- down arrow -->
+          <line x1="302" y1="94" x2="302" y2="140" stroke="#94a3b8" stroke-width="2.5" marker-end="url(#arr7)"/>
+          <!-- stage 3 -->
+          <rect x="225" y="148" width="155" height="64" rx="12" fill="#f0f9ff" stroke="#38bdf8" stroke-width="2.5"/>
+          <text x="302" y="173" text-anchor="middle" font-size="13" font-weight="800" fill="#075985">ANCHORING</text>
+          <text x="302" y="192" text-anchor="middle" font-size="11.5" fill="#0369a1">pasang target</text>
+          <line x1="225" y1="180" x2="177" y2="180" stroke="#94a3b8" stroke-width="2.5" marker-end="url(#arr7)"/>
+          <!-- output -->
+          <rect x="20" y="148" width="150" height="64" rx="12" fill="#f5f3ff" stroke="#a78bfa" stroke-width="2.5"/>
+          <text x="95" y="173" text-anchor="middle" font-size="13" font-weight="800" fill="#5b21b6">KEPUTUSAN</text>
+          <text x="95" y="192" text-anchor="middle" font-size="11.5" fill="#6d28d9">yang terasa "logis"</text>
+          <!-- note -->
+          <text x="210" y="250" text-anchor="middle" font-size="12.5" font-weight="700" fill="#475569">setiap tahap terasa wajar — hasil akhirnya tidak</text>
+          <text x="210" y="270" text-anchor="middle" font-size="12" fill="#94a3b8">pertahanan: intervensi di SEMUA tahap, bukan satu</text>
+        </svg>
+      </div>
+      <div class="quote" style="--accent:#8b5cf6; background:#f5f3ff; border-color:#a78bfa; font-size:16px; padding:10px 16px;">“Bias tidak bekerja sendirian. Ia bekerja berantai — dan rantai hanya sekuat mata rantai yang kamu jaga.”</div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #005 · Survivorship Bias</span><span class="pageno">07 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 8 : SOLUSI ================= -->
+<section class="slide" style="--accent:#10b981">
+  <header>
+    <span class="tag">Solusi</span>
+    <h2>Empat Prosedur Melihat yang Tak Terlihat</h2>
+    <div class="sub">Kamu tidak bisa menambal lubang data yang tidak kamu cari. Ini cara mencarinya.</div>
+  </header>
+  <div class="body">
+    <div class="col" style="flex:.95; justify-content:center;">
+      <div class="card">
+        <div class="chart-title" style="margin-bottom:8px;">Siklus Anti-Survivorship</div>
+        <svg width="100%" viewBox="0 0 620 380">
+          <defs>
+            <marker id="arr8" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0 0 L10 5 L0 10 Z" fill="#0d9488"/>
+            </marker>
+          </defs>
+          <path d="M310 60 C 430 60, 510 110, 520 150" fill="none" stroke="#0d9488" stroke-width="3" marker-end="url(#arr8)"/>
+          <path d="M520 230 C 510 270, 430 320, 310 320" fill="none" stroke="#0d9488" stroke-width="3" marker-end="url(#arr8)"/>
+          <path d="M310 320 C 190 320, 110 270, 100 230" fill="none" stroke="#0d9488" stroke-width="3" marker-end="url(#arr8)"/>
+          <path d="M100 150 C 110 110, 190 60, 310 60" fill="none" stroke="#0d9488" stroke-width="3" marker-end="url(#arr8)"/>
+          <g>
+            <rect x="215" y="20" width="190" height="52" rx="12" fill="#ccfbf1" stroke="#14b8a6" stroke-width="2.5"/>
+            <text x="310" y="41" text-anchor="middle" font-size="13.5" font-weight="800" fill="#0f766e">1 · SIAPA YANG ABSEN?</text>
+            <text x="310" y="60" text-anchor="middle" font-size="11.5" fill="#115e59">cari data yang hilang</text>
+          </g>
+          <g>
+            <rect x="445" y="164" width="160" height="52" rx="12" fill="#ccfbf1" stroke="#14b8a6" stroke-width="2.5"/>
+            <text x="525" y="185" text-anchor="middle" font-size="13.5" font-weight="800" fill="#0f766e">2 · CARI BASE RATE</text>
+            <text x="525" y="204" text-anchor="middle" font-size="11.5" fill="#115e59">peluang dasar semua</text>
+          </g>
+          <g>
+            <rect x="215" y="308" width="190" height="52" rx="12" fill="#ccfbf1" stroke="#14b8a6" stroke-width="2.5"/>
+            <text x="310" y="329" text-anchor="middle" font-size="13.5" font-weight="800" fill="#0f766e">3 · PELAJARI KEGAGALAN</text>
+            <text x="310" y="348" text-anchor="middle" font-size="11.5" fill="#115e59">kunjungi "kuburan"</text>
+          </g>
+          <g>
+            <rect x="15" y="164" width="170" height="52" rx="12" fill="#ccfbf1" stroke="#14b8a6" stroke-width="2.5"/>
+            <text x="100" y="185" text-anchor="middle" font-size="13.5" font-weight="800" fill="#0f766e">4 · UJI KOHORT PENUH</text>
+            <text x="100" y="204" text-anchor="middle" font-size="11.5" fill="#115e59">semua yang memulai</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card" style="padding:12px 18px;">
+        <h3 style="font-size:17px;">1 · Tanya: "siapa yang <span style="color:#0d9488;">tidak ada</span> di data ini?"</h3>
+        <p style="font-size:15px;">Sebelum percaya statistik apa pun, identifikasi kelompok yang hilang: dana yang tutup, bisnis yang bangkrut, peserta yang berhenti di tengah jalan.</p>
+      </div>
+      <div class="card" style="padding:12px 18px;">
+        <h3 style="font-size:17px;">2 · Cari base rate, bukan kisah</h3>
+        <p style="font-size:15px;">Tanya peluang dasarnya: "dari 1.000 orang yang mencoba strategi ini, berapa yang berhasil?" Satu kisah sukses tidak menjawab pertanyaan itu.</p>
+      </div>
+      <div class="card" style="padding:12px 18px;">
+        <h3 style="font-size:17px;">3 · Pelajari kegagalan secara sengaja</h3>
+        <p style="font-size:15px;">Baca post-mortem startup bangkrut, ulasan buruk produk, jurnal trading saat loss. "Kuburan" adalah perpustakaan yang paling jarang dikunjungi.</p>
+      </div>
+      <div class="card" style="padding:12px 18px;">
+        <h3 style="font-size:17px;">4 · Uji pada kohort lengkap</h3>
+        <p style="font-size:15px;">Menilai strategi? Hitung <b>semua</b> yang memulai pada titik yang sama — bukan hanya yang masih berdiri hari ini. Itulah cara Wald membaca pesawat.</p>
+      </div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #005 · Survivorship Bias</span><span class="pageno">08 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 9 : PRAKTIK ================= -->
+<section class="slide" style="--accent:#f43f5e">
+  <header>
+    <span class="tag">Praktik Hari Ini</span>
+    <h2>Detektor Survivorship &amp; Latihan 5 Menit</h2>
+    <div class="sub">Satu hari untuk berburu data yang hilang.</div>
+  </header>
+  <div class="body">
+    <div class="col">
+      <div class="card" style="border-left:6px solid #f43f5e; padding:14px 20px;">
+        <h3>🚩 Alarm: kamu sedang tertipu penyintas bila…</h3>
+        <ul class="list" style="--accent:#f43f5e; margin-top:8px;">
+          <li style="font-size:15.5px;">Argumen dimulai dengan daftar nama terkenal: "Gates, Jobs, Buffett semua…"</li>
+          <li style="font-size:15.5px;">Statistik "rata-rata" tidak menjelaskan <b>apa yang terjadi pada yang gagal</b>.</li>
+          <li style="font-size:15.5px;">Kesimpulan "X menyebabkan sukses" ditarik hanya dengan melihat yang sukses.</li>
+        </ul>
+      </div>
+      <div class="card" style="border-left:6px solid #10b981; padding:14px 20px;">
+        <h3>✅ Refleks pengganti</h3>
+        <p style="font-size:15.5px;">Ganti <i>"apa yang dilakukan para pemenang?"</i> menjadi <b>"apa yang membedakan pemenang dari yang gagal — padahal keduanya melakukan hal yang sama?"</b></p>
+      </div>
+      <div class="quote" style="--accent:#f43f5e; background:#fff1f2; border-color:#fb7185;">“Belajar dari pemenang itu mudah. Belajar dari yang kalah itu mahal harganya — karena kamu harus mencarinya sendiri.”</div>
+    </div>
+    <div class="col">
+      <div class="card" style="padding:16px 20px;">
+        <h3>📝 Latihan 5 menit — malam ini</h3>
+        <p style="font-size:15.5px; margin-bottom:10px;">Ambil satu nasihat sukses yang pernah kamu dengar (kuliah, bisnis, trading, karier), lalu jawab tertulis:</p>
+        <ul class="list" style="--accent:#10b981;">
+          <li style="font-size:15.5px;"><b>1.</b> Siapa saja yang dijadikan bukti dalam nasihat itu? Apakah semuanya penyintas?</li>
+          <li style="font-size:15.5px;"><b>2.</b> Cari angkanya: berapa persen orang yang mengikuti nasihat yang sama — dan gagal? (Googling "base rate" atau tingkat kegagalannya.)</li>
+          <li style="font-size:15.5px;"><b>3.</b> Tulis ulang nasihat itu versi jujur: "dari 100 orang yang melakukan ini, __ berhasil, __ gagal, karena __."</li>
+        </ul>
+      </div>
+      <div class="callout">🎯 <b>Target hari ini:</b> satu kali saja — saat scroll sosial media dan melihat kisah sukses, berhenti dan tanya: <b>"di mana kuburannya?"</b> Pertanyaan itu saja sudah membuatmu lebih langka dari 95% pembaca.</div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #005 · Survivorship Bias</span><span class="pageno">09 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 10 : RINGKASAN ================= -->
+<section class="slide" style="background: linear-gradient(135deg, #022c22 0%, #064e3b 55%, #047857 100%);">
+  <div style="flex:1; display:flex; flex-direction:column; justify-content:center; padding:0 80px;">
+    <div style="font-size:16px; letter-spacing:4px; color:#6ee7b7; font-weight:700; margin-bottom:16px;">RINGKASAN · DAILY WISDOM #005</div>
+    <h2 style="color:#fff; font-size:40px; margin:0 0 26px 0;">Survivorship Bias — Lima Hal yang Harus Tinggal</h2>
+    <div style="display:flex; gap:16px; flex-wrap:wrap;">
+      <div style="flex:1 1 30%; background:rgba(255,255,255,.08); border:1px solid rgba(110,231,183,.35); border-radius:14px; padding:16px 18px;">
+        <div style="color:#6ee7b7; font-weight:800; font-size:15px; margin-bottom:6px;">① Yang selamat ≠ yang benar</div>
+        <div style="color:#d1fae5; font-size:14.5px; line-height:1.45;">Kisah sukses hanyalah puncak gunung es. Mayoritas data — kegagalan — tenggelam dan tak terlihat.</div>
+      </div>
+      <div style="flex:1 1 30%; background:rgba(255,255,255,.08); border:1px solid rgba(110,231,183,.35); border-radius:14px; padding:16px 18px;">
+        <div style="color:#6ee7b7; font-weight:800; font-size:15px; margin-bottom:6px;">② Pelajaran pesawat Wald</div>
+        <div style="color:#d1fae5; font-size:14.5px; line-height:1.45;">Perkuat bagian yang TIDAK kena peluru: data yang hilang sering lebih penting daripada data yang terlihat.</div>
+      </div>
+      <div style="flex:1 1 30%; background:rgba(255,255,255,.08); border:1px solid rgba(110,231,183,.35); border-radius:14px; padding:16px 18px;">
+        <div style="color:#6ee7b7; font-weight:800; font-size:15px; margin-bottom:6px;">③ Ciri penyintas bukan resep</div>
+        <div style="color:#d1fae5; font-size:14.5px; line-height:1.45;">"Semua pemenang melakukan X" tidak berarti X menyebabkan menang — yang gagal pun melakukan X.</div>
+      </div>
+      <div style="flex:1 1 30%; background:rgba(255,255,255,.08); border:1px solid rgba(110,231,183,.35); border-radius:14px; padding:16px 18px;">
+        <div style="color:#6ee7b7; font-weight:800; font-size:15px; margin-bottom:6px;">④ Statistik hidup itu bias</div>
+        <div style="color:#d1fae5; font-size:14.5px; line-height:1.45;">Rata-rata reksa dana, backtest strategi, studi perusahaan hebat — semuanya diam-diam membuang yang gugur.</div>
+      </div>
+      <div style="flex:1 1 30%; background:rgba(255,255,255,.08); border:1px solid rgba(110,231,183,.35); border-radius:14px; padding:16px 18px;">
+        <div style="color:#6ee7b7; font-weight:800; font-size:15px; margin-bottom:6px;">⑤ Tanya base rate &amp; yang absen</div>
+        <div style="color:#d1fae5; font-size:14.5px; line-height:1.45;">"Siapa yang tidak ada di data ini?" dan "berapa peluang dasarnya?" — dua pertanyaan pelindung utamamu.</div>
+      </div>
+      <div style="flex:1 1 30%; background:#047857; border:1px solid #34d399; border-radius:14px; padding:16px 18px;">
+        <div style="color:#a7f3d0; font-weight:800; font-size:15px; margin-bottom:6px;">⑥ Besok: #006 Loss Aversion</div>
+        <div style="color:#d1fae5; font-size:14.5px; line-height:1.45;">Kenapa rugi Rp 100 ribu terasa dua kali lebih sakit daripada senangnya untung Rp 100 ribu.</div>
+      </div>
+    </div>
+  </div>
+  <footer style="border-top:1px solid rgba(148,163,184,.25); color:#94a3b8;">
+    <span>Daily Wisdom #005 · Survivorship Bias</span>
+    <span style="color:#6ee7b7; font-weight:700;">10 / 10</span>
+  </footer>
+</section>
+
+</body>
+</html>
