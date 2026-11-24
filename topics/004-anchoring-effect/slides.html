@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Daily Wisdom #004 — Anchoring Effect</title>
+<style>
+  @page { size: 1280px 720px; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    font-family: "Segoe UI", "Segoe UI Variable", system-ui, sans-serif;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .slide {
+    width: 1280px; height: 720px;
+    page-break-after: always;
+    overflow: hidden;
+    position: relative;
+    background: #f8fafc;
+    display: flex; flex-direction: column;
+  }
+  .slide:last-child { page-break-after: auto; }
+
+  /* ---------- header / footer ---------- */
+  header {
+    padding: 28px 56px 0 56px;
+  }
+  .tag {
+    display: inline-block;
+    font-size: 15px; font-weight: 700; letter-spacing: 2.5px;
+    color: #fff; background: var(--accent, #6366f1);
+    padding: 5px 14px; border-radius: 999px;
+    text-transform: uppercase;
+  }
+  h2 { font-size: 38px; color: #0f172a; margin-top: 12px; letter-spacing: -0.5px; }
+  .sub { font-size: 19px; color: #64748b; margin-top: 6px; }
+  .body { flex: 1; padding: 22px 56px 0 56px; display: flex; gap: 34px; min-height: 0; }
+  footer {
+    height: 44px; display: flex; align-items: center; justify-content: space-between;
+    padding: 0 56px; font-size: 13px; color: #94a3b8;
+    border-top: 1px solid #e2e8f0;
+  }
+  .pageno { font-weight: 700; color: var(--accent, #6366f1); }
+
+  /* ---------- text blocks ---------- */
+  .col { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 14px; }
+  p { font-size: 18px; line-height: 1.55; color: #334155; }
+  b, strong { color: #0f172a; }
+  .lead { font-size: 21px; color: #1e293b; font-weight: 600; line-height: 1.5; }
+
+  .card {
+    background: #fff; border: 1px solid #e2e8f0; border-radius: 14px;
+    padding: 18px 22px;
+    box-shadow: 0 1px 3px rgba(15,23,42,.06);
+  }
+  .card h3 { font-size: 19px; margin-bottom: 6px; color: #0f172a; }
+  .card p { font-size: 16.5px; }
+  .card .ic { font-size: 22px; }
+
+  .quote {
+    border-left: 6px solid var(--accent, #6366f1);
+    background: #eef2ff;
+    padding: 16px 20px; border-radius: 0 12px 12px 0;
+    font-size: 19px; font-style: italic; color: #1e293b; line-height: 1.5;
+  }
+  .quote .who { display: block; margin-top: 8px; font-style: normal; font-size: 15px; color: #64748b; font-weight: 600; }
+
+  ul.list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  ul.list li {
+    font-size: 17.5px; line-height: 1.45; color: #334155;
+    padding-left: 30px; position: relative;
+  }
+  ul.list li::before {
+    content: ""; position: absolute; left: 0; top: 7px;
+    width: 16px; height: 16px; border-radius: 5px;
+    background: var(--accent, #6366f1); opacity: .9;
+  }
+
+  .callout {
+    background: #fffbeb; border: 1.5px solid #fcd34d; border-radius: 12px;
+    padding: 14px 18px; font-size: 17px; color: #78350f; line-height: 1.5;
+  }
+
+  .chart-title { font-size: 15px; font-weight: 700; color: #475569; letter-spacing: .5px; text-transform: uppercase; }
+  .chart-note { font-size: 14px; color: #94a3b8; margin-top: 6px; line-height: 1.4; }
+</style>
+</head>
+<body>
+
+<!-- ================= SLIDE 1 : COVER ================= -->
+<section class="slide" style="background: linear-gradient(135deg, #082f49 0%, #0c4a6e 55%, #0369a1 100%);">
+  <div style="flex:1; display:flex; flex-direction:column; justify-content:center; padding:0 80px; position:relative;">
+    <svg style="position:absolute; right:70px; top:80px; opacity:.95" width="440" height="300" viewBox="0 0 440 300" fill="none">
+      <!-- anchor -->
+      <circle cx="220" cy="55" r="22" stroke="#7dd3fc" stroke-width="6"/>
+      <line x1="220" y1="77" x2="220" y2="220" stroke="#7dd3fc" stroke-width="7" stroke-linecap="round"/>
+      <line x1="150" y1="105" x2="290" y2="105" stroke="#7dd3fc" stroke-width="7" stroke-linecap="round"/>
+      <path d="M120 175 C120 245, 175 260, 220 220 M320 175 C320 245, 265 245, 220 220" stroke="#7dd3fc" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <path d="M120 175 L105 195 M120 175 L140 192" stroke="#7dd3fc" stroke-width="6" stroke-linecap="round"/>
+      <path d="M320 175 L335 195 M320 175 L300 192" stroke="#7dd3fc" stroke-width="6" stroke-linecap="round"/>
+      <text x="220" y="285" text-anchor="middle" font-size="13.5" fill="#7dd3fc" font-weight="600">angka pertama menahan semua penilaian setelahnya</text>
+    </svg>
+    <div style="font-size:17px; letter-spacing:4px; color:#7dd3fc; font-weight:700;">DAILY WISDOM · EDISI #004 · PSIKOLOGI</div>
+    <h1 style="font-size:74px; color:#fff; line-height:1.08; margin-top:22px; letter-spacing:-1.5px; max-width:760px;">
+      Anchoring<br>Effect
+    </h1>
+    <p style="font-size:25px; color:#bae6fd; margin-top:26px; max-width:640px; line-height:1.5; font-weight:400;">
+      Kenapa angka <i>pertama</i> yang kamu dengar diam-diam mengendalikan
+      seluruh keputusanmu — dari harga rumah sampai negosiasi gaji.
+    </p>
+    <div style="margin-top:44px; display:flex; gap:14px;">
+      <span style="background:rgba(56,189,248,.14); border:1px solid #38bdf8; color:#bae6fd; padding:8px 18px; border-radius:999px; font-size:15px; font-weight:600;">Bias Kognitif</span>
+      <span style="background:rgba(251,191,36,.14); border:1px solid #fbbf24; color:#fde68a; padding:8px 18px; border-radius:999px; font-size:15px; font-weight:600;">Negosiasi</span>
+      <span style="background:rgba(244,114,182,.14); border:1px solid #f472b6; color:#fbcfe8; padding:8px 18px; border-radius:999px; font-size:15px; font-weight:600;">Harga &amp; Marketing</span>
+    </div>
+  </div>
+  <footer style="border-top:1px solid rgba(148,163,184,.25); color:#64748b;">
+    <span>Daily Wisdom — satu konsep penting setiap hari</span>
+    <span style="color:#7dd3fc; font-weight:700;">01 / 10</span>
+  </footer>
+</section>
+
+<!-- ================= SLIDE 2 : DEFINISI ================= -->
+<section class="slide" style="--accent:#0ea5e9">
+  <header>
+    <span class="tag">Definisi</span>
+    <h2>Apa itu Anchoring Effect?</h2>
+    <div class="sub">Kecenderungan otak terlalu bergantung pada <b>angka/informasi pertama</b> yang diterima saat menilai sesuatu.</div>
+  </header>
+  <div class="body">
+    <div class="col" style="flex:1.15;">
+      <p class="lead">Bayangkan jangkar kapal: sekali jatuh ke dasar laut, kapal hanya bisa bergerak <b>dalam radius rantai jangkar itu</b>. Otak bekerja sama: angka pertama yang kamu dengar menjadi jangkar, dan semua penilaian setelahnya hanya "menyesuaikan" sedikit dari sana — tidak pernah benar-benar bebas.</p>
+      <p>Contoh nyata: agen properti menunjukkan rumah pertama seharga <b>Rp 3 M</b>. Rumah kedua, Rp 2,3 M, terasa "murah". Padahal mungkin harga pasarnya Rp 1,9 M. Jangkar Rp 3 M sudah memasang rel penilaian di kepalamu — dan agen properti tahu persis itu.</p>
+      <p>Efek ini bekerja bahkan ketika jangkarnya <b>jelas-jelas acak</b> — seperti angka roda keberuntungan atau digit nomor identitasmu (slide berikutnya). Otak tidak menyaring apakah jangkar itu masuk akal; ia langsung terpengaruh.</p>
+      <div class="quote" style="--accent:#0ea5e9; background:#f0f9ff; border-color:#38bdf8;">“Dalam negosiasi, yang menyebutkan angka pertama adalah yang membingkai seluruh permainan.”
+        <span class="who">— Prinsip dasar negosiasi</span>
+      </div>
+    </div>
+    <div class="col" style="flex:.85; justify-content:center;">
+      <div class="card">
+        <div class="chart-title" style="margin-bottom:10px;">Analogi: Radius Jangkar</div>
+        <svg width="100%" viewBox="0 0 380 250">
+          <!-- water -->
+          <rect x="10" y="150" width="360" height="90" rx="10" fill="#e0f2fe"/>
+          <path d="M20 165 Q45 155 70 165 T120 165 T170 165 T220 165 T270 165 T320 165 T365 165" stroke="#7dd3fc" stroke-width="3" fill="none"/>
+          <!-- anchor point -->
+          <circle cx="130" cy="205" r="10" fill="#0ea5e9"/>
+          <text x="130" y="235" text-anchor="middle" font-size="11.5" font-weight="700" fill="#0369a1">JANGKAR: angka pertama</text>
+          <!-- radius circle -->
+          <circle cx="130" cy="205" r="105" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-dasharray="6 6"/>
+          <!-- boats: within reach -->
+          <path d="M235 105 L265 105 L258 118 L242 118 Z" fill="#f59e0b"/>
+          <line x1="250" y1="105" x2="250" y2="88" stroke="#92400e" stroke-width="3"/>
+          <line x1="242" y1="118" x2="160" y2="195" stroke="#94a3b8" stroke-width="2" stroke-dasharray="4 4"/>
+          <text x="250" y="82" text-anchor="middle" font-size="11.5" font-weight="700" fill="#92400e">penilaianmu</text>
+          <!-- far boat: unreachable -->
+          <path d="M330 60 L360 60 L353 73 L337 73 Z" fill="#cbd5e1"/>
+          <line x1="345" y1="60" x2="345" y2="43" stroke="#94a3b8" stroke-width="3"/>
+          <line x1="337" y1="73" x2="160" y2="195" stroke="#e2e8f0" stroke-width="2" stroke-dasharray="4 4"/>
+          <text x="372" y="38" text-anchor="end" font-size="11.5" font-weight="700" fill="#94a3b8">nilai sebenarnya</text>
+          <text x="190" y="155" text-anchor="middle" font-size="11.5" fill="#0369a1">radius penyesuaian</text>
+        </svg>
+        <p style="font-size:15px; margin-top:8px;">Penilaianmu hanya bisa "berlayar" sejauh rantai jangkar. Nilai yang jauh dari angka pertama jarang sekali tercapai — walau itulah nilai yang benar.</p>
+      </div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #004 · Anchoring Effect</span><span class="pageno">02 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 3 : MEKANISME ================= -->
+<section class="slide" style="--accent:#f59e0b">
+  <header>
+    <span class="tag">Mekanisme</span>
+    <h2>Dua Mesin di Balik Jangkar</h2>
+    <div class="sub">Kenapa angka acak pun bisa membajak penilaianmu.</div>
+  </header>
+  <div class="body">
+    <div class="col">
+      <div class="card" style="border-left:6px solid #0ea5e9; padding:12px 18px;">
+        <h3 style="font-size:16px;">1 · Penyesuaian yang tidak pernah cukup</h3>
+        <p style="font-size:14.5px;">Otak mulai dari jangkar, lalu "menggeser" sedikit demi sedikit — dan <b>selalu berhenti terlalu cepat</b>. Dari jangkar Rp 3 M kamu turun ke 2,5 M dan merasa sudah kritis, padahal nilai wajarnya 1,9 M. Menyesuaikan itu melelahkan, jadi otak berhenti begitu terasa "oke".</p>
+      </div>
+      <div class="card" style="border-left:6px solid #f59e0b; padding:12px 18px;">
+        <h3 style="font-size:16px;">2 · Priming &amp; aksesibilitas selektif</h3>
+        <p style="font-size:14.5px;">Begitu mendengar angka, otak otomatis <b>mengaktifkan informasi yang konsisten</b> dengan angka itu. Dengar "rumah Rp 3 M" → otak langsung menyiapkan daftar kelebihan rumah mahal. Jangkar <b>mengubah apa yang terlintas</b> di pikiranmu.</p>
+      </div>
+      <div class="card" style="border-left:6px solid #8b5cf6; padding:12px 18px;">
+        <h3 style="font-size:16px;">3 · Sinyal sosial</h3>
+        <p style="font-size:14.5px;">Angka dari orang lain terasa membawa informasi: "kalau dia berani minta segitu, pasti ada alasannya". Padahal sering kali satu-satunya alasan adalah <b>dia tahu efek jangkar</b> — dan kamu tidak.</p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="chart-title" style="margin-bottom:8px;">Analogi: Pemanas Ruangan yang Lambat</div>
+        <svg width="100%" viewBox="0 0 380 190">
+          <line x1="45" y1="155" x2="355" y2="155" stroke="#94a3b8" stroke-width="2"/>
+          <line x1="45" y1="155" x2="45" y2="25" stroke="#94a3b8" stroke-width="2"/>
+          <text x="345" y="176" text-anchor="end" font-size="11.5" fill="#64748b" font-weight="600">waktu berpikir →</text>
+          <!-- anchor line -->
+          <line x1="45" y1="45" x2="355" y2="45" stroke="#f43f5e" stroke-width="3" stroke-dasharray="8 6"/>
+          <text x="50" y="38" font-size="12" font-weight="800" fill="#f43f5e">JANGKAR (angka pertama)</text>
+          <!-- true value -->
+          <line x1="45" y1="125" x2="355" y2="125" stroke="#10b981" stroke-width="3" stroke-dasharray="8 6"/>
+          <text x="50" y="118" font-size="12" font-weight="800" fill="#059669">NILAI SEBENARNYA</text>
+          <!-- adjustment curve -->
+          <path d="M60 45 C120 55, 160 70, 200 78 C260 90, 320 93, 350 94" fill="none" stroke="#0ea5e9" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="350" cy="94" r="7" fill="#0ea5e9"/>
+          <text x="372" y="76" text-anchor="end" font-size="11.5" font-weight="700" fill="#0369a1" stroke="#fff" stroke-width="4" paint-order="stroke">penilaianmu berhenti di sini</text>
+        </svg>
+        <p style="font-size:15px; margin-top:6px;">Seperti pemanas ruangan tua: suhu bergerak dari titik awal, tapi <b>tidak pernah sampai ke target</b> sebelum kamu keburu merasa "cukup" dan berhenti menunggu.</p>
+      </div>
+      <div class="callout"><b>Fakta tidak nyaman:</b> efek ini menyerang bahkan orang yang <b>tahu</b> tentang anchoring — termasuk hakim berpengalaman dan agen properti senior dalam eksperimen. Sadar saja tidak cukup; kamu butuh prosedur.</div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #004 · Anchoring Effect</span><span class="pageno">03 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 4 : EKSPERIMEN RODA ================= -->
+<section class="slide" style="--accent:#8b5cf6">
+  <header>
+    <span class="tag">Eksperimen Klasik</span>
+    <h2>Roda Keberuntungan Tversky &amp; Kahneman (1974)</h2>
+    <div class="sub">Eksperimen yang membuktikan angka acak pun mengendalikan penilaian kita.</div>
+  </header>
+  <div class="body">
+    <div class="col" style="flex:1.15;">
+      <p class="lead">Peserta diminta memutar roda keberuntungan yang <b>secara rahasia diatur</b> berhenti di angka 10 atau 65. Lalu ditanya: <b>"Berapa persen negara Afrika yang jadi anggota PBB?"</b></p>
+      <p>Angka roda itu jelas tidak ada hubungannya dengan PBB. Semua peserta tahu itu acak. Namun hasilnya:</p>
+      <ul class="list" style="--accent:#8b5cf6;">
+        <li>Roda berhenti di <b>10</b> → rata-rata tebakan: <b>25%</b></li>
+        <li>Roda berhenti di <b>65</b> → rata-rata tebakan: <b>45%</b></li>
+      </ul>
+      <p>Tebakan bergeser <b>hampir dua kali lipat</b> hanya karena angka acak yang dilihat 30 detik sebelumnya. Inilah bukti paling bersih bahwa otak tidak bisa mengabaikan jangkar — bahkan jangkar yang jelas tidak relevan.</p>
+      <div class="callout">🎡 <b>Bayangkan negosiasi gaji:</b> pewawancara "kebetulan" menyebut angka gaji yang jauh lebih rendah dari ekspektasimu di menit-menit awal. Itu roda keberuntungan versi dunia nyata — dan ia bekerja dengan cara yang persis sama.</div>
+    </div>
+    <div class="col" style="flex:.9; justify-content:center;">
+      <div class="card">
+        <div class="chart-title" style="margin-bottom:6px;">Jangkar Acak vs Tebakan Peserta</div>
+        <svg width="100%" viewBox="0 0 480 300">
+          <line x1="70" y1="240" x2="440" y2="240" stroke="#94a3b8" stroke-width="2"/>
+          <line x1="70" y1="240" x2="70" y2="30" stroke="#94a3b8" stroke-width="2"/>
+          <g font-size="12" fill="#94a3b8">
+            <line x1="70" y1="188" x2="440" y2="188" stroke="#e2e8f0"/><text x="60" y="192" text-anchor="end">20</text>
+            <line x1="70" y1="136" x2="440" y2="136" stroke="#e2e8f0"/><text x="60" y="140" text-anchor="end">40</text>
+            <line x1="70" y1="84" x2="440" y2="84" stroke="#e2e8f0"/><text x="60" y="88" text-anchor="end">60</text>
+          </g>
+          <!-- bars: 25% and 45% (scale: 2.6px per %) -->
+          <rect x="140" y="175" width="80" height="65" fill="#a78bfa" rx="5"/>
+          <text x="180" y="165" text-anchor="middle" font-size="16" font-weight="800" fill="#7c3aed">25%</text>
+          <rect x="290" y="123" width="80" height="117" fill="#8b5cf6" rx="5"/>
+          <text x="330" y="113" text-anchor="middle" font-size="16" font-weight="800" fill="#7c3aed">45%</text>
+          <text x="180" y="262" text-anchor="middle" font-size="13" font-weight="700" fill="#475569">Roda: 10</text>
+          <text x="330" y="262" text-anchor="middle" font-size="13" font-weight="700" fill="#475569">Roda: 65</text>
+          <text x="255" y="286" text-anchor="middle" font-size="12" fill="#94a3b8">tebakan rata-rata: % negara Afrika anggota PBB</text>
+        </svg>
+        <div class="chart-note">Tversky &amp; Kahneman (1974), "Judgment under Uncertainty: Heuristics and Biases", <i>Science</i>. Angka roda diatur diam-diam; peserta tidak curiga.</div>
+      </div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #004 · Anchoring Effect</span><span class="pageno">04 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 5 : EKSPERIMEN KTP ================= -->
+<section class="slide" style="--accent:#f43f5e">
+  <header>
+    <span class="tag">Bukti Ilmiah</span>
+    <h2>Digit Nomor Identitasmu Menentukan Harga Wine</h2>
+    <div class="sub">Dan Ariely (MIT) — eksperimen paling absurd sekaligus paling mengganggu tentang jangkar.</div>
+  </header>
+  <div class="body">
+    <div class="col" style="flex:1.1;">
+      <p class="lead">Mahasiswa MBA MIT diminta menuliskan <b>2 digit terakhir nomor Social Security</b> mereka (angka yang benar-benar acak) sebagai "harga" sebotol wine — lalu ditanya mau membeli wine itu di harga tersebut atau tidak, dan berapa maksimal mereka bersedia bayar.</p>
+      <p>Hasilnya: mahasiswa dengan digit tinggi (80–99) bersedia membayar <b>2–3× lipat</b> dibanding yang digitnya rendah (01–20). Nomor identitas acak — yang mereka sendiri tulis sebagai lelucon — menjadi jangkar harga yang nyata.</p>
+      <ul class="list" style="--accent:#f43f5e;">
+        <li>Para mahasiswa ini <b>jelas-jelas tahu</b> digit itu acak.</li>
+        <li>Mereka mahasiswa MBA — terlatih soal uang dan valuasi.</li>
+        <li>Efeknya tetap bekerja penuh. Pengetahuan tidak melindungi; hanya prosedur yang melindungi.</li>
+      </ul>
+      <p style="font-size:16px; color:#64748b;">Studi serupa pada hakim Jerman berpengalaman: hukuman yang dijatuhkan bergeser signifikan setelah mereka melempar <b>dadu yang diatur</b> — hakim dengan pengalaman puluhan tahun sekalipun.</p>
+    </div>
+    <div class="col" style="flex:.9; justify-content:center;">
+      <div class="card">
+        <div class="chart-title" style="margin-bottom:6px;">Digit SSN vs Kesediaan Membayar (wine)</div>
+        <svg width="100%" viewBox="0 0 480 300">
+          <line x1="70" y1="240" x2="440" y2="240" stroke="#94a3b8" stroke-width="2"/>
+          <line x1="70" y1="240" x2="70" y2="30" stroke="#94a3b8" stroke-width="2"/>
+          <g font-size="12" fill="#94a3b8">
+            <line x1="70" y1="180" x2="440" y2="180" stroke="#e2e8f0"/><text x="60" y="184" text-anchor="end">$10</text>
+            <line x1="70" y1="120" x2="440" y2="120" stroke="#e2e8f0"/><text x="60" y="124" text-anchor="end">$20</text>
+            <line x1="70" y1="60" x2="440" y2="60" stroke="#e2e8f0"/><text x="60" y="64" text-anchor="end">$30</text>
+          </g>
+          <!-- bars: low SSN ~$11.7, high SSN ~$27.9 (scale 6px/$) -->
+          <rect x="140" y="170" width="80" height="70" fill="#fda4af" rx="5"/>
+          <text x="180" y="160" text-anchor="middle" font-size="16" font-weight="800" fill="#e11d48">±$12</text>
+          <rect x="290" y="73" width="80" height="167" fill="#f43f5e" rx="5"/>
+          <text x="330" y="63" text-anchor="middle" font-size="16" font-weight="800" fill="#e11d48">±$28</text>
+          <text x="180" y="262" text-anchor="middle" font-size="13" font-weight="700" fill="#475569">Digit SSN rendah</text>
+          <text x="180" y="280" text-anchor="middle" font-size="11.5" fill="#94a3b8">(01–20)</text>
+          <text x="330" y="262" text-anchor="middle" font-size="13" font-weight="700" fill="#475569">Digit SSN tinggi</text>
+          <text x="330" y="280" text-anchor="middle" font-size="11.5" fill="#94a3b8">(80–99)</text>
+        </svg>
+        <div class="chart-note">Ariely, Loewenstein &amp; Prelec (2003), "Coherent Arbitrariness", QJE. Pola yang sama muncul untuk barang lain: cokelat, buku, elektronik.</div>
+      </div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #004 · Anchoring Effect</span><span class="pageno">05 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 6 : DUNIA NYATA ================= -->
+<section class="slide" style="--accent:#f59e0b">
+  <header>
+    <span class="tag">Di Dunia Nyata</span>
+    <h2>Siapa Saja yang Memasang Jangkar untukmu</h2>
+    <div class="sub">Anchoring adalah fondasi tersembunyi dari hampir semua strategi harga modern.</div>
+  </header>
+  <div class="body">
+    <div class="col">
+      <div class="card" style="padding:11px 18px;">
+        <h3 style="font-size:16.5px;">🏷️ Harga coret di e-commerce</h3>
+        <p style="font-size:14.5px;"><s>Rp 1.499.000</s> → <b>Rp 499.000</b>. Harga coret bukan harga asli — itu jangkar agar Rp 499 ribu terasa seperti mencuri.</p>
+      </div>
+      <div class="card" style="padding:11px 18px;">
+        <h3 style="font-size:16.5px;">🍽️ Menu restoran: item umpan</h3>
+        <p style="font-size:14.5px;">Satu menu Rp 850.000 di halaman pertama bukan untuk dijual — ia jangkar agar steak Rp 350.000 terlihat "masuk akal".</p>
+      </div>
+      <div class="card" style="padding:11px 18px;">
+        <h3 style="font-size:16.5px;">📈 Saham: jangkar harga historis</h3>
+        <p style="font-size:14.5px;">"Dulu pernah 5.000, sekarang cuma 1.200 — murah!" Harga masa lalu tidak bicara nilai hari ini. Banyak nyangkut lahir dari jangkar <b>52-week high</b>.</p>
+      </div>
+      <div class="card" style="padding:11px 18px;">
+        <h3 style="font-size:16.5px;">💼 Negosiasi gaji</h3>
+        <p style="font-size:14.5px;">Siapa pun yang menyebut angka pertama membingkai rentang pembicaraan. HRD yang membuka rendah sudah menang setengah jalan.</p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="chart-title" style="margin-bottom:8px;">Anatomi Harga Coret</div>
+        <svg width="100%" viewBox="0 0 460 205">
+          <!-- price tag -->
+          <path d="M40 40 L200 40 L250 100 L200 160 L40 160 Z" fill="#fff7ed" stroke="#fb923c" stroke-width="3"/>
+          <circle cx="62" cy="100" r="8" fill="#fff" stroke="#fb923c" stroke-width="3"/>
+          <text x="85" y="82" font-size="17" fill="#94a3b8" font-weight="700"><tspan text-decoration="line-through">Rp 1.499.000</tspan></text>
+          <text x="85" y="128" font-size="26" font-weight="800" fill="#ea580c">Rp 499.000</text>
+          <!-- annotations -->
+          <line x1="250" y1="70" x2="310" y2="50" stroke="#94a3b8" stroke-width="2"/>
+          <text x="313" y="54" font-size="12" font-weight="700" fill="#64748b">jangkar (fiktif)</text>
+          <line x1="250" y1="120" x2="310" y2="140" stroke="#94a3b8" stroke-width="2"/>
+          <text x="313" y="144" font-size="12" font-weight="700" fill="#64748b">harga target asli</text>
+          <text x="190" y="192" text-anchor="middle" font-size="12.5" font-weight="700" fill="#b45309">diskon 67% yang tidak pernah ada</text>
+        </svg>
+        <p style="font-size:15px; margin-top:6px;">Yang dijual bukan diskonnya — yang dijual adalah <b>perbandingan</b>. Otakmu menilai Rp 499 ribu relatif terhadap jangkar, bukan terhadap nilai barangnya.</p>
+      </div>
+      <div class="callout">💡 <b>Refleks baru:</b> setiap kali melihat harga coret, harga "normal", atau angka pertama dalam negosiasi — tanya: <b>"berapa nilai barang ini kalau aku tidak pernah melihat angka itu?"</b></div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #004 · Anchoring Effect</span><span class="pageno">06 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 7 : KONEKSI ================= -->
+<section class="slide" style="--accent:#8b5cf6">
+  <header>
+    <span class="tag">Koneksi</span>
+    <h2>Anchoring vs Bias-Bias Sebelumnya</h2>
+    <div class="sub">Bedanya dengan sunk cost (#002): dari mana jangkar itu berasal.</div>
+  </header>
+  <div class="body">
+    <div class="col">
+      <div class="card" style="border-left:6px solid #0ea5e9; padding:14px 20px;">
+        <h3>Anchoring = jangkar <span style="color:#0369a1;">EKSTERNAL</span></h3>
+        <p style="font-size:15.5px;">Angka datang <b>dari luar dirimu</b>: harga coret toko, penawaran lawan negosiasi, roda keberuntungan. Kamu tidak pernah berinvestasi apa pun pada angka itu — tapi tetap terpengaruh.</p>
+      </div>
+      <div class="card" style="border-left:6px solid #f59e0b; padding:14px 20px;">
+        <h3>Sunk Cost = jangkar <span style="color:#b45309;">INTERNAL</span></h3>
+        <p style="font-size:15.5px;">Jangkar berasal <b>dari pengorbananmu sendiri</b>: harga beli saham, waktu 3 tahun di pekerjaan itu, uang yang sudah keluar. Yang menahan bukan angka orang lain — melainkan rasa sayang pada yang sudah hilang.</p>
+      </div>
+      <div class="callout">⚠️ <b>Kombinasi paling berbahaya:</b> nyangkut saham adalah sunk cost (jangkar internal: harga beli) <b>+</b> anchoring eksternal (52-week high). Dua jangkar menahan dari dua arah — wajar jika sulit melepas.</div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="chart-title" style="margin-bottom:8px;">Dua Jangkar, Satu Korban</div>
+        <svg width="86%" viewBox="0 0 420 250" style="display:block; margin:0 auto;">
+          <!-- boat -->
+          <path d="M185 95 L235 95 L222 115 L198 115 Z" fill="#0ea5e9"/>
+          <line x1="210" y1="95" x2="210" y2="70" stroke="#075985" stroke-width="4"/>
+          <path d="M210 70 L236 88 L210 88 Z" fill="#7dd3fc"/>
+          <text x="210" y="140" text-anchor="middle" font-size="12.5" font-weight="800" fill="#075985">KEPUTUSANMU</text>
+          <!-- left anchor: external -->
+          <circle cx="70" cy="210" r="10" fill="#0ea5e9"/>
+          <line x1="70" y1="210" x2="185" y2="108" stroke="#38bdf8" stroke-width="2.5" stroke-dasharray="6 5"/>
+          <text x="70" y="240" text-anchor="middle" font-size="12" font-weight="700" fill="#0369a1">JANGKAR EKSTERNAL</text>
+          <text x="70" y="25" text-anchor="middle" font-size="11" fill="#64748b">harga coret · penawaran</text>
+          <text x="70" y="40" text-anchor="middle" font-size="11" fill="#64748b">orang lain · angka acak</text>
+          <!-- right anchor: internal -->
+          <circle cx="350" cy="210" r="10" fill="#f59e0b"/>
+          <line x1="350" y1="210" x2="235" y2="108" stroke="#fbbf24" stroke-width="2.5" stroke-dasharray="6 5"/>
+          <text x="350" y="240" text-anchor="middle" font-size="12" font-weight="700" fill="#b45309">JANGKAR INTERNAL</text>
+          <text x="350" y="25" text-anchor="middle" font-size="11" fill="#64748b">harga beli · uang yang</text>
+          <text x="350" y="40" text-anchor="middle" font-size="11" fill="#64748b">sudah keluar · waktu</text>
+          <!-- seabed -->
+          <rect x="10" y="212" width="400" height="28" rx="8" fill="#e0f2fe" opacity=".6"/>
+        </svg>
+        <p style="font-size:15px; margin-top:6px;">Kapal yang dijangkar dari dua arah tidak bisa bergerak ke mana-mana. Solusinya sama: <b>identifikasi jangkarnya, lalu berani melepaskannya.</b></p>
+      </div>
+      <div class="quote" style="--accent:#8b5cf6; background:#f5f3ff; border-color:#a78bfa; font-size:17px; padding:12px 18px;">“Harga belimu adalah urusanmu dengan masa lalu. Pasar tidak peduli — dan tidak berutang apa pun padamu.”</div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #004 · Anchoring Effect</span><span class="pageno">07 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 8 : SOLUSI ================= -->
+<section class="slide" style="--accent:#10b981">
+  <header>
+    <span class="tag">Solusi</span>
+    <h2>Empat Prosedur Anti-Jangkar</h2>
+    <div class="sub">Karena "sadar saja" tidak cukup — kamu butuh prosedur yang dipasang <b>sebelum</b> angka muncul.</div>
+  </header>
+  <div class="body">
+    <div class="col" style="flex:.95; justify-content:center;">
+      <div class="card">
+        <div class="chart-title" style="margin-bottom:8px;">Siklus Anti-Jangkar</div>
+        <svg width="100%" viewBox="0 0 620 380">
+          <defs>
+            <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0 0 L10 5 L0 10 Z" fill="#0d9488"/>
+            </marker>
+          </defs>
+          <!-- cycle arrows -->
+          <path d="M310 60 C 430 60, 510 110, 520 150" fill="none" stroke="#0d9488" stroke-width="3" marker-end="url(#arr)"/>
+          <path d="M520 230 C 510 270, 430 320, 310 320" fill="none" stroke="#0d9488" stroke-width="3" marker-end="url(#arr)"/>
+          <path d="M310 320 C 190 320, 110 270, 100 230" fill="none" stroke="#0d9488" stroke-width="3" marker-end="url(#arr)"/>
+          <path d="M100 150 C 110 110, 190 60, 310 60" fill="none" stroke="#0d9488" stroke-width="3" marker-end="url(#arr)"/>
+          <!-- boxes -->
+          <g>
+            <rect x="235" y="20" width="150" height="52" rx="12" fill="#ccfbf1" stroke="#14b8a6" stroke-width="2.5"/>
+            <text x="310" y="41" text-anchor="middle" font-size="14" font-weight="800" fill="#0f766e">1 · RISET DULU</text>
+            <text x="310" y="60" text-anchor="middle" font-size="11.5" fill="#115e59">tahu rentang wajar</text>
+          </g>
+          <g>
+            <rect x="445" y="164" width="150" height="52" rx="12" fill="#ccfbf1" stroke="#14b8a6" stroke-width="2.5"/>
+            <text x="520" y="185" text-anchor="middle" font-size="14" font-weight="800" fill="#0f766e">2 · SEBUT DULUAN</text>
+            <text x="520" y="204" text-anchor="middle" font-size="11.5" fill="#115e59">pasang jangkarmu</text>
+          </g>
+          <g>
+            <rect x="222" y="308" width="176" height="52" rx="12" fill="#ccfbf1" stroke="#14b8a6" stroke-width="2.5"/>
+            <text x="310" y="329" text-anchor="middle" font-size="13.5" font-weight="800" fill="#0f766e">3 · UJI TANPA ANGKA</text>
+            <text x="310" y="348" text-anchor="middle" font-size="11.5" fill="#115e59">nilai intrinsiknya?</text>
+          </g>
+          <g>
+            <rect x="25" y="164" width="150" height="52" rx="12" fill="#ccfbf1" stroke="#14b8a6" stroke-width="2.5"/>
+            <text x="100" y="185" text-anchor="middle" font-size="14" font-weight="800" fill="#0f766e">4 · WALK-AWAY</text>
+            <text x="100" y="204" text-anchor="middle" font-size="11.5" fill="#115e59">batas tertulis</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card" style="padding:12px 18px;">
+        <h3 style="font-size:17px;">1 · Riset rentang wajar <span style="color:#0d9488;">sebelum</span> melihat harga</h3>
+        <p style="font-size:15px;">Cari dulu harga pasar, gaji standar industri, atau nilai intrinsik — <b>sebelum</b> membuka marketplace atau masuk ruang negosiasi. Jangkar buatanmu sendiri selalu menang melawan jangkar orang lain.</p>
+      </div>
+      <div class="card" style="padding:12px 18px;">
+        <h3 style="font-size:17px;">2 · Dalam negosiasi, sebut angka duluan</h3>
+        <p style="font-size:15px;">Kalau kamu sudah riset, first offer adalah senjata — bukan risiko. Angka pertamamu membingkai seluruh rentang pembicaraan ke arahmu.</p>
+      </div>
+      <div class="card" style="padding:12px 18px;">
+        <h3 style="font-size:17px;">3 · Uji: "berapa nilainya TANPA angka itu?"</h3>
+        <p style="font-size:15px;">Tutup harga coret. Tanya: kalau aku tidak pernah lihat angka itu, berapa pantasnya barang ini? Ini memaksa otak keluar dari radius rantai jangkar.</p>
+      </div>
+      <div class="card" style="padding:12px 18px;">
+        <h3 style="font-size:17px;">4 · Tulis angka walk-away <span style="color:#0d9488;">di kertas</span></h3>
+        <p style="font-size:15px;">Sebelum negosiasi apa pun, tulis batas maksimummu. Angka tertulis adalah jangkar yang kamu kontrol — ia melindungi saat emosi mulai bicara.</p>
+      </div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #004 · Anchoring Effect</span><span class="pageno">08 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 9 : PRAKTIK ================= -->
+<section class="slide" style="--accent:#f43f5e">
+  <header>
+    <span class="tag">Praktik Hari Ini</span>
+    <h2>Detektor Jangkar &amp; Latihan 5 Menit</h2>
+    <div class="sub">Satu hari penuh untuk melihat jangkar yang selama ini tak kasat mata.</div>
+  </header>
+  <div class="body">
+    <div class="col">
+      <div class="card" style="border-left:6px solid #f43f5e; padding:14px 20px;">
+        <h3>🚩 Alarm: kamu sedang dijangkar bila…</h3>
+        <ul class="list" style="--accent:#f43f5e; margin-top:8px;">
+          <li style="font-size:15.5px;">Kata <b>"murah"</b> atau <b>"mahal"</b> muncul di kepalamu padahal kamu belum riset harga pasar.</li>
+          <li style="font-size:15.5px;">Kamu menilai diskon dari harga coret, bukan dari nilai barangnya.</li>
+          <li style="font-size:15.5px;">Dalam negosiasi, kamu "menyesuaikan" dari angka lawan — bukan dari angkamu sendiri.</li>
+        </ul>
+      </div>
+      <div class="card" style="border-left:6px solid #10b981; padding:14px 20px;">
+        <h3>✅ Refleks pengganti</h3>
+        <p style="font-size:15.5px;">Ganti pertanyaan <i>"ini diskon berapa?"</i> menjadi <b>"ini pantasnya berapa?"</b> — dan jawab sebelum melihat angka apa pun.</p>
+      </div>
+      <div class="quote" style="--accent:#f43f5e; background:#fff1f2; border-color:#fb7185;">“Jangkar yang kamu sadari keberadaannya hanya punya separuh kekuatan. Jangkar yang tak kamu sadari punya kekuatan penuh.”</div>
+    </div>
+    <div class="col">
+      <div class="card" style="padding:16px 20px;">
+        <h3>📝 Latihan 5 menit — malam ini</h3>
+        <p style="font-size:15.5px; margin-bottom:10px;">Buka riwayat belanja online atau aplikasi e-commerce-mu, lalu jawab 3 pertanyaan ini secara tertulis:</p>
+        <ul class="list" style="--accent:#0ea5e9;">
+          <li style="font-size:15.5px;"><b>1.</b> Temukan 3 barang dengan harga coret. Untuk tiap barang: berapa harga yang <b>pantas</b> menurutmu jika harga coretnya tidak ada?</li>
+          <li style="font-size:15.5px;"><b>2.</b> Ingat negosiasi/tawar-menawar terakhirmu: siapa yang menyebut angka pertama? Bagaimana angka itu menggeser hasil akhirnya?</li>
+          <li style="font-size:15.5px;"><b>3.</b> Tulis satu keputusan besar yang akan datang (beli barang, nego gaji, dst). Tentukan <b>jangkar buatanmu sendiri</b> sekarang — sebelum orang lain memasangnya.</li>
+        </ul>
+      </div>
+      <div class="callout">🎯 <b>Target hari ini:</b> bukan menjadi kebal jangkar — itu mustahil. Targetnya adalah <b>melihat jangkar itu</b> sebelum ia bekerja. Sekali terlihat, kamu punya pilihan.</div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #004 · Anchoring Effect</span><span class="pageno">09 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 10 : RINGKASAN ================= -->
+<section class="slide" style="background: linear-gradient(135deg, #082f49 0%, #0c4a6e 55%, #0369a1 100%);">
+  <div style="flex:1; display:flex; flex-direction:column; justify-content:center; padding:0 80px;">
+    <div style="font-size:16px; letter-spacing:4px; color:#7dd3fc; font-weight:700; margin-bottom:16px;">RINGKASAN · DAILY WISDOM #004</div>
+    <h2 style="color:#fff; font-size:40px; margin:0 0 26px 0;">Anchoring Effect — Lima Hal yang Harus Tinggal</h2>
+    <div style="display:flex; gap:16px; flex-wrap:wrap;">
+      <div style="flex:1 1 30%; background:rgba(255,255,255,.08); border:1px solid rgba(125,211,252,.35); border-radius:14px; padding:16px 18px;">
+        <div style="color:#7dd3fc; font-weight:800; font-size:15px; margin-bottom:6px;">① Angka pertama mengendalikan</div>
+        <div style="color:#e0f2fe; font-size:14.5px; line-height:1.45;">Setiap penilaian setelahnya hanya "menyesuaikan" sedikit dari jangkar — tidak pernah benar-benar bebas.</div>
+      </div>
+      <div style="flex:1 1 30%; background:rgba(255,255,255,.08); border:1px solid rgba(125,211,252,.35); border-radius:14px; padding:16px 18px;">
+        <div style="color:#7dd3fc; font-weight:800; font-size:15px; margin-bottom:6px;">② Jangkar acak pun bekerja</div>
+        <div style="color:#e0f2fe; font-size:14.5px; line-height:1.45;">Roda keberuntungan dan digit nomor identitas terbukti menggeser penilaian — pada mahasiswa MBA dan hakim senior.</div>
+      </div>
+      <div style="flex:1 1 30%; background:rgba(255,255,255,.08); border:1px solid rgba(125,211,252,.35); border-radius:14px; padding:16px 18px;">
+        <div style="color:#7dd3fc; font-weight:800; font-size:15px; margin-bottom:6px;">③ Sadar ≠ kebal</div>
+        <div style="color:#e0f2fe; font-size:14.5px; line-height:1.45;">Orang yang tahu tentang anchoring tetap terkena. Yang melindungi bukan pengetahuan, melainkan prosedur.</div>
+      </div>
+      <div style="flex:1 1 30%; background:rgba(255,255,255,.08); border:1px solid rgba(125,211,252,.35); border-radius:14px; padding:16px 18px;">
+        <div style="color:#7dd3fc; font-weight:800; font-size:15px; margin-bottom:6px;">④ Jangkari duluan</div>
+        <div style="color:#e0f2fe; font-size:14.5px; line-height:1.45;">Riset rentang wajar dulu, sebut angka pertama dalam negosiasi, dan tulis batas walk-away sebelum emosi bicara.</div>
+      </div>
+      <div style="flex:1 1 30%; background:rgba(255,255,255,.08); border:1px solid rgba(125,211,252,.35); border-radius:14px; padding:16px 18px;">
+        <div style="color:#7dd3fc; font-weight:800; font-size:15px; margin-bottom:6px;">⑤ Uji tanpa angka</div>
+        <div style="color:#e0f2fe; font-size:14.5px; line-height:1.45;">"Berapa nilainya kalau aku tidak pernah melihat angka itu?" — satu pertanyaan untuk keluar dari radius jangkar.</div>
+      </div>
+      <div style="flex:1 1 30%; background:#0369a1; border:1px solid #38bdf8; border-radius:14px; padding:16px 18px;">
+        <div style="color:#bae6fd; font-weight:800; font-size:15px; margin-bottom:6px;">⑥ Besok: #005 Survivorship Bias</div>
+        <div style="color:#e0f2fe; font-size:14.5px; line-height:1.45;">Kenapa kisah sukses menipumu — dan pelajaran terpenting justru bersembunyi di kisah yang gagal.</div>
+      </div>
+    </div>
+  </div>
+  <footer style="border-top:1px solid rgba(148,163,184,.25); color:#94a3b8;">
+    <span>Daily Wisdom #004 · Anchoring Effect</span>
+    <span style="color:#7dd3fc; font-weight:700;">10 / 10</span>
+  </footer>
+</section>
+
+</body>
+</html>
