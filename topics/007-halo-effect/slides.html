@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Daily Wisdom #007 — Halo Effect</title>
+<style>
+  @page { size: 1280px 720px; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    font-family: "Segoe UI", "Segoe UI Variable", system-ui, sans-serif;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .slide {
+    width: 1280px; height: 720px;
+    page-break-after: always;
+    overflow: hidden;
+    position: relative;
+    background: #f8fafc;
+    display: flex; flex-direction: column;
+  }
+  .slide:last-child { page-break-after: auto; }
+
+  /* ---------- header / footer ---------- */
+  header {
+    padding: 28px 56px 0 56px;
+  }
+  .tag {
+    display: inline-block;
+    font-size: 15px; font-weight: 700; letter-spacing: 2.5px;
+    color: #fff; background: var(--accent, #6366f1);
+    padding: 5px 14px; border-radius: 999px;
+    text-transform: uppercase;
+  }
+  h2 { font-size: 38px; color: #0f172a; margin-top: 12px; letter-spacing: -0.5px; }
+  .sub { font-size: 19px; color: #64748b; margin-top: 6px; }
+  .body { flex: 1; padding: 22px 56px 0 56px; display: flex; gap: 34px; min-height: 0; }
+  footer {
+    height: 44px; display: flex; align-items: center; justify-content: space-between;
+    padding: 0 56px; font-size: 13px; color: #94a3b8;
+    border-top: 1px solid #e2e8f0;
+  }
+  .pageno { font-weight: 700; color: var(--accent, #6366f1); }
+
+  /* ---------- text blocks ---------- */
+  .col { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 14px; }
+  p { font-size: 18px; line-height: 1.55; color: #334155; }
+  b, strong { color: #0f172a; }
+  .lead { font-size: 21px; color: #1e293b; font-weight: 600; line-height: 1.5; }
+
+  .card {
+    background: #fff; border: 1px solid #e2e8f0; border-radius: 14px;
+    padding: 18px 22px;
+    box-shadow: 0 1px 3px rgba(15,23,42,.06);
+  }
+  .card h3 { font-size: 19px; margin-bottom: 6px; color: #0f172a; }
+  .card p { font-size: 16.5px; }
+  .card .ic { font-size: 22px; }
+
+  .quote {
+    border-left: 6px solid var(--accent, #6366f1);
+    background: #eef2ff;
+    padding: 16px 20px; border-radius: 0 12px 12px 0;
+    font-size: 19px; font-style: italic; color: #1e293b; line-height: 1.5;
+  }
+  .quote .who { display: block; margin-top: 8px; font-style: normal; font-size: 15px; color: #64748b; font-weight: 600; }
+
+  ul.list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  ul.list li {
+    font-size: 17.5px; line-height: 1.45; color: #334155;
+    padding-left: 30px; position: relative;
+  }
+  ul.list li::before {
+    content: ""; position: absolute; left: 0; top: 7px;
+    width: 16px; height: 16px; border-radius: 5px;
+    background: var(--accent, #6366f1); opacity: .9;
+  }
+
+  .callout {
+    background: #fffbeb; border: 1.5px solid #fcd34d; border-radius: 12px;
+    padding: 14px 18px; font-size: 17px; color: #78350f; line-height: 1.5;
+  }
+
+  .chart-title { font-size: 15px; font-weight: 700; color: #475569; letter-spacing: .5px; text-transform: uppercase; }
+  .chart-note { font-size: 14px; color: #94a3b8; margin-top: 6px; line-height: 1.4; }
+</style>
+</head>
+<body>
+
+<!-- ================= SLIDE 1 : COVER ================= -->
+<section class="slide" style="background: linear-gradient(135deg, #451a03 0%, #92400e 55%, #d97706 100%);">
+  <div style="flex:1; display:flex; flex-direction:column; justify-content:center; padding:0 80px; position:relative;">
+    <svg style="position:absolute; right:80px; top:100px; opacity:.95" width="400" height="270" viewBox="0 0 400 270" fill="none">
+      <!-- person -->
+      <circle cx="200" cy="130" r="42" fill="#b45309" stroke="#fcd34d" stroke-width="5"/>
+      <path d="M130 250 C130 195, 270 195, 270 250 Z" fill="#b45309" stroke="#fcd34d" stroke-width="5"/>
+      <!-- halo -->
+      <ellipse cx="200" cy="60" rx="70" ry="18" fill="none" stroke="#fde68a" stroke-width="7"/>
+      <ellipse cx="200" cy="60" rx="88" ry="24" fill="none" stroke="#fde68a" stroke-width="2.5" opacity=".45"/>
+      <!-- rays -->
+      <g stroke="#fcd34d" stroke-width="4" stroke-linecap="round" opacity=".7">
+        <line x1="90" y1="80" x2="70" y2="65"/><line x1="310" y1="80" x2="330" y2="65"/>
+        <line x1="200" y1="15" x2="200" y2="5"/>
+      </g>
+      <text x="200" y="262" text-anchor="middle" font-size="13" fill="#fde68a" font-weight="600" transform="translate(0,8)">satu cahaya menutupi semua penilaian</text>
+    </svg>
+    <div style="font-size:17px; letter-spacing:4px; color:#fcd34d; font-weight:700;">DAILY WISDOM · EDISI #007 · PSIKOLOGI</div>
+    <h1 style="font-size:74px; color:#fff; line-height:1.08; margin-top:22px; letter-spacing:-1.5px; max-width:760px;">
+      Halo<br>Effect
+    </h1>
+    <p style="font-size:25px; color:#fde68a; margin-top:26px; max-width:600px; line-height:1.5; font-weight:400;">
+      Kenapa orang rupawan terlihat lebih pintar, brand keren terasa lebih
+      berkualitas, dan <i>satu</i> kesan pertama diam-diam menilai semuanya.
+    </p>
+    <div style="margin-top:44px; display:flex; gap:14px;">
+      <span style="background:rgba(252,211,77,.14); border:1px solid #fcd34d; color:#fde68a; padding:8px 18px; border-radius:999px; font-size:15px; font-weight:600;">Bias Kognitif</span>
+      <span style="background:rgba(251,113,133,.14); border:1px solid #fb7185; color:#fecdd3; padding:8px 18px; border-radius:999px; font-size:15px; font-weight:600;">Karier &amp; Rekrutmen</span>
+      <span style="background:rgba(96,165,250,.14); border:1px solid #60a5fa; color:#bfdbfe; padding:8px 18px; border-radius:999px; font-size:15px; font-weight:600;">Brand &amp; Bisnis</span>
+    </div>
+  </div>
+  <footer style="border-top:1px solid rgba(148,163,184,.25); color:#64748b;">
+    <span>Daily Wisdom — satu konsep penting setiap hari</span>
+    <span style="color:#fcd34d; font-weight:700;">01 / 10</span>
+  </footer>
+</section>
+
+<!-- ================= SLIDE 2 : DEFINISI ================= -->
+<section class="slide" style="--accent:#d97706">
+  <header>
+    <span class="tag">Definisi</span>
+    <h2>Apa itu Halo Effect?</h2>
+    <div class="sub">Kecenderungan menilai <b>semua</b> kualitas seseorang/sesuatu berdasarkan <b>satu</b> kesan yang menonjol.</div>
+  </header>
+  <div class="body">
+    <div class="col" style="flex:1.15;">
+      <p class="lead">Satu sifat yang mencolok — wajah rupawan, gaya bicara meyakinkan, gelar prestisius, brand terkenal — memancarkan "halo" yang <b>mewarnai penilaian atas sifat-sifat lain yang sama sekali tidak berhubungan</b>.</p>
+      <p>Istilah ini diperkenalkan psikolog <b>Edward Thorndike (1920)</b>. Ia menemukan komandan militer yang menilai prajurit berpenampilan gagah juga menilai mereka <b>lebih cerdas, lebih berkarakter, dan lebih memimpin</b> — padahal penampilan fisik tidak mengatakan apa pun soal itu.</p>
+      <p>Halo bekerja dua arah: versi negatifnya disebut <b>horn effect</b> — satu kesan buruk (terlambat sekali, penampilan berantakan) membuat semua kualitas orang itu dinilai lebih rendah.</p>
+      <div class="quote" style="--accent:#d97706; background:#fffbeb; border-color:#fbbf24;">“Kita tidak melihat orang apa adanya. Kita melihat pantulan kesan pertama kita sendiri.”</div>
+    </div>
+    <div class="col" style="flex:.85; justify-content:center;">
+      <div class="card">
+        <div class="chart-title" style="margin-bottom:10px;">Analogi: Lampu Sorot Tunggal</div>
+        <svg width="100%" viewBox="0 0 380 250">
+          <!-- spotlight -->
+          <path d="M70 20 L150 20 L235 200 L-25 200 Z" fill="#fef3c7" opacity=".55"/>
+          <rect x="25" y="8" width="170" height="26" rx="8" fill="#92400e"/>
+          <text x="110" y="27" text-anchor="middle" font-size="12" font-weight="800" fill="#fde68a">SATU SIFAT MENONJOL</text>
+          <!-- person with lit face -->
+          <circle cx="105" cy="170" r="30" fill="#fde68a" stroke="#d97706" stroke-width="3"/>
+          <circle cx="95" cy="164" r="4" fill="#92400e"/><circle cx="115" cy="164" r="4" fill="#92400e"/>
+          <path d="M95 180 Q105 188 115 180" stroke="#92400e" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <!-- shadow traits -->
+          <g font-size="11.5" fill="#94a3b8" font-weight="700">
+            <text x="250" y="90">jujur?</text>
+            <text x="265" y="130">pintar?</text>
+            <text x="255" y="170">berbakat?</text>
+            <text x="270" y="210">pekerja keras?</text>
+          </g>
+          <text x="330" y="50" text-anchor="middle" font-size="11.5" fill="#b45309" font-weight="700">dianggap ikut</text>
+          <text x="330" y="64" text-anchor="middle" font-size="11.5" fill="#b45309" font-weight="700">"terang" semua</text>
+        </svg>
+        <p style="font-size:15px; margin-top:8px;">Otak menyorot satu sifat, lalu <b>menganggap area lain ikut terang</b> — padahal mereka tetap gelap dan belum terbukti apa-apa.</p>
+      </div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #007 · Halo Effect</span><span class="pageno">02 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 3 : BUKTI ================= -->
+<section class="slide" style="--accent:#8b5cf6">
+  <header>
+    <span class="tag">Bukti Ilmiah</span>
+    <h2>Tiga Eksperimen yang Menyakitkan untuk Dibaca</h2>
+    <div class="sub">Dari ruang kelas sampai ruang sidang — halo mengubah nasib orang.</div>
+  </header>
+  <div class="body">
+    <div class="col" style="flex:1.1;">
+      <p class="lead"><b>Nisbett &amp; Wilson (1977):</b> mahasiswa menonton video dosen yang sama — versi <b>ramah</b> dan versi <b>dingin</b>. Yang menonton versi ramah menilai dosen itu juga <b>lebih menarik fisiknya, aksennya lebih enak, gayanya lebih baik</b>. Satu sifat (keramahan) mengubah penilaian atas hal yang mereka lihat dengan mata sendiri.</p>
+      <p><b>Efran (1974):</b> terdakwa yang menarik secara fisik menerima hukuman <b>lebih ringan</b> untuk kejahatan yang sama — juri tanpa sadar menilai orang menarik sebagai "lebih tidak mungkin jahat".</p>
+      <ul class="list" style="--accent:#8b5cf6;">
+        <li>Riset tinggi badan: setiap +2,5 cm tinggi berkorelasi dengan <b>gaji awal lebih tinggi</b> — halo "terlihat seperti pemimpin".</li>
+        <li>Guru menilai esai murid "pintar" lebih tinggi dari esai <b>yang persis sama</b> saat diberi label murid "lemah".</li>
+      </ul>
+    </div>
+    <div class="col" style="flex:.9; justify-content:center;">
+      <div class="card">
+        <div class="chart-title" style="margin-bottom:6px;">Video Dosen yang SAMA, Penilaian Berbeda</div>
+        <svg width="100%" viewBox="0 0 480 300">
+          <line x1="70" y1="240" x2="440" y2="240" stroke="#94a3b8" stroke-width="2"/>
+          <line x1="70" y1="240" x2="70" y2="30" stroke="#94a3b8" stroke-width="2"/>
+          <g font-size="12" fill="#94a3b8">
+            <line x1="70" y1="190" x2="440" y2="190" stroke="#e2e8f0"/><text x="60" y="194" text-anchor="end">2</text>
+            <line x1="70" y1="140" x2="440" y2="140" stroke="#e2e8f0"/><text x="60" y="144" text-anchor="end">4</text>
+            <line x1="70" y1="90" x2="440" y2="90" stroke="#e2e8f0"/><text x="60" y="94" text-anchor="end">6</text>
+          </g>
+          <!-- grouped bars: warm vs cold on 3 attributes (scale 25px/pt) -->
+          <g>
+            <rect x="105" y="115" width="34" height="125" fill="#fbbf24" rx="4"/>
+            <rect x="143" y="160" width="34" height="80" fill="#a78bfa" rx="4"/>
+            <rect x="225" y="122" width="34" height="118" fill="#fbbf24" rx="4"/>
+            <rect x="263" y="170" width="34" height="70" fill="#a78bfa" rx="4"/>
+            <rect x="345" y="118" width="34" height="122" fill="#fbbf24" rx="4"/>
+            <rect x="383" y="163" width="34" height="77" fill="#a78bfa" rx="4"/>
+          </g>
+          <g font-size="12" font-weight="700" fill="#475569" text-anchor="middle">
+            <text x="158" y="260">daya tarik fisik</text>
+            <text x="278" y="260">aksen bicara</text>
+            <text x="400" y="260">gaya mengajar</text>
+          </g>
+          <!-- legend -->
+          <rect x="120" y="42" width="13" height="13" fill="#fbbf24" rx="3"/>
+          <text x="139" y="53" font-size="12" fill="#475569">dosen versi ramah</text>
+          <rect x="270" y="42" width="13" height="13" fill="#a78bfa" rx="3"/>
+          <text x="289" y="53" font-size="12" fill="#475569">dosen versi dingin</text>
+        </svg>
+        <div class="chart-note">Nisbett &amp; Wilson (1977): orang, video, dan materi sama — hanya nada bicara berbeda. Mahasiswa bersikeras penilaian mereka "objektif".</div>
+      </div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #007 · Halo Effect</span><span class="pageno">03 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 4 : MEKANISME ================= -->
+<section class="slide" style="--accent:#f59e0b">
+  <header>
+    <span class="tag">Mekanisme</span>
+    <h2>Kenapa Otak Menghemat Penilaian</h2>
+    <div class="sub">Halo effect bukan kemalasan — melainkan strategi efisiensi otak yang bocor.</div>
+  </header>
+  <div class="body">
+    <div class="col">
+      <div class="card" style="border-left:6px solid #d97706; padding:12px 18px;">
+        <h3 style="font-size:16px;">1 · Menilai per-sifat itu mahal</h3>
+        <p style="font-size:14.5px;">Menilai kejujuran, kecerdasan, dan kompetensi secara <b>terpisah</b> butuh data dan waktu. Otak memilih jalan pintas: satu kesan global ("orang ini baik") lalu <b>digeneralisasi</b> ke semua dimensi.</p>
+      </div>
+      <div class="card" style="border-left:6px solid #f43f5e; padding:12px 18px;">
+        <h3 style="font-size:16px;">2 · Perasaan menilai duluan (affect heuristic)</h3>
+        <p style="font-size:14.5px;">Sebelum analisis apa pun, otak sudah memutuskan "suka" atau "tidak suka". Semua penilaian berikutnya tinggal <b>menyesuaikan diri dengan rasa itu</b> — bukan sebaliknya.</p>
+      </div>
+      <div class="card" style="border-left:6px solid #8b5cf6; padding:12px 18px;">
+        <h3 style="font-size:16px;">3 · Halo mengunci diri</h3>
+        <p style="font-size:14.5px;">Begitu halo terbentuk, <b>confirmation bias (#002)</b> mengambil alih: kamu mulai mencari bukti yang cocok dengan kesan awal dan mengabaikan yang bertentangan. Kesan pertama menjadi ramalan yang menggenapi dirinya.</p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="chart-title" style="margin-bottom:8px;">Analogi: Fotokopi Kesan</div>
+        <svg width="88%" viewBox="0 0 400 250" style="display:block; margin:0 auto;">
+          <!-- machine -->
+          <rect x="30" y="40" width="150" height="110" rx="14" fill="#f8fafc" stroke="#94a3b8" stroke-width="3"/>
+          <rect x="38" y="25" width="134" height="30" rx="8" fill="#fde68a" stroke="#d97706" stroke-width="2.5"/>
+          <text x="105" y="46" text-anchor="middle" font-size="12" font-weight="800" fill="#92400e">KESAN PERTAMA</text>
+          <rect x="55" y="110" width="100" height="14" rx="4" fill="#e2e8f0"/>
+          <text x="105" y="172" text-anchor="middle" font-size="11.5" font-weight="700" fill="#64748b">MESIN PENILAIAN OTAK</text>
+          <!-- arrow -->
+          <line x1="185" y1="95" x2="230" y2="95" stroke="#94a3b8" stroke-width="3" marker-end="url(#arr9)"/>
+          <defs>
+            <marker id="arr9" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0 0 L10 5 L0 10 Z" fill="#94a3b8"/>
+            </marker>
+          </defs>
+          <!-- copies -->
+          <g>
+            <rect x="240" y="30" width="120" height="34" rx="8" fill="#fffbeb" stroke="#fbbf24" stroke-width="2"/>
+            <text x="300" y="52" text-anchor="middle" font-size="11.5" font-weight="700" fill="#b45309">kecerdasan ✓</text>
+            <rect x="240" y="74" width="120" height="34" rx="8" fill="#fffbeb" stroke="#fbbf24" stroke-width="2"/>
+            <text x="300" y="96" text-anchor="middle" font-size="11.5" font-weight="700" fill="#b45309">kejujuran ✓</text>
+            <rect x="240" y="118" width="120" height="34" rx="8" fill="#fffbeb" stroke="#fbbf24" stroke-width="2"/>
+            <text x="300" y="140" text-anchor="middle" font-size="11.5" font-weight="700" fill="#b45309">kompetensi ✓</text>
+            <rect x="240" y="162" width="120" height="34" rx="8" fill="#fffbeb" stroke="#fbbf24" stroke-width="2"/>
+            <text x="300" y="184" text-anchor="middle" font-size="11.5" font-weight="700" fill="#b45309">kepemimpinan ✓</text>
+          </g>
+          <text x="200" y="228" text-anchor="middle" font-size="12" fill="#64748b">semua penilaian = fotokopi dari satu kesan awal</text>
+        </svg>
+        <p style="font-size:15px; margin-top:6px;">Rasanya seperti menilai lima hal berbeda — padahal kamu hanya <b>memfotokopi satu kesan</b> lima kali.</p>
+      </div>
+      <div class="callout"><b>Fakta tidak nyaman:</b> mahasiswa Nisbett &amp; Wilson <b>menyangkal keras</b> bahwa keramahan dosen memengaruhi penilaian mereka. Halo paling kuat saat kamu yakin sedang objektif.</div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #007 · Halo Effect</span><span class="pageno">04 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 5 : KARIER ================= -->
+<section class="slide" style="--accent:#e11d48">
+  <header>
+    <span class="tag">Di Dunia Nyata</span>
+    <h2>Halo di Tempat Kerja &amp; Rekrutmen</h2>
+    <div class="sub">Arena di mana satu kesan menentukan gaji, promosi, dan nasib orang.</div>
+  </header>
+  <div class="body">
+    <div class="col">
+      <div class="card" style="padding:11px 18px;">
+        <h3 style="font-size:16.5px;">🗣️ Interview: 5 menit pertama</h3>
+        <p style="font-size:14.5px;">Riset menunjukkan sebagian besar keputusan interview terbentuk di <b>menit-menit awal</b> — sisanya hanya mencari pembenaran. Kandidat yang "nyambung diajak ngobrol" dinilai lebih kompeten.</p>
+      </div>
+      <div class="card" style="padding:11px 18px;">
+        <h3 style="font-size:16.5px;">📋 Performance review</h3>
+        <p style="font-size:14.5px;">Karyawan yang disukai atasannya dinilai bagus di <b>semua</b> kriteria — termasuk kriteria yang tidak pernah benar-benar diamati. Ini sebabnya review butuh rubrik per-dimensi.</p>
+      </div>
+      <div class="card" style="padding:11px 18px;">
+        <h3 style="font-size:16.5px;">🎓 Gelar &amp; almamater</h3>
+        <p style="font-size:14.5px;">"Lulusan kampus top" menjadi halo: diasumsikan lebih rajin, lebih jujur, lebih cepat belajar — sebelum membuktikan apa pun. Screening CV berbasis nama kampus adalah pabrik halo.</p>
+      </div>
+      <div class="card" style="padding:11px 18px;">
+        <h3 style="font-size:16.5px;">👔 "Executive presence"</h3>
+        <p style="font-size:14.5px;">Tinggi badan, suara dalam, dan gestur tenang menciptakan halo kepemimpinan. Banyak pemimpin dipromosikan karena <b>terlihat</b> seperti pemimpin — kompetensi menyusul belakangan (atau tidak).</p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="chart-title" style="margin-bottom:8px;">Audisi Buta Orkestra: Bukti Paling Elegan</div>
+        <svg width="78%" viewBox="0 0 440 260" style="display:block; margin:0 auto;">
+          <!-- screen -->
+          <line x1="220" y1="25" x2="220" y2="205" stroke="#94a3b8" stroke-width="4" stroke-dasharray="8 6"/>
+          <text x="220" y="222" text-anchor="middle" font-size="11.5" fill="#64748b" font-weight="700">tirai</text>
+          <!-- left: judges -->
+          <circle cx="110" cy="95" r="26" fill="#e2e8f0" stroke="#64748b" stroke-width="3"/>
+          <circle cx="101" cy="90" r="3.5" fill="#475569"/><circle cx="119" cy="90" r="3.5" fill="#475569"/>
+          <path d="M101 103 Q110 110 119 103" stroke="#475569" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path d="M68 165 C68 125, 152 125, 152 165 Z" fill="#e2e8f0" stroke="#64748b" stroke-width="3"/>
+          <text x="110" y="190" text-anchor="middle" font-size="11.5" font-weight="700" fill="#475569">juri hanya mendengar</text>
+          <!-- right: musician -->
+          <circle cx="330" cy="95" r="26" fill="#fde68a" stroke="#d97706" stroke-width="3"/>
+          <path d="M288 165 C288 125, 372 125, 372 165 Z" fill="#fde68a" stroke="#d97706" stroke-width="3"/>
+          <text x="330" y="190" text-anchor="middle" font-size="11.5" font-weight="700" fill="#92400e">musisi tak terlihat</text>
+          <!-- result box -->
+          <rect x="55" y="228" width="330" height="0" fill="none"/>
+        </svg>
+        <p style="font-size:15px; margin-top:4px;">Ketika orkestra Amerika mulai mengaudisi <b>di balik tirai</b>, proporsi musisi perempuan yang lolos <b>melonjak</b>. Tanpa wajah, jas, dan gaya — yang dinilai tinggal musiknya.</p>
+        <div class="chart-note">Goldin &amp; Rouse (2000): audisi buta menaikkan peluang perempuan lolos tahap awal hingga ±50%.</div>
+      </div>
+      <div class="callout">💡 <b>Pelajaran:</b> kalau penilaian berubah drastis hanya karena tirai — berarti sebelumnya yang dinilai <b>bukan</b> kemampuannya.</div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #007 · Halo Effect</span><span class="pageno">05 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 6 : BISNIS & INVESTASI ================= -->
+<section class="slide" style="--accent:#0ea5e9">
+  <header>
+    <span class="tag">Di Dunia Nyata</span>
+    <h2>Halo di Bisnis &amp; Pasar Saham</h2>
+    <div class="sub">Kenapa buku bisnis menjual ilusi — dan harga saham menentukan "kecerdasan" CEO.</div>
+  </header>
+  <div class="body">
+    <div class="col" style="flex:1.1;">
+      <p class="lead">Phil Rosenzweig dalam <i>The Halo Effect (2007)</i> membongkar industri buku bisnis: peneliti mengambil perusahaan yang <b>sedang naik</b>, lalu menyimpulkan budayanya kuat, strateginya brilian, CEO-nya visioner. Saat perusahaan yang sama <b>turun</b>, atribut yang persis sama tiba-tiba disebut arogan, lamban, dan kaku.</p>
+      <p>Atributnya tidak berubah — yang berubah cuma <b>kinerja keuangan</b>. Halo dari angka membuat semua penilaian lain ikut naik-turun. Inilah mengapa "rahasia sukses perusahaan X" jarang bisa ditiru: yang dideskripsikan bukan penyebab sukses, melainkan <b>pantulan</b> suksesnya.</p>
+      <ul class="list" style="--accent:#0ea5e9;">
+        <li>Saham naik → media memuji "strategi jenius CEO". Saham turun → CEO yang sama disebut "kehilangan sentuhan".</li>
+        <li>Brand keren (Apple, Tesla) mendapat halo: produk barunya diasumsikan bagus <b>sebelum diuji</b>.</li>
+        <li>Horn effect kebalikannya: perusahaan yang sedang turun diremehkan di semua lini — padahal sering di situlah <b>harga murah</b> bersembunyi.</li>
+      </ul>
+    </div>
+    <div class="col" style="flex:.9; justify-content:center;">
+      <div class="card">
+        <div class="chart-title" style="margin-bottom:6px;">Satu Perusahaan, Dua Narasi</div>
+        <svg width="100%" viewBox="0 0 460 285">
+          <!-- up phase -->
+          <rect x="20" y="30" width="200" height="215" rx="14" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="2.5"/>
+          <text x="120" y="56" text-anchor="middle" font-size="13" font-weight="800" fill="#047857">SAAT SAHAM NAIK 📈</text>
+          <g font-size="12.5" fill="#065f46" font-weight="700">
+            <text x="40" y="88">✓ "CEO visioner"</text>
+            <text x="40" y="116">✓ "budaya kerja kuat"</text>
+            <text x="40" y="144">✓ "strategi brilian"</text>
+            <text x="40" y="172">✓ "eksekusi disiplin"</text>
+          </g>
+          <text x="120" y="212" text-anchor="middle" font-size="11.5" fill="#059669">semua atribut dipuji</text>
+          <path d="M60 232 L90 222 L120 226 L160 208" stroke="#10b981" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+          <!-- down phase -->
+          <rect x="240" y="30" width="200" height="215" rx="14" fill="#fff1f2" stroke="#fda4af" stroke-width="2.5"/>
+          <text x="340" y="56" text-anchor="middle" font-size="13" font-weight="800" fill="#be123c">SAAT SAHAM TURUN 📉</text>
+          <g font-size="12.5" fill="#9f1239" font-weight="700">
+            <text x="260" y="88">✗ "CEO arogan"</text>
+            <text x="260" y="116">✗ "budaya kaku"</text>
+            <text x="260" y="144">✗ "strategi berjudi"</text>
+            <text x="260" y="172">✗ "eksekusi lamban"</text>
+          </g>
+          <text x="340" y="212" text-anchor="middle" font-size="11.5" fill="#e11d48">atribut YANG SAMA dicela</text>
+          <path d="M280 208 L310 220 L340 216 L380 232" stroke="#e11d48" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+        </svg>
+        <div class="chart-note">Rosenzweig menyebutnya "delusi bisnis": kita tidak menilai atribut — kita menilai <b>harga saham</b>, lalu meminjamkan kata-kata.</div>
+      </div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #007 · Halo Effect</span><span class="pageno">06 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 7 : KONEKSI ================= -->
+<section class="slide" style="--accent:#8b5cf6">
+  <header>
+    <span class="tag">Koneksi</span>
+    <h2>Halo + Bias-Bias yang Sudah Kamu Kuasai</h2>
+    <div class="sub">Halo jarang bekerja sendiri — ia membuka pintu, bias lain yang menjaga.</div>
+  </header>
+  <div class="body">
+    <div class="col">
+      <div class="card" style="border-left:6px solid #f43f5e; padding:12px 18px;">
+        <h3 style="font-size:16.5px;">Halo → Confirmation Bias (#002)</h3>
+        <p style="font-size:14.5px;">Halo memberi kesan awal; confirmation bias <b>mempertahankannya</b>. Kamu mulai mencari bukti bahwa "dia memang hebat" — dan membuang semua bukti sebaliknya.</p>
+      </div>
+      <div class="card" style="border-left:6px solid #34d399; padding:12px 18px;">
+        <h3 style="font-size:16.5px;">Survivorship (#005) → Halo</h3>
+        <p style="font-size:14.5px;">Kisah sukses yang kamu dengar (penyintas) otomatis berhalo: semua keputusan mereka terlihat bijak — padahal kamu tidak melihat ribuan yang mengambil keputusan sama dan gagal.</p>
+      </div>
+      <div class="card" style="border-left:6px solid #0ea5e9; padding:12px 18px;">
+        <h3 style="font-size:16.5px;">Halo + Anchoring (#004)</h3>
+        <p style="font-size:14.5px;">Kesan pertama adalah jangkar paling awal dari semua jangkar. Ia memasang titik referensi untuk <b>setiap</b> penilaian berikutnya tentang orang itu.</p>
+      </div>
+      <div class="callout">⚠️ <b>Rantai penuhnya:</b> kamu melihat kisah sukses (survivorship) → kesan pertama terbentuk (halo/anchoring) → kamu mencari pembenaran (confirmation) → dan menolak melepasnya karena "sayang sudah percaya" (loss aversion #006).</div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="chart-title" style="margin-bottom:8px;">Kesan Pertama sebagai Prisma</div>
+        <svg width="100%" viewBox="0 0 420 270">
+          <!-- incoming light -->
+          <line x1="30" y1="135" x2="165" y2="135" stroke="#fcd34d" stroke-width="5"/>
+          <text x="60" y="118" font-size="12" font-weight="800" fill="#b45309">1 kesan</text>
+          <!-- prism -->
+          <path d="M170 90 L240 90 L205 200 Z" fill="#f8fafc" stroke="#94a3b8" stroke-width="3"/>
+          <!-- rainbow out -->
+          <g stroke-width="4" stroke-linecap="round">
+            <line x1="220" y1="115" x2="340" y2="60" stroke="#f87171"/>
+            <line x1="222" y1="125" x2="340" y2="95" stroke="#fbbf24"/>
+            <line x1="222" y1="135" x2="340" y2="135" stroke="#34d399"/>
+            <line x1="222" y1="145" x2="340" y2="175" stroke="#60a5fa"/>
+            <line x1="220" y1="155" x2="340" y2="215" stroke="#a78bfa"/>
+          </g>
+          <g font-size="11" fill="#64748b" font-weight="700">
+            <text x="418" y="64" text-anchor="end">pintar</text>
+            <text x="418" y="99" text-anchor="end">jujur</text>
+            <text x="418" y="139" text-anchor="end">berbakat</text>
+            <text x="418" y="179" text-anchor="end">rajin</text>
+            <text x="418" y="219" text-anchor="end">visioner</text>
+          </g>
+          <text x="210" y="245" text-anchor="middle" font-size="12.5" font-weight="700" fill="#475569">satu cahaya masuk → seluruh spektrum penilaian keluar</text>
+        </svg>
+      </div>
+      <div class="quote" style="--accent:#8b5cf6; background:#f5f3ff; border-color:#a78bfa; font-size:16px; padding:10px 16px;">“Kesan pertama tidak hanya penting — ia diam-diam menjadi filter untuk semua data yang datang setelahnya.”</div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #007 · Halo Effect</span><span class="pageno">07 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 8 : SOLUSI ================= -->
+<section class="slide" style="--accent:#10b981">
+  <header>
+    <span class="tag">Solusi</span>
+    <h2>Empat Prosedur Menembus Halo</h2>
+    <div class="sub">Melawan halo bukan soal "jangan terkesan" — melainkan mengubah cara menilai.</div>
+  </header>
+  <div class="body">
+    <div class="col" style="flex:.95; justify-content:center;">
+      <div class="card">
+        <div class="chart-title" style="margin-bottom:8px;">Siklus Anti-Halo</div>
+        <svg width="100%" viewBox="0 0 620 380">
+          <defs>
+            <marker id="arr7b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0 0 L10 5 L0 10 Z" fill="#0d9488"/>
+            </marker>
+          </defs>
+          <path d="M310 60 C 430 60, 510 110, 520 150" fill="none" stroke="#0d9488" stroke-width="3" marker-end="url(#arr7b)"/>
+          <path d="M520 230 C 510 270, 430 320, 310 320" fill="none" stroke="#0d9488" stroke-width="3" marker-end="url(#arr7b)"/>
+          <path d="M310 320 C 190 320, 110 270, 100 230" fill="none" stroke="#0d9488" stroke-width="3" marker-end="url(#arr7b)"/>
+          <path d="M100 150 C 110 110, 190 60, 310 60" fill="none" stroke="#0d9488" stroke-width="3" marker-end="url(#arr7b)"/>
+          <g>
+            <rect x="205" y="20" width="210" height="52" rx="12" fill="#ccfbf1" stroke="#14b8a6" stroke-width="2.5"/>
+            <text x="310" y="41" text-anchor="middle" font-size="13.5" font-weight="800" fill="#0f766e">1 · NILAI PER-DIMENSI</text>
+            <text x="310" y="60" text-anchor="middle" font-size="11.5" fill="#115e59">rubrik, satu per satu</text>
+          </g>
+          <g>
+            <rect x="440" y="164" width="170" height="52" rx="12" fill="#ccfbf1" stroke="#14b8a6" stroke-width="2.5"/>
+            <text x="525" y="185" text-anchor="middle" font-size="13.5" font-weight="800" fill="#0f766e">2 · DATA BUTA DULU</text>
+            <text x="525" y="204" text-anchor="middle" font-size="11.5" fill="#115e59">tirai sebelum wajah</text>
+          </g>
+          <g>
+            <rect x="205" y="308" width="210" height="52" rx="12" fill="#ccfbf1" stroke="#14b8a6" stroke-width="2.5"/>
+            <text x="310" y="329" text-anchor="middle" font-size="13.5" font-weight="800" fill="#0f766e">3 · PISAHKAN FAKTA &amp; RASA</text>
+            <text x="310" y="348" text-anchor="middle" font-size="11.5" fill="#115e59">dua kolom tertulis</text>
+          </g>
+          <g>
+            <rect x="15" y="164" width="170" height="52" rx="12" fill="#ccfbf1" stroke="#14b8a6" stroke-width="2.5"/>
+            <text x="100" y="185" text-anchor="middle" font-size="13.5" font-weight="800" fill="#0f766e">4 · TUKAR ORANGNYA</text>
+            <text x="100" y="204" text-anchor="middle" font-size="11.5" fill="#115e59">tes substitusi</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card" style="padding:12px 18px;">
+        <h3 style="font-size:17px;">1 · Nilai tiap dimensi <span style="color:#0d9488;">terpisah</span></h3>
+        <p style="font-size:15px;">Pakai rubrik: komunikasi, teknis, kejujuran, kepemimpinan — dinilai <b>satu per satu</b>, dengan bukti masing-masing. Ini memutus jalur "satu kesan → semua skor".</p>
+      </div>
+      <div class="card" style="padding:12px 18px;">
+        <h3 style="font-size:17px;">2 · Tampilkan data buta duluan</h3>
+        <p style="font-size:15px;">Sebelum melihat siapa/brand-nya, nilai dulu isinya: CV tanpa nama kampus, produk tanpa logo, saham tanpa nama perusahaan. Tirai orkestra versimu sendiri.</p>
+      </div>
+      <div class="card" style="padding:12px 18px;">
+        <h3 style="font-size:17px;">3 · Pisahkan kolom fakta dan kesan</h3>
+        <p style="font-size:15px;">Tulis dua kolom: "yang aku <b>tahu</b>" vs "yang aku <b>rasakan</b>". Kamu akan kaget betapa banyak kolom kanan menyamar sebagai kolom kiri.</p>
+      </div>
+      <div class="card" style="padding:12px 18px;">
+        <h3 style="font-size:17px;">4 · Tes substitusi</h3>
+        <p style="font-size:15px;">"Kalau yang melakukan ini orang yang <b>tidak</b> aku kagumi, apa penilaianku sama?" Kalau berubah — itu halo yang bicara, bukan fakta.</p>
+      </div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #007 · Halo Effect</span><span class="pageno">08 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 9 : PRAKTIK ================= -->
+<section class="slide" style="--accent:#f43f5e">
+  <header>
+    <span class="tag">Praktik Hari Ini</span>
+    <h2>Detektor Halo &amp; Latihan 5 Menit</h2>
+    <div class="sub">Menemukan satu penilaian yang cuma pantulan cahaya.</div>
+  </header>
+  <div class="body">
+    <div class="col">
+      <div class="card" style="border-left:6px solid #f43f5e; padding:14px 20px;">
+        <h3>🚩 Alarm: halo sedang menilai untukmu bila…</h3>
+        <ul class="list" style="--accent:#f43f5e; margin-top:8px;">
+          <li style="font-size:15.5px;">Kamu menilai seseorang "bagus" di <b>semua</b> aspek — tidak ada satu pun titik lemah yang bisa kamu sebutkan.</li>
+          <li style="font-size:15.5px;">Penilaianmu berubah 180° hanya karena <b>satu</b> kabar (saham naik/turun, satu kesalahan, satu prestasi).</li>
+          <li style="font-size:15.5px;">Kamu membela seseorang/brand dengan argumen yang <b>tidak bisa kamu jelaskan</b> sumber datanya.</li>
+        </ul>
+      </div>
+      <div class="card" style="border-left:6px solid #10b981; padding:14px 20px;">
+        <h3>✅ Refleks pengganti</h3>
+        <p style="font-size:15.5px;">Ganti <i>"orang ini memang hebat"</i> menjadi <b>"hebat di hal APA, berdasarkan bukti APA?"</b> — paksa setiap pujian punya alamat.</p>
+      </div>
+      <div class="quote" style="--accent:#f43f5e; background:#fff1f2; border-color:#fb7185;">“Kagum itu boleh. Yang berbahaya adalah kagum yang lupa menyebutkan kepada siapa dan untuk apa.”</div>
+    </div>
+    <div class="col">
+      <div class="card" style="padding:16px 20px;">
+        <h3>📝 Latihan 5 menit — malam ini</h3>
+        <p style="font-size:15.5px; margin-bottom:10px;">Pilih satu orang/brand/perusahaan yang kamu kagumi, lalu jawab tertulis:</p>
+        <ul class="list" style="--accent:#d97706;">
+          <li style="font-size:15.5px;"><b>1.</b> Apa <b>satu</b> hal pertama yang membuatmu terkesan? (Itu kandidat sumber halomu.)</li>
+          <li style="font-size:15.5px;"><b>2.</b> Sebutkan 3 kualitas yang kamu <b>asumsikan</b> darinya — tanpa bukti langsung yang pernah kamu lihat sendiri.</li>
+          <li style="font-size:15.5px;"><b>3.</b> Lakukan tes substitusi: kalau prestasi yang sama dilakukan orang asing biasa, apakah penilaianmu tetap sama?</li>
+        </ul>
+      </div>
+      <div class="callout">🎯 <b>Target hari ini:</b> bukan berhenti mengagumi — melainkan memisahkan <b>cahaya</b> dari <b>wujudnya</b>. Kekaguman yang jujur jauh lebih kuat.</div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #007 · Halo Effect</span><span class="pageno">09 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 10 : RINGKASAN ================= -->
+<section class="slide" style="background: linear-gradient(135deg, #451a03 0%, #92400e 55%, #d97706 100%);">
+  <div style="flex:1; display:flex; flex-direction:column; justify-content:center; padding:0 80px;">
+    <div style="font-size:16px; letter-spacing:4px; color:#fcd34d; font-weight:700; margin-bottom:16px;">RINGKASAN · DAILY WISDOM #007</div>
+    <h2 style="color:#fff; font-size:40px; margin:0 0 26px 0;">Halo Effect — Lima Hal yang Harus Tinggal</h2>
+    <div style="display:flex; gap:16px; flex-wrap:wrap;">
+      <div style="flex:1 1 30%; background:rgba(255,255,255,.08); border:1px solid rgba(252,211,77,.35); border-radius:14px; padding:16px 18px;">
+        <div style="color:#fcd34d; font-weight:800; font-size:15px; margin-bottom:6px;">① Satu kesan menilai semua</div>
+        <div style="color:#fef3c7; font-size:14.5px; line-height:1.45;">Sifat menonjol (rupawan, ramah, brand keren) memancarkan halo ke sifat-sifat lain yang tak berhubungan.</div>
+      </div>
+      <div style="flex:1 1 30%; background:rgba(255,255,255,.08); border:1px solid rgba(252,211,77,.35); border-radius:14px; padding:16px 18px;">
+        <div style="color:#fcd34d; font-weight:800; font-size:15px; margin-bottom:6px;">② Terbukti di lab &amp; sidang</div>
+        <div style="color:#fef3c7; font-size:14.5px; line-height:1.45;">Dosen yang sama dinilai beda hanya dari nada bicara; terdakwa menarik dihukum lebih ringan.</div>
+      </div>
+      <div style="flex:1 1 30%; background:rgba(255,255,255,.08); border:1px solid rgba(252,211,77,.35); border-radius:14px; padding:16px 18px;">
+        <div style="color:#fcd34d; font-weight:800; font-size:15px; margin-bottom:6px;">③ Tirai mengubah penilaian</div>
+        <div style="color:#fef3c7; font-size:14.5px; line-height:1.45;">Audisi buta orkestra menaikkan peluang perempuan ±50% — bukti penilaian "objektif" sebelumnya tidak objektif.</div>
+      </div>
+      <div style="flex:1 1 30%; background:rgba(255,255,255,.08); border:1px solid rgba(252,211,77,.35); border-radius:14px; padding:16px 18px;">
+        <div style="color:#fcd34d; font-weight:800; font-size:15px; margin-bottom:6px;">④ Saham menentukan "kejeniusan"</div>
+        <div style="color:#fef3c7; font-size:14.5px; line-height:1.45;">Naik = CEO visioner, turun = CEO arogan. Atribut sama, narasi beda — halo dari angka (Rosenzweig).</div>
+      </div>
+      <div style="flex:1 1 30%; background:rgba(255,255,255,.08); border:1px solid rgba(252,211,77,.35); border-radius:14px; padding:16px 18px;">
+        <div style="color:#fcd34d; font-weight:800; font-size:15px; margin-bottom:6px;">⑤ Nilai per-dimensi + data buta</div>
+        <div style="color:#fef3c7; font-size:14.5px; line-height:1.45;">Rubrik terpisah, data tanpa nama/logo duluan, kolom fakta vs rasa, dan tes substitusi.</div>
+      </div>
+      <div style="flex:1 1 30%; background:#d97706; border:1px solid #fcd34d; border-radius:14px; padding:16px 18px;">
+        <div style="color:#fde68a; font-weight:800; font-size:15px; margin-bottom:6px;">⑥ Besok: #008 Impostor Syndrome</div>
+        <div style="color:#fef3c7; font-size:14.5px; line-height:1.45;">Kenapa orang kompeten justru merasa tidak pantas — kebalikan cermin dari Dunning-Kruger (#001).</div>
+      </div>
+    </div>
+  </div>
+  <footer style="border-top:1px solid rgba(148,163,184,.25); color:#94a3b8;">
+    <span>Daily Wisdom #007 · Halo Effect</span>
+    <span style="color:#fcd34d; font-weight:700;">10 / 10</span>
+  </footer>
+</section>
+
+</body>
+</html>
