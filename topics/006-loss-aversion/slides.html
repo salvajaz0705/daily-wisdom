@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Daily Wisdom #006 — Loss Aversion</title>
+<style>
+  @page { size: 1280px 720px; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    font-family: "Segoe UI", "Segoe UI Variable", system-ui, sans-serif;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .slide {
+    width: 1280px; height: 720px;
+    page-break-after: always;
+    overflow: hidden;
+    position: relative;
+    background: #f8fafc;
+    display: flex; flex-direction: column;
+  }
+  .slide:last-child { page-break-after: auto; }
+
+  /* ---------- header / footer ---------- */
+  header {
+    padding: 28px 56px 0 56px;
+  }
+  .tag {
+    display: inline-block;
+    font-size: 15px; font-weight: 700; letter-spacing: 2.5px;
+    color: #fff; background: var(--accent, #6366f1);
+    padding: 5px 14px; border-radius: 999px;
+    text-transform: uppercase;
+  }
+  h2 { font-size: 38px; color: #0f172a; margin-top: 12px; letter-spacing: -0.5px; }
+  .sub { font-size: 19px; color: #64748b; margin-top: 6px; }
+  .body { flex: 1; padding: 22px 56px 0 56px; display: flex; gap: 34px; min-height: 0; }
+  footer {
+    height: 44px; display: flex; align-items: center; justify-content: space-between;
+    padding: 0 56px; font-size: 13px; color: #94a3b8;
+    border-top: 1px solid #e2e8f0;
+  }
+  .pageno { font-weight: 700; color: var(--accent, #6366f1); }
+
+  /* ---------- text blocks ---------- */
+  .col { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 14px; }
+  p { font-size: 18px; line-height: 1.55; color: #334155; }
+  b, strong { color: #0f172a; }
+  .lead { font-size: 21px; color: #1e293b; font-weight: 600; line-height: 1.5; }
+
+  .card {
+    background: #fff; border: 1px solid #e2e8f0; border-radius: 14px;
+    padding: 18px 22px;
+    box-shadow: 0 1px 3px rgba(15,23,42,.06);
+  }
+  .card h3 { font-size: 19px; margin-bottom: 6px; color: #0f172a; }
+  .card p { font-size: 16.5px; }
+  .card .ic { font-size: 22px; }
+
+  .quote {
+    border-left: 6px solid var(--accent, #6366f1);
+    background: #eef2ff;
+    padding: 16px 20px; border-radius: 0 12px 12px 0;
+    font-size: 19px; font-style: italic; color: #1e293b; line-height: 1.5;
+  }
+  .quote .who { display: block; margin-top: 8px; font-style: normal; font-size: 15px; color: #64748b; font-weight: 600; }
+
+  ul.list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  ul.list li {
+    font-size: 17.5px; line-height: 1.45; color: #334155;
+    padding-left: 30px; position: relative;
+  }
+  ul.list li::before {
+    content: ""; position: absolute; left: 0; top: 7px;
+    width: 16px; height: 16px; border-radius: 5px;
+    background: var(--accent, #6366f1); opacity: .9;
+  }
+
+  .callout {
+    background: #fffbeb; border: 1.5px solid #fcd34d; border-radius: 12px;
+    padding: 14px 18px; font-size: 17px; color: #78350f; line-height: 1.5;
+  }
+
+  .chart-title { font-size: 15px; font-weight: 700; color: #475569; letter-spacing: .5px; text-transform: uppercase; }
+  .chart-note { font-size: 14px; color: #94a3b8; margin-top: 6px; line-height: 1.4; }
+</style>
+</head>
+<body>
+
+<!-- ================= SLIDE 1 : COVER ================= -->
+<section class="slide" style="background: linear-gradient(135deg, #4c0519 0%, #881337 55%, #be123c 100%);">
+  <div style="flex:1; display:flex; flex-direction:column; justify-content:center; padding:0 80px; position:relative;">
+    <svg style="position:absolute; right:70px; top:90px; opacity:.95" width="440" height="290" viewBox="0 0 440 290" fill="none">
+      <!-- balance scale -->
+      <line x1="220" y1="40" x2="220" y2="230" stroke="#fda4af" stroke-width="7" stroke-linecap="round"/>
+      <path d="M170 230 L270 230" stroke="#fda4af" stroke-width="7" stroke-linecap="round"/>
+      <line x1="70" y1="70" x2="370" y2="110" stroke="#fda4af" stroke-width="7" stroke-linecap="round"/>
+      <circle cx="220" cy="90" r="10" fill="#fda4af"/>
+      <!-- left pan (gain) -->
+      <line x1="70" y1="70" x2="45" y2="120" stroke="#fda4af" stroke-width="4"/>
+      <line x1="70" y1="70" x2="95" y2="120" stroke="#fda4af" stroke-width="4"/>
+      <path d="M35 120 L105 120 L95 145 L45 145 Z" fill="#9f1239" stroke="#fda4af" stroke-width="4"/>
+      <text x="70" y="138" text-anchor="middle" font-size="13" font-weight="800" fill="#fecdd3">+100</text>
+      <!-- right pan (loss) -->
+      <line x1="370" y1="110" x2="340" y2="175" stroke="#fda4af" stroke-width="4"/>
+      <line x1="370" y1="110" x2="400" y2="175" stroke="#fda4af" stroke-width="4"/>
+      <path d="M328 175 L412 175 L400 205 L340 205 Z" fill="#fb7185" stroke="#fecdd3" stroke-width="4"/>
+      <text x="370" y="196" text-anchor="middle" font-size="14" font-weight="800" fill="#4c0519">−100</text>
+      <text x="220" y="272" text-anchor="middle" font-size="13.5" fill="#fda4af" font-weight="600">rugi terasa ±2× lebih berat daripada untung yang sama</text>
+    </svg>
+    <div style="font-size:17px; letter-spacing:4px; color:#fda4af; font-weight:700;">DAILY WISDOM · EDISI #006 · EKONOMI PERILAKU</div>
+    <h1 style="font-size:74px; color:#fff; line-height:1.08; margin-top:22px; letter-spacing:-1.5px; max-width:760px;">
+      Loss<br>Aversion
+    </h1>
+    <p style="font-size:25px; color:#fecdd3; margin-top:26px; max-width:620px; line-height:1.5; font-weight:400;">
+      Kenapa rugi Rp 100 ribu terasa dua kali lebih sakit daripada senangnya
+      untung Rp 100 ribu — dan bagaimana rasa sakit itu membajak keputusanmu.
+    </p>
+    <div style="margin-top:44px; display:flex; gap:14px;">
+      <span style="background:rgba(251,113,133,.14); border:1px solid #fb7185; color:#fecdd3; padding:8px 18px; border-radius:999px; font-size:15px; font-weight:600;">Bias Kognitif</span>
+      <span style="background:rgba(251,191,36,.14); border:1px solid #fbbf24; color:#fde68a; padding:8px 18px; border-radius:999px; font-size:15px; font-weight:600;">Investasi</span>
+      <span style="background:rgba(52,211,153,.14); border:1px solid #34d399; color:#a7f3d0; padding:8px 18px; border-radius:999px; font-size:15px; font-weight:600;">Pengambilan Keputusan</span>
+    </div>
+  </div>
+  <footer style="border-top:1px solid rgba(148,163,184,.25); color:#64748b;">
+    <span>Daily Wisdom — satu konsep penting setiap hari</span>
+    <span style="color:#fda4af; font-weight:700;">01 / 10</span>
+  </footer>
+</section>
+
+<!-- ================= SLIDE 2 : DEFINISI ================= -->
+<section class="slide" style="--accent:#e11d48">
+  <header>
+    <span class="tag">Definisi</span>
+    <h2>Apa itu Loss Aversion?</h2>
+    <div class="sub">Kecenderungan manusia merasakan <b>kerugian jauh lebih kuat</b> daripada keuntungan yang nilainya sama.</div>
+  </header>
+  <div class="body">
+    <div class="col" style="flex:1.15;">
+      <p class="lead">Kahneman &amp; Tversky menemukannya lewat <b>Prospect Theory (1979)</b> — riset yang memberi Kahneman Nobel Ekonomi: rasa sakit kehilangan Rp 100 ribu kira-kira <b>dua kali lebih kuat</b> daripada rasa senang mendapat Rp 100 ribu.</p>
+      <p>Artinya, agar kamu mau menerima taruhan 50–50 yang bisa rugi Rp 100 ribu, hadiah menangnya harus sekitar <b>Rp 200–250 ribu</b>. Secara matematika taruhan itu menguntungkan jauh sebelum titik itu — tapi perasaanmu menolak.</p>
+      <p>Kuncinya: penilaian untung-rugi tidak dihitung dari <b>kekayaan total</b>, melainkan dari <b>titik referensi</b> — biasanya posisimu saat ini. Apa pun di bawah titik itu = "rugi", dan semua "rugi" diperbesar oleh otak.</p>
+      <div class="quote" style="--accent:#e11d48; background:#fff1f2; border-color:#fb7185;">“Losses loom larger than gains.” — kerugian menjulang lebih besar daripada keuntungan.
+        <span class="who">— Kahneman &amp; Tversky, Prospect Theory (1979)</span>
+      </div>
+    </div>
+    <div class="col" style="flex:.85; justify-content:center;">
+      <div class="card">
+        <div class="chart-title" style="margin-bottom:10px;">Kurva Nilai Prospect Theory</div>
+        <svg width="100%" viewBox="0 0 380 260">
+          <!-- axes -->
+          <line x1="40" y1="130" x2="360" y2="130" stroke="#94a3b8" stroke-width="2"/>
+          <line x1="200" y1="30" x2="200" y2="240" stroke="#94a3b8" stroke-width="2"/>
+          <text x="355" y="122" text-anchor="end" font-size="11.5" fill="#64748b" font-weight="600">untung →</text>
+          <text x="45" y="122" font-size="11.5" fill="#64748b" font-weight="600">← rugi</text>
+          <text x="208" y="40" font-size="11.5" fill="#64748b" font-weight="600">senang</text>
+          <text x="208" y="236" font-size="11.5" fill="#64748b" font-weight="600">sakit</text>
+          <!-- value curve: gains flatten, losses steep -->
+          <path d="M200 130 C 240 118, 280 100, 340 90" fill="none" stroke="#10b981" stroke-width="4.5" stroke-linecap="round"/>
+          <path d="M200 130 C 155 158, 120 190, 70 215" fill="none" stroke="#e11d48" stroke-width="4.5" stroke-linecap="round"/>
+          <!-- reference point -->
+          <circle cx="200" cy="130" r="6" fill="#0f172a"/>
+          <text x="212" y="142" font-size="11.5" font-weight="700" fill="#0f172a">titik referensi</text>
+          <!-- slope annotations -->
+          <text x="372" y="80" text-anchor="end" font-size="12" font-weight="800" fill="#059669">landai: untung</text>
+          <text x="372" y="66" text-anchor="end" font-size="12" font-weight="800" fill="#059669">tambahan terasa kecil</text>
+          <text x="48" y="205" font-size="12" font-weight="800" fill="#be123c" stroke="#fff" stroke-width="4" paint-order="stroke">curam: rugi terasa besar</text>
+        </svg>
+        <p style="font-size:15px; margin-top:8px;">Lihat kemiringannya: kurva sisi rugi <b>jauh lebih curam</b>. Itulah visual dari "losses loom larger than gains".</p>
+      </div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #006 · Loss Aversion</span><span class="pageno">02 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 3 : EKSPERIMEN ================= -->
+<section class="slide" style="--accent:#8b5cf6">
+  <header>
+    <span class="tag">Eksperimen Klasik</span>
+    <h2>Lempar Koin &amp; Mug Kopi</h2>
+    <div class="sub">Dua eksperimen yang mengukur seberapa besar otak membesar-besarkan kerugian.</div>
+  </header>
+  <div class="body">
+    <div class="col" style="flex:1.1;">
+      <p class="lead"><b>Taruhan koin:</b> "Aku lempar koin. Kalau kalah, kamu rugi $100. Berapa hadiah menang minimum supaya kamu mau ikut?" Jawaban kebanyakan orang: <b>±$200–250</b> — padahal secara matematis, hadiah $101 pun sudah menguntungkan.</p>
+      <p><b>Eksperimen mug (Kahneman, Knetsch, Thaler, 1990):</b> mahasiswa dibagi acak — separuh diberi mug kopi gratis, separuh tidak. Lalu mereka boleh jual-beli mug itu. Hasilnya: pemilik mug meminta harga <b>±2× lipat</b> dari yang ditawarkan calon pembeli. Mug yang 5 menit lalu bukan milik mereka, begitu "dimiliki", kehilangannya terasa seperti kerugian. Ini disebut <b>endowment effect</b> — anak kandung loss aversion.</p>
+      <ul class="list" style="--accent:#8b5cf6;">
+        <li>Bukan soal nilai mugnya — soal <b>status kepemilikan</b> yang menggeser titik referensi.</li>
+        <li>Pemilik merasa <b>kehilangan mug</b>; pembeli merasa <b>mendapat mug</b>. Barang yang sama, dua rasa yang berbeda.</li>
+      </ul>
+    </div>
+    <div class="col" style="flex:.9; justify-content:center;">
+      <div class="card">
+        <div class="chart-title" style="margin-bottom:6px;">Eksperimen Mug: Harga Jual vs Harga Tawar</div>
+        <svg width="100%" viewBox="0 0 480 300">
+          <line x1="70" y1="240" x2="440" y2="240" stroke="#94a3b8" stroke-width="2"/>
+          <line x1="70" y1="240" x2="70" y2="30" stroke="#94a3b8" stroke-width="2"/>
+          <g font-size="12" fill="#94a3b8">
+            <line x1="70" y1="180" x2="440" y2="180" stroke="#e2e8f0"/><text x="60" y="184" text-anchor="end">$2</text>
+            <line x1="70" y1="120" x2="440" y2="120" stroke="#e2e8f0"/><text x="60" y="124" text-anchor="end">$4</text>
+            <line x1="70" y1="60" x2="440" y2="60" stroke="#e2e8f0"/><text x="60" y="64" text-anchor="end">$6</text>
+          </g>
+          <!-- bars: sellers ~$5.25, buyers ~$2.5 (scale 30px/$) -->
+          <rect x="140" y="82" width="80" height="158" fill="#c4b5fd" rx="5"/>
+          <text x="180" y="72" text-anchor="middle" font-size="16" font-weight="800" fill="#6d28d9">±$5,25</text>
+          <rect x="290" y="165" width="80" height="75" fill="#8b5cf6" rx="5"/>
+          <text x="330" y="155" text-anchor="middle" font-size="16" font-weight="800" fill="#6d28d9">±$2,50</text>
+          <text x="180" y="262" text-anchor="middle" font-size="13" font-weight="700" fill="#475569">harga minta PEMILIK</text>
+          <text x="330" y="262" text-anchor="middle" font-size="13" font-weight="700" fill="#475569">harga tawar PEMBELI</text>
+          <text x="255" y="286" text-anchor="middle" font-size="12" fill="#94a3b8">mug yang sama, dimiliki vs belum dimiliki</text>
+        </svg>
+        <div class="chart-note">Kahneman, Knetsch &amp; Thaler (1990). Selisih ±2× muncul dalam hitungan menit setelah mug dibagikan acak.</div>
+      </div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #006 · Loss Aversion</span><span class="pageno">03 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 4 : MEKANISME ================= -->
+<section class="slide" style="--accent:#f59e0b">
+  <header>
+    <span class="tag">Mekanisme</span>
+    <h2>Kenapa Otak Membesar-besarkan Kerugian</h2>
+    <div class="sub">Ini bukan kelemahan karakter — ini fitur bertahan hidup yang sudah tua.</div>
+  </header>
+  <div class="body">
+    <div class="col">
+      <div class="card" style="border-left:6px solid #e11d48; padding:12px 18px;">
+        <h3 style="font-size:16px;">1 · Warisan evolusi: rugi = ancaman</h3>
+        <p style="font-size:14.5px;">Bagi nenek moyang kita, kehilangan makanan sehari bisa berarti mati; mendapat makanan ekstra hanya berarti kenyang. Otak yang <b>lebih takut rugi</b> adalah otak yang bertahan hidup — dan itulah otak yang kamu warisi.</p>
+      </div>
+      <div class="card" style="border-left:6px solid #f59e0b; padding:12px 18px;">
+        <h3 style="font-size:16px;">2 · Sistem alarm merespons lebih cepat</h3>
+        <p style="font-size:14.5px;">Sinyal kerugian diproses lebih cepat dan lebih kuat oleh amigdala daripada sinyal keuntungan. Kamu merasakan sakitnya rugi <b>sebelum</b> sempat menghitung untungnya.</p>
+      </div>
+      <div class="card" style="border-left:6px solid #8b5cf6; padding:12px 18px;">
+        <h3 style="font-size:16px;">3 · Titik referensi yang licin</h3>
+        <p style="font-size:14.5px;">"Rugi" selalu diukur dari titik referensi — dan titik itu bergerak: harga beli saham, gaji tahun lalu, harga awal yang kamu lihat. Begitu referensi bergeser, <b>perasaan ikut bergeser</b> walau kenyataan tidak berubah.</p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="chart-title" style="margin-bottom:8px;">Analogi: Alarm Asap yang Terlalu Sensitif</div>
+        <svg width="84%" viewBox="0 0 400 250" style="display:block; margin:0 auto;">
+          <!-- detector -->
+          <rect x="140" y="30" width="120" height="52" rx="14" fill="#fef2f2" stroke="#f87171" stroke-width="3"/>
+          <text x="200" y="52" text-anchor="middle" font-size="13" font-weight="800" fill="#b91c1c">ALARM RUGI</text>
+          <text x="200" y="71" text-anchor="middle" font-size="11.5" fill="#991b1b">sensitivitas: 2×</text>
+          <!-- smoke small -->
+          <path d="M120 130 q6 -12 0 -24 M140 130 q6 -12 0 -24 M160 130 q6 -12 0 -24" stroke="#94a3b8" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+          <text x="140" y="160" text-anchor="middle" font-size="12" font-weight="700" fill="#64748b">rugi kecil (asap tipis)</text>
+          <!-- alarm blast -->
+          <g stroke="#e11d48" stroke-width="4" stroke-linecap="round">
+            <line x1="110" y1="45" x2="90" y2="30"/><line x1="290" y1="45" x2="310" y2="30"/>
+            <line x1="120" y1="20" x2="112" y2="6"/><line x1="280" y1="20" x2="288" y2="6"/>
+          </g>
+          <text x="200" y="200" text-anchor="middle" font-size="13" font-weight="700" fill="#b91c1c">→ reaksi: PANIK penuh, seolah kebakaran besar</text>
+          <text x="200" y="222" text-anchor="middle" font-size="12" fill="#64748b">lebih baik alarm berbunyi salah, daripada diam saat bahaya</text>
+        </svg>
+        <p style="font-size:15px; margin-top:6px;">Otakmu disetel seperti alarm asap yang paranoid: <b>reaksi berlebih itu disengaja oleh evolusi</b>. Masalahnya, pasar saham dan negosiasi modern bukan sabana penuh predator.</p>
+      </div>
+      <div class="callout"><b>Fakta tidak nyaman:</b> rasa sakit kerugian itu <b>nyata</b> secara neurologis — tapi nyata bukan berarti <b>akurat</b>.</div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #006 · Loss Aversion</span><span class="pageno">04 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 5 : INVESTASI ================= -->
+<section class="slide" style="--accent:#e11d48">
+  <header>
+    <span class="tag">Di Dunia Nyata</span>
+    <h2>Disposition Effect: Jebakan Nomor Satu Investor</h2>
+    <div class="sub">Menjual pemenang terlalu cepat, menahan pecundang terlalu lama.</div>
+  </header>
+  <div class="body">
+    <div class="col" style="flex:1.1;">
+      <p class="lead">Riset Terrance Odean (1998) atas 10.000 akun broker menemukan pola menyedihkan: investor <b>jauh lebih sering menjual saham yang untung</b> daripada saham yang rugi — padahal secara pajak dan momentum, seharusnya sebaliknya.</p>
+      <p>Logika emosinya: menjual saham rugi = <b>mengakui kerugian</b>, dan itu sakit. Jadi saham rugi ditahan dengan harapan "balik modal" — harga beli menjadi titik referensi yang menahan. Sementara saham untung buru-buru dijual karena takut untungnya <b>hilang</b>.</p>
+      <ul class="list" style="--accent:#e11d48;">
+        <li>Hasilnya: portofolio pelan-pelan terisi <b>saham-saham nyangkut</b> sementara saham bagus sudah dilepas.</li>
+        <li>Odean menghitung: saham yang dijual investor justru <b>performanya lebih baik</b> setahun berikutnya daripada saham rugi yang dipertahankan.</li>
+        <li>Kebalikan dari nasihat klasik: <i>"cut your losses short, let your winners run."</i></li>
+      </ul>
+    </div>
+    <div class="col" style="flex:.9; justify-content:center;">
+      <div class="card">
+        <div class="chart-title" style="margin-bottom:8px;">Keputusan Emosional vs Rasional</div>
+        <svg width="100%" viewBox="0 0 440 285">
+          <!-- two columns: emotional vs rational -->
+          <rect x="20" y="30" width="190" height="220" rx="14" fill="#fff1f2" stroke="#fda4af" stroke-width="2.5"/>
+          <text x="115" y="58" text-anchor="middle" font-size="13.5" font-weight="800" fill="#be123c">DORONGAN EMOSI</text>
+          <rect x="38" y="72" width="154" height="60" rx="10" fill="#fff" stroke="#fecdd3" stroke-width="2"/>
+          <text x="115" y="96" text-anchor="middle" font-size="12" font-weight="700" fill="#9f1239">saham untung:</text>
+          <text x="115" y="116" text-anchor="middle" font-size="12.5" font-weight="800" fill="#be123c">JUAL CEPAT 🏃</text>
+          <rect x="38" y="144" width="154" height="60" rx="10" fill="#fff" stroke="#fecdd3" stroke-width="2"/>
+          <text x="115" y="168" text-anchor="middle" font-size="12" font-weight="700" fill="#9f1239">saham rugi:</text>
+          <text x="115" y="188" text-anchor="middle" font-size="12.5" font-weight="800" fill="#be123c">TAHAN TERUS 😰</text>
+          <text x="115" y="228" text-anchor="middle" font-size="11.5" fill="#9f1239">= portfolio penuh nyangkut</text>
+          <rect x="230" y="30" width="190" height="220" rx="14" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="2.5"/>
+          <text x="325" y="58" text-anchor="middle" font-size="13.5" font-weight="800" fill="#047857">VERSI RASIONAL</text>
+          <rect x="248" y="72" width="154" height="60" rx="10" fill="#fff" stroke="#a7f3d0" stroke-width="2"/>
+          <text x="325" y="96" text-anchor="middle" font-size="12" font-weight="700" fill="#065f46">saham untung:</text>
+          <text x="325" y="116" text-anchor="middle" font-size="12.5" font-weight="800" fill="#047857">BIARKAN TUMBUH 🌱</text>
+          <rect x="248" y="144" width="154" height="60" rx="10" fill="#fff" stroke="#a7f3d0" stroke-width="2"/>
+          <text x="325" y="168" text-anchor="middle" font-size="12" font-weight="700" fill="#065f46">saham rugi:</text>
+          <text x="325" y="188" text-anchor="middle" font-size="12.5" font-weight="800" fill="#047857">EVALUASI &amp; CUT ✂️</text>
+          <text x="325" y="228" text-anchor="middle" font-size="11.5" fill="#065f46">= keputusan berbasis prospek,</text>
+          <text x="325" y="244" text-anchor="middle" font-size="11.5" fill="#065f46">bukan harga beli</text>
+        </svg>
+        <div class="chart-note">Pertanyaan penetral: "kalau aku <b>belum</b> punya saham ini, apakah aku akan membelinya hari ini?" Kalau tidak — kenapa masih dipegang?</div>
+      </div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #006 · Loss Aversion</span><span class="pageno">05 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 6 : FRAMING & MARKETING ================= -->
+<section class="slide" style="--accent:#f59e0b">
+  <header>
+    <span class="tag">Di Dunia Nyata</span>
+    <h2>Siapa Saja yang Memanfaatkan Takut Rugimu</h2>
+    <div class="sub">Loss aversion adalah mesin penjualan paling halus di dunia marketing.</div>
+  </header>
+  <div class="body">
+    <div class="col">
+      <div class="card" style="padding:11px 18px;">
+        <h3 style="font-size:16.5px;">⏳ "Stok tinggal 2!" &amp; flash sale</h3>
+        <p style="font-size:14.5px;">Yang dijual bukan barangnya — melainkan <b>rasa takut kehilangan kesempatan</b>. FOMO adalah loss aversion yang dikemas: kamu membayangkan "rugi" tidak kebagian.</p>
+      </div>
+      <div class="card" style="padding:11px 18px;">
+        <h3 style="font-size:16.5px;">🎁 Free trial &amp; langganan</h3>
+        <p style="font-size:14.5px;">Setelah 30 hari memakai, aplikasi itu sudah jadi "milikmu" (endowment effect!). Berhenti berlangganan terasa seperti <b>kehilangan</b> — jadi kamu lanjut bayar.</p>
+      </div>
+      <div class="card" style="padding:11px 18px;">
+        <h3 style="font-size:16.5px;">💳 "Diskon tunai" vs "biaya kartu"</h3>
+        <p style="font-size:14.5px;">Angka yang sama, dua bingkai: toko lebih suka menyebut <b>diskon untuk tunai</b> daripada <b>surcharge kartu</b> — karena surcharge terasa sebagai kerugian dan memicu protes.</p>
+      </div>
+      <div class="card" style="padding:11px 18px;">
+        <h3 style="font-size:16.5px;">📊 Bonus karyawan berbasis denda</h3>
+        <p style="font-size:14.5px;">"Bonus dipotong kalau target tidak tercapai" lebih memotivasi daripada "dapat bonus kalau target tercapai" — nominal sama, tapi bingkai <b>kehilangan</b> menggerakkan lebih keras.</p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="chart-title" style="margin-bottom:8px;">Anatomi Kalimat Marketing</div>
+        <svg width="100%" viewBox="0 0 440 240">
+          <!-- frame 1: gain -->
+          <rect x="20" y="25" width="400" height="62" rx="12" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="2.5"/>
+          <text x="40" y="52" font-size="15" font-weight="700" fill="#065f46">Bingkai untung: "hemat Rp 50.000 kalau bayar tunai"</text>
+          <text x="40" y="74" font-size="12.5" fill="#047857">→ respons: "oh, lumayan" (lemah)</text>
+          <!-- frame 2: loss -->
+          <rect x="20" y="103" width="400" height="62" rx="12" fill="#fff1f2" stroke="#fda4af" stroke-width="2.5"/>
+          <text x="40" y="130" font-size="14" font-weight="700" fill="#9f1239">Bingkai rugi: "KEHILANGAN Rp 50.000 kalau pakai kartu"</text>
+          <text x="40" y="152" font-size="12.5" fill="#be123c">→ respons: "waduh" (kuat — ±2× lipat)</text>
+          <!-- equality note -->
+          <text x="220" y="196" text-anchor="middle" font-size="13" font-weight="800" fill="#475569">ANGKANYA PERSIS SAMA — efeknya tidak</text>
+          <text x="220" y="218" text-anchor="middle" font-size="12" fill="#94a3b8">yang berubah hanya arah bingkai: dari titik referensi mana kamu menilai</text>
+        </svg>
+        <p style="font-size:15px; margin-top:6px;">Begitu kamu sadar polanya, kalimat marketing berubah dari "dorongan" menjadi <b>informasi</b>: seseorang sedang mencoba menggeser titik referensimu.</p>
+      </div>
+      <div class="callout">💡 <b>Refleks baru:</b> setiap kali merasa "sayang kalau tidak diambil" — tanya: <b>apakah aku benar-benar butuh, atau hanya takut kehilangan?</b></div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #006 · Loss Aversion</span><span class="pageno">06 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 7 : KONEKSI ================= -->
+<section class="slide" style="--accent:#8b5cf6">
+  <header>
+    <span class="tag">Koneksi</span>
+    <h2>Loss Aversion adalah "Ibu" dari Bias Lain</h2>
+    <div class="sub">Dua bias yang sudah kamu pelajari ternyata anak kandung dari takut rugi.</div>
+  </header>
+  <div class="body">
+    <div class="col">
+      <div class="card" style="border-left:6px solid #f59e0b; padding:12px 18px;">
+        <h3 style="font-size:16.5px;">Sunk Cost (#003) = takut rugi atas <span style="color:#b45309;">masa lalu</span></h3>
+        <p style="font-size:14.5px;">Uang/waktu yang sudah keluar tidak bisa kembali. Tapi <b>mengakui</b> itu = menerima kerugian — sakit. Jadi kamu terus menambah investasi agar "belum rugi". Sunk cost adalah loss aversion yang menolak menulis ulang buku besar.</p>
+      </div>
+      <div class="card" style="border-left:6px solid #0ea5e9; padding:12px 18px;">
+        <h3 style="font-size:16.5px;">Anchoring (#004) memasok <span style="color:#0369a1;">titik referensinya</span></h3>
+        <p style="font-size:14.5px;">Rugi vs untung diukur dari titik referensi — dan jangkar adalah mesin pembuat titik referensi. Harga coret Rp 1.499.000 membuat Rp 499.000 terasa "untung". Tanpa jangkar, tidak ada rugi-untung untuk diperbesar.</p>
+      </div>
+      <div class="callout">⚠️ <b>Rumus gabungannya:</b> anchoring memasang referensi → loss aversion membesar-besarkan jarak dari referensi → sunk cost mengunci agar kamu tidak bisa pergi. Tiga bias, satu jebakan nyangkut.</div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="chart-title" style="margin-bottom:8px;">Pohon Keluarga Bias</div>
+        <svg width="100%" viewBox="0 0 420 280">
+          <!-- root -->
+          <rect x="110" y="20" width="200" height="58" rx="14" fill="#fff1f2" stroke="#fb7185" stroke-width="3"/>
+          <text x="210" y="45" text-anchor="middle" font-size="15" font-weight="800" fill="#be123c">LOSS AVERSION</text>
+          <text x="210" y="65" text-anchor="middle" font-size="11.5" fill="#9f1239">takut rugi (akar)</text>
+          <!-- branches -->
+          <line x1="160" y1="78" x2="85" y2="128" stroke="#cbd5e1" stroke-width="3"/>
+          <line x1="260" y1="78" x2="335" y2="128" stroke="#cbd5e1" stroke-width="3"/>
+          <line x1="210" y1="78" x2="210" y2="128" stroke="#cbd5e1" stroke-width="3"/>
+          <!-- children -->
+          <rect x="20" y="128" width="130" height="56" rx="12" fill="#fffbeb" stroke="#fbbf24" stroke-width="2.5"/>
+          <text x="85" y="151" text-anchor="middle" font-size="12.5" font-weight="800" fill="#b45309">SUNK COST</text>
+          <text x="85" y="169" text-anchor="middle" font-size="11" fill="#92400e">#003</text>
+          <rect x="152" y="128" width="116" height="56" rx="12" fill="#f0f9ff" stroke="#38bdf8" stroke-width="2.5"/>
+          <text x="210" y="151" text-anchor="middle" font-size="12.5" font-weight="800" fill="#0369a1">ENDOWMENT</text>
+          <text x="210" y="169" text-anchor="middle" font-size="10.5" fill="#075985">milikku = berharga</text>
+          <rect x="270" y="128" width="130" height="56" rx="12" fill="#fdf4ff" stroke="#e879f9" stroke-width="2.5"/>
+          <text x="335" y="151" text-anchor="middle" font-size="12.5" font-weight="800" fill="#a21caf">STATUS QUO</text>
+          <text x="335" y="169" text-anchor="middle" font-size="11" fill="#86198f">malas berubah</text>
+          <!-- note -->
+          <text x="210" y="222" text-anchor="middle" font-size="12.5" font-weight="700" fill="#475569">menjinakkan induknya melunakkan anak-anaknya</text>
+          <text x="210" y="244" text-anchor="middle" font-size="12" fill="#94a3b8">itulah kenapa edisi ini strategis untuk dikuasai</text>
+        </svg>
+      </div>
+      <div class="quote" style="--accent:#8b5cf6; background:#f5f3ff; border-color:#a78bfa; font-size:16px; padding:10px 16px;">“Sebagian besar keputusan buruk bukan lahir dari keserakahan — melainkan dari usaha keras menghindari rasa rugi.”</div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #006 · Loss Aversion</span><span class="pageno">07 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 8 : SOLUSI ================= -->
+<section class="slide" style="--accent:#10b981">
+  <header>
+    <span class="tag">Solusi</span>
+    <h2>Empat Prosedur Menjinakkan Takut Rugi</h2>
+    <div class="sub">Kamu tidak bisa menghapus rasa sakitnya — tapi bisa mencegahnya menyetir.</div>
+  </header>
+  <div class="body">
+    <div class="col" style="flex:.95; justify-content:center;">
+      <div class="card">
+        <div class="chart-title" style="margin-bottom:8px;">Siklus Anti-Loss-Aversion</div>
+        <svg width="100%" viewBox="0 0 620 380">
+          <defs>
+            <marker id="arr6" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0 0 L10 5 L0 10 Z" fill="#0d9488"/>
+            </marker>
+          </defs>
+          <path d="M310 60 C 430 60, 510 110, 520 150" fill="none" stroke="#0d9488" stroke-width="3" marker-end="url(#arr6)"/>
+          <path d="M520 230 C 510 270, 430 320, 310 320" fill="none" stroke="#0d9488" stroke-width="3" marker-end="url(#arr6)"/>
+          <path d="M310 320 C 190 320, 110 270, 100 230" fill="none" stroke="#0d9488" stroke-width="3" marker-end="url(#arr6)"/>
+          <path d="M100 150 C 110 110, 190 60, 310 60" fill="none" stroke="#0d9488" stroke-width="3" marker-end="url(#arr6)"/>
+          <g>
+            <rect x="215" y="20" width="190" height="52" rx="12" fill="#ccfbf1" stroke="#14b8a6" stroke-width="2.5"/>
+            <text x="310" y="41" text-anchor="middle" font-size="13.5" font-weight="800" fill="#0f766e">1 · REFRAME DARI NOL</text>
+            <text x="310" y="60" text-anchor="middle" font-size="11.5" fill="#115e59">lupakan titik referensi</text>
+          </g>
+          <g>
+            <rect x="440" y="164" width="170" height="52" rx="12" fill="#ccfbf1" stroke="#14b8a6" stroke-width="2.5"/>
+            <text x="525" y="185" text-anchor="middle" font-size="13.5" font-weight="800" fill="#0f766e">2 · ATURAN TERTULIS</text>
+            <text x="525" y="204" text-anchor="middle" font-size="11.5" fill="#115e59">stop loss &amp; take profit</text>
+          </g>
+          <g>
+            <rect x="215" y="308" width="190" height="52" rx="12" fill="#ccfbf1" stroke="#14b8a6" stroke-width="2.5"/>
+            <text x="310" y="329" text-anchor="middle" font-size="13.5" font-weight="800" fill="#0f766e">3 · HITUNG EKSPEKTASI</text>
+            <text x="310" y="348" text-anchor="middle" font-size="11.5" fill="#115e59">angka, bukan perasaan</text>
+          </g>
+          <g>
+            <rect x="15" y="164" width="170" height="52" rx="12" fill="#ccfbf1" stroke="#14b8a6" stroke-width="2.5"/>
+            <text x="100" y="185" text-anchor="middle" font-size="13.5" font-weight="800" fill="#0f766e">4 · MATA ORANG LUAR</text>
+            <text x="100" y="204" text-anchor="middle" font-size="11.5" fill="#115e59">tes "kalau belum punya"</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card" style="padding:12px 18px;">
+        <h3 style="font-size:17px;">1 · Reframe dari titik nol</h3>
+        <p style="font-size:15px;">Tanya: "kalau posisi/uang ini <b>hilang total</b> dan aku mulai dari nol, apa keputusan terbaik hari ini?" Ini menghapus titik referensi yang membengkokkan penilaianmu.</p>
+      </div>
+      <div class="card" style="padding:12px 18px;">
+        <h3 style="font-size:17px;">2 · Pasang aturan tertulis <span style="color:#0d9488;">sebelum</span> emosi datang</h3>
+        <p style="font-size:15px;">Stop loss, take profit, batas waktu — tulis saat kepala dingin. Saat harga jatuh dan tangan gatal, yang memutuskan adalah <b>kertas</b>, bukan amigdala.</p>
+      </div>
+      <div class="card" style="padding:12px 18px;">
+        <h3 style="font-size:17px;">3 · Hitung nilai ekspektasi, bukan rasa</h3>
+        <p style="font-size:15px;">Taruhan 50–50 rugi 100 / menang 150 punya ekspektasi <b>+25</b>. Menolaknya berarti membayar 25 poin demi menghindari rasa sakit. Tulis angkanya; biarkan matematika bicara.</p>
+      </div>
+      <div class="card" style="padding:12px 18px;">
+        <h3 style="font-size:17px;">4 · Tes mata orang luar</h3>
+        <p style="font-size:15px;">"Kalau aku <b>belum</b> memilikinya, apakah aku akan membeli/masuk hari ini?" Pertanyaan ini menetralkan endowment effect dalam satu langkah.</p>
+      </div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #006 · Loss Aversion</span><span class="pageno">08 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 9 : PRAKTIK ================= -->
+<section class="slide" style="--accent:#f43f5e">
+  <header>
+    <span class="tag">Praktik Hari Ini</span>
+    <h2>Detektor Takut Rugi &amp; Latihan 5 Menit</h2>
+    <div class="sub">Menemukan satu keputusan yang sedang disetir rasa sakit.</div>
+  </header>
+  <div class="body">
+    <div class="col">
+      <div class="card" style="border-left:6px solid #f43f5e; padding:14px 20px;">
+        <h3>🚩 Alarm: loss aversion sedang menyetir bila…</h3>
+        <ul class="list" style="--accent:#f43f5e; margin-top:8px;">
+          <li style="font-size:15.5px;">Kamu menahan sesuatu (saham, pekerjaan, langganan) bukan karena prospeknya — tapi karena <b>"sayang"</b>.</li>
+          <li style="font-size:15.5px;">Kamu menolak tawaran yang secara matematika menguntungkan hanya karena <b>ada kemungkinan rugi</b>.</li>
+          <li style="font-size:15.5px;">Kata "balik modal" muncul di kepalamu — padahal pasar tidak tahu berapa harga belimu.</li>
+        </ul>
+      </div>
+      <div class="card" style="border-left:6px solid #10b981; padding:14px 20px;">
+        <h3>✅ Refleks pengganti</h3>
+        <p style="font-size:15.5px;">Ganti <i>"kalau aku lepas, aku rugi"</i> menjadi <b>"kalau aku tahan, apa ekspektasi hasilnya dari hari ini ke depan?"</b> — masa lalu tidak ikut voting.</p>
+      </div>
+      <div class="quote" style="--accent:#f43f5e; background:#fff1f2; border-color:#fb7185;">“Rasa sakit kehilangan itu nyata. Tapi ia mengukur masa lalu — sementara keputusanmu menentukan masa depan.”</div>
+    </div>
+    <div class="col">
+      <div class="card" style="padding:16px 20px;">
+        <h3>📝 Latihan 5 menit — malam ini</h3>
+        <p style="font-size:15.5px; margin-bottom:10px;">Ambil satu hal yang sedang kamu tahan-tahan (barang, posisi, kebiasaan), lalu jawab tertulis:</p>
+        <ul class="list" style="--accent:#e11d48;">
+          <li style="font-size:15.5px;"><b>1.</b> Apa titik referensiku? (harga beli? usaha yang sudah keluar? ekspektasi lama?)</li>
+          <li style="font-size:15.5px;"><b>2.</b> Kalau aku mulai dari nol hari ini — tanpa riwayat apa pun — apa keputusan yang akan kuambil?</li>
+          <li style="font-size:15.5px;"><b>3.</b> Apa aturan tertulis yang bisa kupasang sekarang agar keputusan ini tidak lagi disetir perasaan?</li>
+        </ul>
+      </div>
+      <div class="callout">🎯 <b>Target hari ini:</b> temukan <b>satu</b> keputusan yang selama ini kamu tunda karena takut rugi — lalu putuskan dengan kalkulator, bukan dengan perut.</div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #006 · Loss Aversion</span><span class="pageno">09 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 10 : RINGKASAN ================= -->
+<section class="slide" style="background: linear-gradient(135deg, #4c0519 0%, #881337 55%, #be123c 100%);">
+  <div style="flex:1; display:flex; flex-direction:column; justify-content:center; padding:0 80px;">
+    <div style="font-size:16px; letter-spacing:4px; color:#fda4af; font-weight:700; margin-bottom:16px;">RINGKASAN · DAILY WISDOM #006</div>
+    <h2 style="color:#fff; font-size:40px; margin:0 0 26px 0;">Loss Aversion — Lima Hal yang Harus Tinggal</h2>
+    <div style="display:flex; gap:16px; flex-wrap:wrap;">
+      <div style="flex:1 1 30%; background:rgba(255,255,255,.08); border:1px solid rgba(253,164,175,.35); border-radius:14px; padding:16px 18px;">
+        <div style="color:#fda4af; font-weight:800; font-size:15px; margin-bottom:6px;">① Rugi terasa 2× lebih sakit</div>
+        <div style="color:#ffe4e6; font-size:14.5px; line-height:1.45;">Prospect Theory: kehilangan Rp 100 ribu ± dua kali lebih kuat daripada senangnya mendapat Rp 100 ribu.</div>
+      </div>
+      <div style="flex:1 1 30%; background:rgba(255,255,255,.08); border:1px solid rgba(253,164,175,.35); border-radius:14px; padding:16px 18px;">
+        <div style="color:#fda4af; font-weight:800; font-size:15px; margin-bottom:6px;">② Semua diukur dari referensi</div>
+        <div style="color:#ffe4e6; font-size:14.5px; line-height:1.45;">Rugi-untung dihitung dari titik referensi (harga beli, gaji lama) — bukan dari kekayaan total. Referensi bisa digeser.</div>
+      </div>
+      <div style="flex:1 1 30%; background:rgba(255,255,255,.08); border:1px solid rgba(253,164,175,.35); border-radius:14px; padding:16px 18px;">
+        <div style="color:#fda4af; font-weight:800; font-size:15px; margin-bottom:6px;">③ Punya = lebih berharga</div>
+        <div style="color:#ffe4e6; font-size:14.5px; line-height:1.45;">Endowment effect: pemilik mug minta 2× harga pembeli — hanya karena status kepemilikan selama 5 menit.</div>
+      </div>
+      <div style="flex:1 1 30%; background:rgba(255,255,255,.08); border:1px solid rgba(253,164,175,.35); border-radius:14px; padding:16px 18px;">
+        <div style="color:#fda4af; font-weight:800; font-size:15px; margin-bottom:6px;">④ Jebakan investor klasik</div>
+        <div style="color:#ffe4e6; font-size:14.5px; line-height:1.45;">Disposition effect: jual pemenang terlalu cepat, tahan pecundang terlalu lama — portofolio jadi penuh nyangkut.</div>
+      </div>
+      <div style="flex:1 1 30%; background:rgba(255,255,255,.08); border:1px solid rgba(253,164,175,.35); border-radius:14px; padding:16px 18px;">
+        <div style="color:#fda4af; font-weight:800; font-size:15px; margin-bottom:6px;">⑤ Putuskan dengan prosedur</div>
+        <div style="color:#ffe4e6; font-size:14.5px; line-height:1.45;">Reframe dari nol, aturan tertulis, hitung ekspektasi, tes mata orang luar — emosi tidak boleh jadi setir.</div>
+      </div>
+      <div style="flex:1 1 30%; background:#be123c; border:1px solid #fb7185; border-radius:14px; padding:16px 18px;">
+        <div style="color:#fecdd3; font-weight:800; font-size:15px; margin-bottom:6px;">⑥ Besok: #007 Halo Effect</div>
+        <div style="color:#ffe4e6; font-size:14.5px; line-height:1.45;">Kenapa orang rupawan terlihat lebih pintar — dan satu kesan pertama mewarnai semua penilaianmu.</div>
+      </div>
+    </div>
+  </div>
+  <footer style="border-top:1px solid rgba(148,163,184,.25); color:#94a3b8;">
+    <span>Daily Wisdom #006 · Loss Aversion</span>
+    <span style="color:#fda4af; font-weight:700;">10 / 10</span>
+  </footer>
+</section>
+
+</body>
+</html>
