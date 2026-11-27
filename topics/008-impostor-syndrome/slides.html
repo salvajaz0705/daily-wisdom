@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Daily Wisdom #008 — Impostor Syndrome</title>
+<style>
+  @page { size: 1280px 720px; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body {
+    font-family: "Segoe UI", "Segoe UI Variable", system-ui, sans-serif;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .slide {
+    width: 1280px; height: 720px;
+    page-break-after: always;
+    overflow: hidden;
+    position: relative;
+    background: #f8fafc;
+    display: flex; flex-direction: column;
+  }
+  .slide:last-child { page-break-after: auto; }
+
+  /* ---------- header / footer ---------- */
+  header {
+    padding: 28px 56px 0 56px;
+  }
+  .tag {
+    display: inline-block;
+    font-size: 15px; font-weight: 700; letter-spacing: 2.5px;
+    color: #fff; background: var(--accent, #6366f1);
+    padding: 5px 14px; border-radius: 999px;
+    text-transform: uppercase;
+  }
+  h2 { font-size: 38px; color: #0f172a; margin-top: 12px; letter-spacing: -0.5px; }
+  .sub { font-size: 19px; color: #64748b; margin-top: 6px; }
+  .body { flex: 1; padding: 22px 56px 0 56px; display: flex; gap: 34px; min-height: 0; }
+  footer {
+    height: 44px; display: flex; align-items: center; justify-content: space-between;
+    padding: 0 56px; font-size: 13px; color: #94a3b8;
+    border-top: 1px solid #e2e8f0;
+  }
+  .pageno { font-weight: 700; color: var(--accent, #6366f1); }
+
+  /* ---------- text blocks ---------- */
+  .col { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 14px; }
+  p { font-size: 18px; line-height: 1.55; color: #334155; }
+  b, strong { color: #0f172a; }
+  .lead { font-size: 21px; color: #1e293b; font-weight: 600; line-height: 1.5; }
+
+  .card {
+    background: #fff; border: 1px solid #e2e8f0; border-radius: 14px;
+    padding: 18px 22px;
+    box-shadow: 0 1px 3px rgba(15,23,42,.06);
+  }
+  .card h3 { font-size: 19px; margin-bottom: 6px; color: #0f172a; }
+  .card p { font-size: 16.5px; }
+  .card .ic { font-size: 22px; }
+
+  .quote {
+    border-left: 6px solid var(--accent, #6366f1);
+    background: #eef2ff;
+    padding: 16px 20px; border-radius: 0 12px 12px 0;
+    font-size: 19px; font-style: italic; color: #1e293b; line-height: 1.5;
+  }
+  .quote .who { display: block; margin-top: 8px; font-style: normal; font-size: 15px; color: #64748b; font-weight: 600; }
+
+  ul.list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  ul.list li {
+    font-size: 17.5px; line-height: 1.45; color: #334155;
+    padding-left: 30px; position: relative;
+  }
+  ul.list li::before {
+    content: ""; position: absolute; left: 0; top: 7px;
+    width: 16px; height: 16px; border-radius: 5px;
+    background: var(--accent, #6366f1); opacity: .9;
+  }
+
+  .callout {
+    background: #fffbeb; border: 1.5px solid #fcd34d; border-radius: 12px;
+    padding: 14px 18px; font-size: 17px; color: #78350f; line-height: 1.5;
+  }
+
+  .chart-title { font-size: 15px; font-weight: 700; color: #475569; letter-spacing: .5px; text-transform: uppercase; }
+  .chart-note { font-size: 14px; color: #94a3b8; margin-top: 6px; line-height: 1.4; }
+</style>
+</head>
+<body>
+
+<!-- ================= SLIDE 1 : COVER ================= -->
+<section class="slide" style="background: linear-gradient(135deg, #2e1065 0%, #6d28d9 55%, #8b5cf6 100%);">
+  <div style="flex:1; display:flex; flex-direction:column; justify-content:center; padding:0 80px; position:relative;">
+    <svg style="position:absolute; right:80px; top:100px; opacity:.95" width="400" height="270" viewBox="0 0 400 270" fill="none">
+      <!-- person -->
+      <circle cx="110" cy="120" r="34" fill="#5b21b6" stroke="#c4b5fd" stroke-width="5"/>
+      <path d="M55 225 C55 175, 165 175, 165 225 Z" fill="#5b21b6" stroke="#c4b5fd" stroke-width="5"/>
+      <!-- mirror frame -->
+      <rect x="225" y="25" width="150" height="200" rx="18" fill="#4c1d95" stroke="#c4b5fd" stroke-width="5"/>
+      <!-- reflection: big confident figure -->
+      <circle cx="300" cy="85" r="24" fill="#8b5cf6" stroke="#e9d5ff" stroke-width="4"/>
+      <path d="M262 190 C262 145, 338 145, 338 190 Z" fill="#8b5cf6" stroke="#e9d5ff" stroke-width="4"/>
+      <!-- arrow person -> mirror -->
+      <line x1="170" y1="120" x2="215" y2="120" stroke="#c4b5fd" stroke-width="4" stroke-dasharray="6 6" marker-end="url(#arr8c)"/>
+      <defs>
+        <marker id="arr8c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0 0 L10 5 L0 10 Z" fill="#c4b5fd"/>
+        </marker>
+      </defs>
+      <text x="300" y="252" text-anchor="middle" font-size="11.5" fill="#c4b5fd" font-weight="600">bayangan: "palsu, kebetulan"</text>
+    </svg>
+    <div style="font-size:17px; letter-spacing:4px; color:#c4b5fd; font-weight:700;">DAILY WISDOM · EDISI #008 · PSIKOLOGI</div>
+    <h1 style="font-size:70px; color:#fff; line-height:1.08; margin-top:22px; letter-spacing:-1.5px; max-width:700px;">
+      Impostor<br>Syndrome
+    </h1>
+    <p style="font-size:25px; color:#ddd6fe; margin-top:26px; max-width:620px; line-height:1.5; font-weight:400;">
+      Kenapa justru orang yang <i>kompeten</i> merasa tidak pantas, merasa
+      "palsu", dan terus menunggu hari ketika semua orang mengetahuinya.
+    </p>
+    <div style="margin-top:44px; display:flex; gap:14px;">
+      <span style="background:rgba(196,181,253,.14); border:1px solid #a78bfa; color:#ddd6fe; padding:8px 18px; border-radius:999px; font-size:15px; font-weight:600;">Psikologi Diri</span>
+      <span style="background:rgba(251,191,36,.14); border:1px solid #fbbf24; color:#fde68a; padding:8px 18px; border-radius:999px; font-size:15px; font-weight:600;">Karier</span>
+      <span style="background:rgba(52,211,153,.14); border:1px solid #34d399; color:#a7f3d0; padding:8px 18px; border-radius:999px; font-size:15px; font-weight:600;">Kepercayaan Diri</span>
+    </div>
+  </div>
+  <footer style="border-top:1px solid rgba(148,163,184,.25); color:#64748b;">
+    <span>Daily Wisdom — satu konsep penting setiap hari</span>
+    <span style="color:#c4b5fd; font-weight:700;">01 / 10</span>
+  </footer>
+</section>
+
+<!-- ================= SLIDE 2 : DEFINISI ================= -->
+<section class="slide" style="--accent:#8b5cf6">
+  <header>
+    <span class="tag">Definisi</span>
+    <h2>Apa itu Impostor Syndrome?</h2>
+    <div class="sub">Pola pikir di mana kamu <b>tidak bisa menerima</b> kesuksesanmu sebagai milikmu.</div>
+  </header>
+  <div class="body">
+    <div class="col" style="flex:1.15;">
+      <p class="lead">Kamu berprestasi — naik jabatan, lulus dengan nilai bagus, diterima di perusahaan bagus. Tapi di dalam kepala ada suara: <i>"mereka akan tahu aku sebenarnya tidak sehebat itu. Aku cuma beruntung. Ini cuma kebetulan."</i> Itulah impostor syndrome.</p>
+      <p>Dikenali pertama kali oleh psikolog <b>Pauline Clance &amp; Suzanne Imes (1978)</b> pada kelompok wanita berprestasi tinggi — meski kemudian ditemukan di semua kelompok. Ciri khasnya bukan rendah diri biasa, melainkan <b>diskoneksi antara bukti dan perasaan</b>: bukti menumpuk, perasaan tidak pernah berubah.</p>
+      <p>Ironinya: orang yang <b>benar-benar tidak kompeten</b> jarang mengalaminya — mereka justru yakin berlebih (itu Dunning-Kruger #001, kebalikan cermin dari edisi ini). Impostor syndrome adalah tanda bahwa kamu <b>cukup tahu untuk menyadari betapa luasnya yang belum kamu tahu</b>.</p>
+      <div class="quote" style="--accent:#8b5cf6; background:#f5f3ff; border-color:#a78bfa;">“Saya seharusnya merasa bangga. Yang saya rasakan justru takut ketahuan.”
+        <span class="who">— Kutipan umum dari subjek penelitian Clance &amp; Imes</span>
+      </div>
+    </div>
+    <div class="col" style="flex:.85; justify-content:center;">
+      <div class="card">
+        <div class="chart-title" style="margin-bottom:10px;">Analogi: Aktor di Panggung Teater</div>
+        <svg width="100%" viewBox="0 0 380 250">
+          <!-- stage -->
+          <rect x="20" y="175" width="340" height="14" rx="4" fill="#cbd5e1"/>
+          <!-- spotlight -->
+          <path d="M150 30 L230 30 L275 175 L105 175 Z" fill="#ede9fe" opacity=".8"/>
+          <!-- actor -->
+          <circle cx="190" cy="105" r="22" fill="#8b5cf6"/>
+          <path d="M168 150 C168 128, 212 128, 212 150 L212 175 L168 175 Z" fill="#8b5cf6"/>
+          <!-- thought bubble -->
+          <circle cx="285" cy="55" r="8" fill="#e9d5ff"/>
+          <circle cx="305" cy="42" r="12" fill="#e9d5ff"/>
+          <rect x="255" y="10" width="115" height="24" rx="12" fill="#e9d5ff"/>
+          <text x="312" y="27" text-anchor="middle" font-size="11" font-weight="700" fill="#6d28d9">"aku cuma berpura-pura"</text>
+          <!-- audience -->
+          <g fill="#94a3b8">
+            <circle cx="60" cy="215" r="11"/><circle cx="100" cy="215" r="11"/><circle cx="140" cy="215" r="11"/><circle cx="180" cy="215" r="11"/><circle cx="220" cy="215" r="11"/><circle cx="260" cy="215" r="11"/><circle cx="300" cy="215" r="11"/>
+          </g>
+          <text x="190" y="240" text-anchor="middle" font-size="11.5" fill="#64748b">penonton melihat penampilan; aktor merasakan "kepalsuan"</text>
+        </svg>
+        <p style="font-size:15px; margin-top:8px;">Semua orang lain melihat <b>hasil</b>-mu. Hanya kamu yang mendengar keraguan di baliknya — lalu keliru mengira orang lain tidak merasakan hal yang sama.</p>
+      </div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #008 · Impostor Syndrome</span><span class="pageno">02 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 3 : BUKTI ================= -->
+<section class="slide" style="--accent:#f59e0b">
+  <header>
+    <span class="tag">Bukti Ilmiah</span>
+    <h2>Seberapa Umum? Lebih Umum dari Dugaanmu</h2>
+    <div class="sub">Statistik yang justru melegakan: kamu tidak sendirian, dan bukan berarti kamu rusak.</div>
+  </header>
+  <div class="body">
+    <div class="col" style="flex:1.1;">
+      <p class="lead">Studi Clance (1985) dan meta-analysis Sakulku &amp; Alexander (2011) memperkirakan <b>±70% orang</b> mengalami impostor syndrome di titik tertentu hidupnya. Bahkan daftar "penderitanya" penuh nama yang kamu anggap tidak mungkin meragukan diri:</p>
+      <ul class="list" style="--accent:#f59e0b;">
+        <li><b>Albert Einstein</b> — menyebut karya-karyanya "kebetulan besar" dan dirinya "penipu yang tidak disengaja".</li>
+        <li><b>Maya Angelou</b> — setelah 11 buku dan puluhan penghargaan, tetap berkata: <i>"Setiap kali saya menulis buku, saya berpikir: hah, mereka akan mengetahuinya."</i></li>
+        <li><b>Sheryl Sandberg</b> (COO Meta), <b>Howard Schultz</b> (Starbucks), <b>Michelle Obama</b> — semua pernah bicara terbuka soal rasa tidak pantas di posisi mereka.</li>
+      </ul>
+      <p style="font-size:16.5px; color:#475569;">Pola yang konsisten: impostor syndrome <b>paling kuat justru di lingkungan prestisius</b> — kampus top, perusahaan top, posisi baru yang lebih tinggi. Semakin jauh kamu melangkah, semakin "palsu" rasanya. Bukan karena kamu kurang — karena kamu berani masuk ke ruangan yang lebih besar.</p>
+    </div>
+    <div class="col" style="flex:.9; justify-content:center;">
+      <div class="card">
+        <div class="chart-title" style="margin-bottom:6px;">Siapa yang Paling Merasa "Palsu"?</div>
+        <svg width="100%" viewBox="0 0 480 300">
+          <line x1="70" y1="240" x2="440" y2="240" stroke="#94a3b8" stroke-width="2"/>
+          <line x1="70" y1="240" x2="70" y2="30" stroke="#94a3b8" stroke-width="2"/>
+          <g font-size="12" fill="#94a3b8">
+            <line x1="70" y1="180" x2="440" y2="180" stroke="#e2e8f0"/><text x="60" y="184" text-anchor="end">25%</text>
+            <line x1="70" y1="120" x2="440" y2="120" stroke="#e2e8f0"/><text x="60" y="124" text-anchor="end">50%</text>
+            <line x1="70" y1="60" x2="440" y2="60" stroke="#e2e8f0"/><text x="60" y="64" text-anchor="end">75%</text>
+          </g>
+          <!-- bars (scale 2.4px/%) -->
+          <rect x="115" y="72" width="70" height="168" fill="#c4b5fd" rx="5"/>
+          <text x="150" y="62" text-anchor="middle" font-size="15" font-weight="800" fill="#7c3aed">70%</text>
+          <rect x="235" y="105" width="70" height="135" fill="#a78bfa" rx="5"/>
+          <text x="270" y="95" text-anchor="middle" font-size="15" font-weight="800" fill="#7c3aed">56%</text>
+          <rect x="355" y="86" width="70" height="154" fill="#8b5cf6" rx="5"/>
+          <text x="390" y="76" text-anchor="middle" font-size="15" font-weight="800" fill="#7c3aed">64%</text>
+          <g font-size="12.5" font-weight="700" fill="#475569" text-anchor="middle">
+            <text x="150" y="262">seumur hidup</text>
+            <text x="150" y="280">(pernah merasa)</text>
+            <text x="270" y="262">profesional</text>
+            <text x="270" y="280">karier awal</text>
+            <text x="390" y="262">posisi baru /</text>
+            <text x="390" y="280">promosi besar</text>
+          </g>
+        </svg>
+        <div class="chart-note">Angka agregat dari studi kuesioner impostor syndrome (Clance 1985; Sakulku &amp; Alexander 2011). Bukan angka pasti — tapi arahnya konsisten di puluhan studi.</div>
+      </div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #008 · Impostor Syndrome</span><span class="pageno">03 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 4 : MEKANISME ================= -->
+<section class="slide" style="--accent:#f43f5e">
+  <header>
+    <span class="tag">Mekanisme</span>
+    <h2>Mesin Pencipta Rasa "Palsu"</h2>
+    <div class="sub">Tiga roda gigi yang terus memproduksi keraguan — sampai kamu tahu cara mematikannya.</div>
+  </header>
+  <div class="body">
+    <div class="col">
+      <div class="card" style="border-left:6px solid #f43f5e; padding:12px 18px;">
+        <h3 style="font-size:16px;">1 · Atribusi asimetris</h3>
+        <p style="font-size:14.5px;">Sukses → <b>"keberuntungan, timing, belas kasihan"</b> (eksternal). Gagal → <b>"lihat, memang aku tidak cukup"</b> (internal). Otak impostor memproses untung dan rugi dengan dua kacamata berbeda.</p>
+      </div>
+      <div class="card" style="border-left:6px solid #f59e0b; padding:12px 18px;">
+        <h3 style="font-size:16px;">2 · Perbandingan ke atas</h3>
+        <p style="font-size:14.5px;">Kamu selalu membandingkan <b>belakang panggungmu</b> (keraguan, persiapan, jatuh bangun) dengan <b>panggung orang lain</b> (hasil akhir yang rapi). Perbandingan ini selalu kalah — karena datanya tidak setara.</p>
+      </div>
+      <div class="card" style="border-left:6px solid #8b5cf6; padding:12px 18px;">
+        <h3 style="font-size:16px;">3 · Bukti tidak pernah cukup</h3>
+        <p style="font-size:14.5px;">Setiap pencapaian baru langsung <b>didiskon</b>: "itu cuma kebetulan". Tapi setiap kegagalan kecil dicatat permanen. Buku besarmu memang sengaja dibuat agar saldo selalu negatif.</p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="chart-title" style="margin-bottom:8px;">Analogi: Pencatat yang Tidak Adil</div>
+        <svg width="92%" viewBox="0 0 400 250" style="display:block; margin:0 auto;">
+          <!-- ledger -->
+          <rect x="40" y="30" width="150" height="190" rx="12" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="2.5"/>
+          <text x="115" y="55" text-anchor="middle" font-size="12.5" font-weight="800" fill="#047857">KOLOM PRESTASI</text>
+          <g font-size="11.5" fill="#059669" font-weight="600">
+            <text x="58" y="82">✓ lulus cum laude</text>
+            <text x="58" y="106">✓ naik jabatan</text>
+            <text x="58" y="130">✓ dipuji klien</text>
+            <text x="58" y="154">✓ proyek selesai</text>
+          </g>
+          <text x="115" y="205" text-anchor="middle" font-size="11" fill="#64748b">keterangan: "kebetulan"</text>
+          <!-- minus -->
+          <rect x="210" y="30" width="150" height="190" rx="12" fill="#fff1f2" stroke="#fda4af" stroke-width="2.5"/>
+          <text x="285" y="55" text-anchor="middle" font-size="12.5" font-weight="800" fill="#be123c">KOLOM KESALAHAN</text>
+          <g font-size="11.5" fill="#e11d48" font-weight="600">
+            <text x="228" y="82">✗ salah ketik di email</text>
+            <text x="228" y="106">✗ terlambat 5 menit</text>
+            <text x="228" y="130">✗ satu bug lolos</text>
+            <text x="228" y="154">✗ lupa satu nama</text>
+          </g>
+          <text x="285" y="205" text-anchor="middle" font-size="11" fill="#64748b">keterangan: "bukti nyata"</text>
+          <text x="200" y="245" text-anchor="middle" font-size="12.5" font-weight="700" fill="#475569">buku besar yang sama — dua sistem pembukuan</text>
+        </svg>
+        <p style="font-size:15px; margin-top:6px;">Rasa "palsu" itu bukan bukti kamu kurang. Itu bukti sistem pencatatanmu <b>berat sebelah</b> — dan sistem bisa diperbaiki.</p>
+      </div>
+      <div class="callout"><b>Fakta tidak nyaman:</b> rasa ini <b>tidak hilang dengan pencapaian lebih besar</b> — semakin besar panggung, semakin keras suaranya.</div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #008 · Impostor Syndrome</span><span class="pageno">04 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 5 : DUNIA NYATA ================= -->
+<section class="slide" style="--accent:#0ea5e9">
+  <header>
+    <span class="tag">Di Dunia Nyata</span>
+    <h2>Di Mana Impostor Paling Sering Muncul</h2>
+    <div class="sub">Empat arena di mana rasa "palsu" paling ganas — dan paling wajar.</div>
+  </header>
+  <div class="body">
+    <div class="col">
+      <div class="card" style="padding:11px 18px;">
+        <h3 style="font-size:16.5px;">💼 90 hari pertama di pekerjaan baru</h3>
+        <p style="font-size:14.5px;">Semua orang di ruangan tampak tahu apa yang mereka lakukan — kecuali kamu. Faktanya: <b>semua orang merasakan hal yang sama</b> di 90 hari pertama; yang berbeda hanya seberapa tersembunyi mereka menyimpannya.</p>
+      </div>
+      <div class="card" style="padding:11px 18px;">
+        <h3 style="font-size:16.5px;">🎓 Masuk kampus/sekolah top</h3>
+        <p style="font-size:14.5px;">Diterima di tempat prestisius justru memicu keraguan: "mereka pasti salah menerima aku". Paradoks: makin sulit masuknya, makin besar rasa tidak pantasnya.</p>
+      </div>
+      <div class="card" style="padding:11px 18px;">
+        <h3 style="font-size:16.5px;">🚀 Naik jabatan / pindah bidang</h3>
+        <p style="font-size:14.5px;">Promosi berarti <b>kompetensi lamamu tidak lagi relevan 100%</b> — dan otak salah membaca itu sebagai "palsu", padahal namanya <b>masih belajar</b>.</p>
+      </div>
+      <div class="card" style="padding:11px 18px;">
+        <h3 style="font-size:16.5px;">💻 Industri teknologi &amp; freelancing</h3>
+        <p style="font-size:14.5px;">Bidang yang bergerak cepat: selalu ada yang lebih ahli, stack baru setiap tahun. Lingkungan sempurna untuk perbandingan ke atas tanpa akhir.</p>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="chart-title" style="margin-bottom:8px;">Kurva yang Sama, Dua Tafsir</div>
+        <svg width="100%" viewBox="0 0 440 265">
+          <!-- competence curve -->
+          <path d="M40 220 C120 215, 200 180, 280 120 C330 82, 370 60, 400 48" fill="none" stroke="#10b981" stroke-width="4" stroke-linecap="round"/>
+          <text x="398" y="36" text-anchor="end" font-size="11.5" font-weight="800" fill="#059669">kompetensi nyata ↑</text>
+          <!-- feeling curve (inverse) -->
+          <path d="M40 60 C110 70, 190 110, 260 165 C320 210, 370 225, 400 232" fill="none" stroke="#f43f5e" stroke-width="4" stroke-linecap="round" stroke-dasharray="8 6"/>
+          <text x="398" y="222" text-anchor="end" font-size="11.5" font-weight="800" fill="#e11d48" stroke="#fff" stroke-width="4" paint-order="stroke">rasa percaya diri ↓</text>
+          <!-- labels -->
+          <text x="40" y="42" font-size="12" fill="#64748b" font-weight="700">awal: "tidak tahu apa-apa"</text>
+          <text x="290" y="140" font-size="12" fill="#64748b" font-weight="700">sudah ahli: "aku palsu"</text>
+          <!-- x axis -->
+          <line x1="40" y1="245" x2="400" y2="245" stroke="#94a3b8" stroke-width="2"/>
+          <text x="400" y="262" text-anchor="end" font-size="11.5" fill="#64748b" font-weight="600">pengalaman →</text>
+        </svg>
+        <p style="font-size:15px; margin-top:6px;">Paradoks inti: <b>rasa percaya diri sering bergerak berlawanan dengan kompetensi</b>. Merasa tidak tahu apa-apa justru bisa berarti kamu sudah cukup jauh untuk melihat betapa luasnya peta.</p>
+      </div>
+      <div class="callout">💡 <b>Bacaan ulang:</b> kalau kamu merasa "palsu", kemungkinan besar kamu cuma <b>sedang di fase belajar</b> di level baru.</div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #008 · Impostor Syndrome</span><span class="pageno">05 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 6 : CERMIN DUNNING-KRUGER ================= -->
+<section class="slide" style="--accent:#8b5cf6">
+  <header>
+    <span class="tag">Koneksi</span>
+    <h2>Impostor Syndrome: Cermin dari Dunning-Kruger</h2>
+    <div class="sub">Dua kurva yang sama, dua sisi yang berlawanan — dan keduanya menipu.</div>
+  </header>
+  <div class="body">
+    <div class="col" style="flex:1.1;">
+      <p class="lead">Di edisi #001 kamu belajar kurva Dunning-Kruger: orang <b>sedikit tahu</b> cenderung merasa paling tahu. Impostor syndrome adalah kelanjutannya di ujung sebaliknya: orang yang <b>sudah cukup tahu</b> justru merasa paling tidak tahu.</p>
+      <ul class="list" style="--accent:#8b5cf6;">
+        <li><b>Dunning-Kruger:</b> kompetensi rendah + keyakinan tinggi → "aku pasti bisa".</li>
+        <li><b>Impostor:</b> kompetensi tinggi + keyakinan rendah → "aku pasti ketahuan".</li>
+        <li>Keduanya berakar di tempat yang sama: <b>kesadaran atas kompleksitas masalah</b>. Yang sedikit tahu tidak sadar betapa rumitnya; yang sudah dalam justru sadar betul.</li>
+      </ul>
+      <p style="font-size:16.5px; color:#475569;">Makna praktisnya: rasa "palsu" dan rasa "pasti bisa" sama-sama <b>bukan alat ukur kompetensi</b>. Alat ukur yang benar adalah bukti eksternal: hasil kerja, umpan balik, dan track record — bukan perasaan di dada.</p>
+      <div class="callout">⚠️ <b>Hati-hati salah diagnosis:</b> jangan pakai "impostor syndrome" untuk membenarkan <b>tidak belajar</b>. Perasaan tidak pantas itu valid; kesimpulan "jadi aku tidak perlu berkembang" itu jebakan.</div>
+    </div>
+    <div class="col" style="flex:.9; justify-content:center;">
+      <div class="card">
+        <div class="chart-title" style="margin-bottom:8px;">Dua Kurva, Satu Sumbu Kompetensi</div>
+        <svg width="100%" viewBox="0 0 440 280">
+          <!-- axes -->
+          <line x1="40" y1="240" x2="410" y2="240" stroke="#94a3b8" stroke-width="2"/>
+          <line x1="40" y1="240" x2="40" y2="20" stroke="#94a3b8" stroke-width="2"/>
+          <text x="405" y="262" text-anchor="end" font-size="11.5" fill="#64748b" font-weight="600">kompetensi →</text>
+          <text x="48" y="32" font-size="11.5" fill="#64748b" font-weight="600">keyakinan diri</text>
+          <!-- DK curve -->
+          <path d="M55 215 C100 120, 130 60, 165 75 C200 92, 230 150, 290 130 C330 116, 360 105, 390 98" fill="none" stroke="#f59e0b" stroke-width="4" stroke-linecap="round"/>
+          <!-- impostor curve -->
+          <path d="M55 230 C120 225, 180 200, 240 150 C300 100, 350 60, 395 40" fill="none" stroke="#8b5cf6" stroke-width="4" stroke-linecap="round" stroke-dasharray="8 6"/>
+          <!-- labels -->
+          <text x="80" y="115" font-size="12" font-weight="800" fill="#b45309">Dunning-Kruger</text>
+          <text x="80" y="132" font-size="11" fill="#b45309">(sedikit tahu = PD tinggi)</text>
+          <text x="70" y="196" font-size="12" font-weight="800" fill="#6d28d9">Impostor</text>
+          <text x="70" y="213" font-size="11" fill="#6d28d9">(banyak tahu = ragu)</text>
+          <!-- meeting zone -->
+          <circle cx="255" cy="140" r="9" fill="none" stroke="#0f172a" stroke-width="3"/>
+          <text x="255" y="175" text-anchor="middle" font-size="11" font-weight="700" fill="#0f172a">zona sehat:</text>
+          <text x="255" y="190" text-anchor="middle" font-size="11" font-weight="700" fill="#0f172a">percaya diri &amp; sadar batas</text>
+        </svg>
+        <div class="chart-note">Targetmu bukan menghapus keraguan — melainkan berdiri di zona tengah: yakin pada bukti, sadar pada batas.</div>
+      </div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #008 · Impostor Syndrome</span><span class="pageno">06 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 7 : KONEKSI ================= -->
+<section class="slide" style="--accent:#10b981">
+  <header>
+    <span class="tag">Koneksi</span>
+    <h2>Kenapa Bias Lain Memperkuat Rasa "Palsu"</h2>
+    <div class="sub">Impostor syndrome tidak berdiri sendiri — tiga bias lama menambal bahan bakarnya.</div>
+  </header>
+  <div class="body">
+    <div class="col">
+      <div class="card" style="border-left:6px solid #d97706; padding:12px 18px;">
+        <h3 style="font-size:16.5px;">Halo Effect (#007) → ekspektasi mustahil</h3>
+        <p style="font-size:14.5px;">Kamu melihat atasan/idola dengan halo: "dia hebat di segalanya". Lalu menilai dirimu dengan standar dewa itu. Halo atas orang lain = cambuk untuk diri sendiri.</p>
+      </div>
+      <div class="card" style="border-left:6px solid #34d399; padding:12px 18px;">
+        <h3 style="font-size:16.5px;">Survivorship (#005) → perbandingan bengkok</h3>
+        <p style="font-size:14.5px;">Yang kamu lihat di media sosial dan LinkedIn: hasil akhir yang sudah dikurasi. Yang kamu rasakan: proses berantakanmu sendiri. Membandingkan keduanya = selalu kalah.</p>
+      </div>
+      <div class="card" style="border-left:6px solid #e11d48; padding:12px 18px;">
+        <h3 style="font-size:16.5px;">Loss Aversion (#006) → takut "ketahuan"</h3>
+        <p style="font-size:14.5px;">Inti impostor adalah takut <b>kehilangan status</b>: "kalau mereka tahu aku biasa saja, aku kehilangan segalanya". Rasa kehilangan masa depan itu terasa 2× lebih kuat dari yang seharusnya.</p>
+      </div>
+      <div class="callout">⚠️ <b>Rantai lengkapnya:</b> lihat kisah sukses terkurasi (survivorship) → bangun halo atas mereka → bandingkan dengan belakang panggungmu → takut kehilangan muka (loss aversion) → "aku palsu".</div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <div class="chart-title" style="margin-bottom:8px;">Rantai Produksi Rasa "Palsu"</div>
+        <svg width="100%" viewBox="0 0 420 285">
+          <defs>
+            <marker id="arr8d" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0 0 L10 5 L0 10 Z" fill="#94a3b8"/>
+            </marker>
+          </defs>
+          <g>
+            <rect x="25" y="20" width="370" height="44" rx="12" fill="#ecfdf5" stroke="#6ee7b7" stroke-width="2.5"/>
+            <text x="210" y="47" text-anchor="middle" font-size="13" font-weight="800" fill="#065f46">kisah sukses terkurasi (survivorship #005)</text>
+            <line x1="210" y1="64" x2="210" y2="86" stroke="#94a3b8" stroke-width="2.5" marker-end="url(#arr8d)"/>
+            <rect x="25" y="92" width="370" height="44" rx="12" fill="#fffbeb" stroke="#fcd34d" stroke-width="2.5"/>
+            <text x="210" y="119" text-anchor="middle" font-size="13" font-weight="800" fill="#b45309">halo: "mereka hebat di segalanya" (#007)</text>
+            <line x1="210" y1="136" x2="210" y2="158" stroke="#94a3b8" stroke-width="2.5" marker-end="url(#arr8d)"/>
+            <rect x="25" y="164" width="370" height="44" rx="12" fill="#f0f9ff" stroke="#7dd3fc" stroke-width="2.5"/>
+            <text x="210" y="191" text-anchor="middle" font-size="13" font-weight="800" fill="#075985">perbandingan: panggung mereka vs belakang panggungmu</text>
+            <line x1="210" y1="208" x2="210" y2="230" stroke="#94a3b8" stroke-width="2.5" marker-end="url(#arr8d)"/>
+            <rect x="25" y="236" width="370" height="44" rx="12" fill="#fff1f2" stroke="#fda4af" stroke-width="2.5"/>
+            <text x="210" y="263" text-anchor="middle" font-size="13" font-weight="800" fill="#be123c">"AKU PALSU — dan akan ketahuan" (loss aversion #006)</text>
+          </g>
+        </svg>
+      </div>
+      <div class="quote" style="--accent:#10b981; background:#ecfdf5; border-color:#34d399; font-size:16px; padding:10px 16px;">“Putuskan rantainya di mata rantai mana pun — rasa palsunya ikut melemah.”</div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #008 · Impostor Syndrome</span><span class="pageno">07 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 8 : SOLUSI ================= -->
+<section class="slide" style="--accent:#0d9488">
+  <header>
+    <span class="tag">Solusi</span>
+    <h2>Empat Prosedur Melawan Suara "Palsu"</h2>
+    <div class="sub">Bukan afirmasi kosong — melainkan pembukuan ulang yang bisa kamu buktikan.</div>
+  </header>
+  <div class="body">
+    <div class="col" style="flex:.95; justify-content:center;">
+      <div class="card">
+        <div class="chart-title" style="margin-bottom:8px;">Siklus Anti-Impostor</div>
+        <svg width="100%" viewBox="0 0 620 380">
+          <defs>
+            <marker id="arr8e" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M0 0 L10 5 L0 10 Z" fill="#0d9488"/>
+            </marker>
+          </defs>
+          <path d="M310 60 C 430 60, 510 110, 520 150" fill="none" stroke="#0d9488" stroke-width="3" marker-end="url(#arr8e)"/>
+          <path d="M520 230 C 510 270, 430 320, 310 320" fill="none" stroke="#0d9488" stroke-width="3" marker-end="url(#arr8e)"/>
+          <path d="M310 320 C 190 320, 110 270, 100 230" fill="none" stroke="#0d9488" stroke-width="3" marker-end="url(#arr8e)"/>
+          <path d="M100 150 C 110 110, 190 60, 310 60" fill="none" stroke="#0d9488" stroke-width="3" marker-end="url(#arr8e)"/>
+          <g>
+            <rect x="205" y="20" width="210" height="52" rx="12" fill="#ccfbf1" stroke="#14b8a6" stroke-width="2.5"/>
+            <text x="310" y="41" text-anchor="middle" font-size="13.5" font-weight="800" fill="#0f766e">1 · BUKTI TERTULIS</text>
+            <text x="310" y="60" text-anchor="middle" font-size="11.5" fill="#115e59">brag document</text>
+          </g>
+          <g>
+            <rect x="440" y="164" width="170" height="52" rx="12" fill="#ccfbf1" stroke="#14b8a6" stroke-width="2.5"/>
+            <text x="525" y="185" text-anchor="middle" font-size="13.5" font-weight="800" fill="#0f766e">2 · GANTI NAMA</text>
+            <text x="525" y="204" text-anchor="middle" font-size="11.5" fill="#115e59">"palsu" → "masih belajar"</text>
+          </g>
+          <g>
+            <rect x="205" y="308" width="210" height="52" rx="12" fill="#ccfbf1" stroke="#14b8a6" stroke-width="2.5"/>
+            <text x="310" y="329" text-anchor="middle" font-size="13.5" font-weight="800" fill="#0f766e">3 · UJI ATRIBUSI</text>
+            <text x="310" y="348" text-anchor="middle" font-size="11.5" fill="#115e59">"kebetulan" vs "kemampuan"</text>
+          </g>
+          <g>
+            <rect x="15" y="164" width="170" height="52" rx="12" fill="#ccfbf1" stroke="#14b8a6" stroke-width="2.5"/>
+            <text x="100" y="185" text-anchor="middle" font-size="13.5" font-weight="800" fill="#0f766e">4 · BICARA</text>
+            <text x="100" y="204" text-anchor="middle" font-size="11.5" fill="#115e59">rahasia = bahan bakar</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card" style="padding:12px 18px;">
+        <h3 style="font-size:17px;">1 · Tulis "brag document"</h3>
+        <p style="font-size:15px;">Dokumen berisi pencapaian nyata dengan <b>bukti</b>: email pujian, angka hasil, masalah yang kamu selesaikan. Baca saat suara "palsu" keras — perasaan kalah oleh dokumen.</p>
+      </div>
+      <div class="card" style="padding:12px 18px;">
+        <h3 style="font-size:17px;">2 · Ganti label "palsu" → "masih belajar"</h3>
+        <p style="font-size:15px;">Keduanya terasa sama di dada, tapi satu mematikan dan satu membuka jalan. Impostor bukan identitas — itu <b>fase</b> yang semua orang lewati di level baru.</p>
+      </div>
+      <div class="card" style="padding:12px 18px;">
+        <h3 style="font-size:17px;">3 · Uji atribusi: kebetulan atau kemampuan?</h3>
+        <p style="font-size:15px;">Tanya: "kalau ini murni keberuntungan, kenapa polanya berulang?" Kebetulan tidak konsisten; kemampuan bisa diulang. Cari polanya di brag document-mu.</p>
+      </div>
+      <div class="card" style="padding:12px 18px;">
+        <h3 style="font-size:17px;">4 · Bicarakan — jangan simpan</h3>
+        <p style="font-size:15px;">Impostor syndrome hidup dari kerahasiaan. Cerita ke teman/mentor dan dengar mereka bilang <b>"aku juga"</b> — riset Clance menunjukkan normalisasi adalah pelemas paling kuat.</p>
+      </div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #008 · Impostor Syndrome</span><span class="pageno">08 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 9 : PRAKTIK ================= -->
+<section class="slide" style="--accent:#f43f5e">
+  <header>
+    <span class="tag">Praktik Hari Ini</span>
+    <h2>Detektor Suara "Palsu" &amp; Latihan 10 Menit</h2>
+    <div class="sub">Malam ini: mulai buku besar yang jujur.</div>
+  </header>
+  <div class="body">
+    <div class="col">
+      <div class="card" style="border-left:6px solid #f43f5e; padding:14px 20px;">
+        <h3>🚩 Alarm: suara impostor sedang bicara bila…</h3>
+        <ul class="list" style="--accent:#f43f5e; margin-top:8px;">
+          <li style="font-size:15.5px;">Kamu menjelaskan pujian dengan <b>"cuma kebetulan / bantuan orang / timing bagus"</b>.</li>
+          <li style="font-size:15.5px;">Kamu menolak atau meremehkan pujian, tapi <b>mengingat kritik bertahun-tahun</b>.</li>
+          <li style="font-size:15.5px;">Kamu menolak tantangan baru bukan karena tidak mampu — tapi karena takut <b>"ketahuan"</b>.</li>
+        </ul>
+      </div>
+      <div class="card" style="border-left:6px solid #10b981; padding:14px 20px;">
+        <h3>✅ Refleks pengganti</h3>
+        <p style="font-size:15.5px;">Ganti <i>"aku cuma beruntung"</i> menjadi <b>"bagian mana dari hasil ini yang memang aku kerjakan?"</b> — dan jawab jujur, bukan rendah hati palsu.</p>
+      </div>
+      <div class="quote" style="--accent:#f43f5e; background:#fff1f2; border-color:#fb7185;">“Rasa tidak pantas adalah harga masuk ke ruangan yang lebih besar. Yang penting: jangan biarkan harga itu membuatmu pulang.”</div>
+    </div>
+    <div class="col">
+      <div class="card" style="padding:16px 20px;">
+        <h3>📝 Latihan 10 menit — mulai malam ini</h3>
+        <p style="font-size:15.5px; margin-bottom:10px;">Buat dokumen baru (judul: <b>"Bukti"</b>), lalu isi 5 baris pertama:</p>
+        <ul class="list" style="--accent:#8b5cf6;">
+          <li style="font-size:15.5px;"><b>1.</b> Tiga pencapaian tahun ini — sekecil apa pun — yang bisa kamu tunjukkan buktinya.</li>
+          <li style="font-size:15.5px;"><b>2.</b> Satu masalah yang kamu selesaikan padahal orang lain menyerah.</li>
+          <li style="font-size:15.5px;"><b>3.</b> Satu hal yang sekarang kamu bisa lakukan, yang setahun lalu belum bisa.</li>
+        </ul>
+        <p style="font-size:15px; margin-top:10px;">Aturan main: <b>tambah satu baris setiap minggu</b>. Enam bulan lagi, kamu punya dokumen yang tidak bisa dibantah suara "palsu".</p>
+      </div>
+      <div class="callout">🎯 <b>Target hari ini:</b> kirim satu pesan ke satu orang yang kamu percaya: <i>"Aku lagi merasa tidak pantas di posisiku. Kamu pernah merasa begitu juga?"</i> — putus rantai kerahasianya.</div>
+    </div>
+  </div>
+  <footer><span>Daily Wisdom #008 · Impostor Syndrome</span><span class="pageno">09 / 10</span></footer>
+</section>
+
+<!-- ================= SLIDE 10 : RINGKASAN ================= -->
+<section class="slide" style="background: linear-gradient(135deg, #2e1065 0%, #6d28d9 55%, #8b5cf6 100%);">
+  <div style="flex:1; display:flex; flex-direction:column; justify-content:center; padding:0 80px;">
+    <div style="font-size:16px; letter-spacing:4px; color:#c4b5fd; font-weight:700; margin-bottom:16px;">RINGKASAN · DAILY WISDOM #008</div>
+    <h2 style="color:#fff; font-size:40px; margin:0 0 26px 0;">Impostor Syndrome — Lima Hal yang Harus Tinggal</h2>
+    <div style="display:flex; gap:16px; flex-wrap:wrap;">
+      <div style="flex:1 1 30%; background:rgba(255,255,255,.08); border:1px solid rgba(196,181,253,.35); border-radius:14px; padding:16px 18px;">
+        <div style="color:#c4b5fd; font-weight:800; font-size:15px; margin-bottom:6px;">① Umum, bukan cacat</div>
+        <div style="color:#ede9fe; font-size:14.5px; line-height:1.45;">±70% orang pernah merasakannya — termasuk Einstein, Maya Angelou, dan para pemimpin yang kamu kagumi.</div>
+      </div>
+      <div style="flex:1 1 30%; background:rgba(255,255,255,.08); border:1px solid rgba(196,181,253,.35); border-radius:14px; padding:16px 18px;">
+        <div style="color:#c4b5fd; font-weight:800; font-size:15px; margin-bottom:6px;">② Bukan ukuran kompetensi</div>
+        <div style="color:#ede9fe; font-size:14.5px; line-height:1.45;">Rasa "palsu" justru muncul pada yang cukup tahu untuk sadar betapa luasnya yang belum diketahui (cermin Dunning-Kruger #001).</div>
+      </div>
+      <div style="flex:1 1 30%; background:rgba(255,255,255,.08); border:1px solid rgba(196,181,253,.35); border-radius:14px; padding:16px 18px;">
+        <div style="color:#c4b5fd; font-weight:800; font-size:15px; margin-bottom:6px;">③ Atribusi asimetris</div>
+        <div style="color:#ede9fe; font-size:14.5px; line-height:1.45;">Sukses = "kebetulan", gagal = "bukti nyata". Sistem pembukuan inilah yang diperbaiki, bukan dirimu.</div>
+      </div>
+      <div style="flex:1 1 30%; background:rgba(255,255,255,.08); border:1px solid rgba(196,181,253,.35); border-radius:14px; padding:16px 18px;">
+        <div style="color:#c4b5fd; font-weight:800; font-size:15px; margin-bottom:6px;">④ Bias lain menambal bahan bakar</div>
+        <div style="color:#ede9fe; font-size:14.5px; line-height:1.45;">Halo (#007) membuat standar mustahil, survivorship (#005) membengkokkan perbandingan, loss aversion (#006) membesar-besarkan takut "ketahuan".</div>
+      </div>
+      <div style="flex:1 1 30%; background:rgba(255,255,255,.08); border:1px solid rgba(196,181,253,.35); border-radius:14px; padding:16px 18px;">
+        <div style="color:#c4b5fd; font-weight:800; font-size:15px; margin-bottom:6px;">⑤ Bukti &gt; perasaan</div>
+        <div style="color:#ede9fe; font-size:14.5px; line-height:1.45;">Brag document, ganti label "palsu" → "masih belajar", uji atribusi, dan bicarakan — kerahasiaan adalah bahan bakarnya.</div>
+      </div>
+      <div style="flex:1 1 30%; background:#8b5cf6; border:1px solid #c4b5fd; border-radius:14px; padding:16px 18px;">
+        <div style="color:#ddd6fe; font-weight:800; font-size:15px; margin-bottom:6px;">⑥ Besok: #009 FOMO &amp; Scarcity</div>
+        <div style="color:#ede9fe; font-size:14.5px; line-height:1.45;">Kenapa "takut ketinggalan" menggerakkanmu lebih kuat dari "ingin mendapatkan" — dan siapa yang memanfaatkannya.</div>
+      </div>
+    </div>
+  </div>
+  <footer style="border-top:1px solid rgba(148,163,184,.25); color:#94a3b8;">
+    <span>Daily Wisdom #008 · Impostor Syndrome</span>
+    <span style="color:#c4b5fd; font-weight:700;">10 / 10</span>
+  </footer>
+</section>
+
+</body>
+</html>

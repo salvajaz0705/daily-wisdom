@@ -9,7 +9,7 @@ Kurasi topik harian — dipilih karena **paling sering muncul di kehidupan nyata
 - [x] 004 — Anchoring Effect: trik harga pertama dalam negosiasi *(done)*
 - [x] 005 — Survivorship Bias: kisah sukses yang menipu *(done)*
 - [x] 006 — Loss Aversion: kenapa rugi terasa 2x lebih sakit *(done)*
-- [ ] 007 — Halo Effect & first impression
+- [x] 007 — Halo Effect & first impression *(done)*
 - [ ] 008 — Impostor Syndrome
 - [ ] 009 — FOMO dan psikologi kelangkaan (scarcity)
 - [ ] 010 — Paradox of Choice: kenapa pilihan banyak bikin lumpuh
